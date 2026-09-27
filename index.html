@@ -78,9 +78,9 @@ button{
   margin:auto;
 }
 
-/* =========================
-   CAPITOLIO
-========================= */
+/* ========================================
+   LOGO DEL CAPITOLIO
+======================================== */
 
 .capitol-header{
   text-align:center;
@@ -89,45 +89,59 @@ button{
 }
 
 .capitol-logo{
-  width:86px;
-  height:86px;
-  margin:0 auto 13px;
+  width:100px;
+  height:100px;
+  margin:0 auto 14px;
 
-  border:1px solid var(--gold2);
-  border-radius:50%;
-
-  display:grid;
-  place-items:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
   position:relative;
 
-  color:var(--gold);
-
-  box-shadow:
-    0 0 30px rgba(197,163,91,.08),
-    inset 0 0 20px rgba(197,163,91,.05);
+  user-select:none;
 }
 
-.capitol-logo:before,
-.capitol-logo:after{
-  content:"";
+.capitol-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+
+  display:block;
+
+  filter:
+    drop-shadow(0 0 10px rgba(197,163,91,.18))
+    drop-shadow(0 0 24px rgba(197,163,91,.08));
+
+  pointer-events:none;
+}
+
+/* Marca de agua */
+
+.watermark{
   position:absolute;
-  border:1px solid rgba(197,163,91,.32);
-  border-radius:50%;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  pointer-events:none;
+
+  overflow:hidden;
+
+  opacity:.025;
 }
 
-.capitol-logo:before{
-  inset:8px;
+.watermark img{
+  width:75%;
+  max-width:320px;
+  object-fit:contain;
 }
 
-.capitol-logo:after{
-  inset:16px;
-}
-
-.capitol-logo span{
-  font-size:25px;
-  z-index:2;
-}
+/* ========================================
+   TEXTOS
+======================================== */
 
 .eyebrow{
   font:11px Arial,sans-serif;
@@ -153,6 +167,7 @@ h1{
 
 .rule{
   height:1px;
+
   background:
     linear-gradient(
       90deg,
@@ -164,9 +179,9 @@ h1{
   margin:22px 0;
 }
 
-/* =========================
+/* ========================================
    PROGRESO
-========================= */
+======================================== */
 
 .progress-wrap{
   display:flex;
@@ -174,38 +189,52 @@ h1{
   gap:14px;
 
   margin:0 auto 28px;
+
   max-width:650px;
 }
 
 .progress{
   height:5px;
+
   background:#1d201f;
+
   flex:1;
+
   overflow:hidden;
 }
 
 .progress > i{
   display:block;
+
   height:100%;
+
   width:0;
+
   background:var(--gold);
+
   transition:.4s;
 }
 
 .progress-count{
   font:11px Arial,sans-serif;
+
   letter-spacing:.15em;
+
   color:var(--muted);
+
   white-space:nowrap;
 }
 
-/* =========================
+/* ========================================
    DISTRITOS
-========================= */
+======================================== */
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap:13px;
 }
 
@@ -226,6 +255,7 @@ h1{
   padding:20px 10px;
 
   position:relative;
+
   overflow:hidden;
 
   transition:.2s;
@@ -239,19 +269,24 @@ h1{
   border-color:var(--gold2);
 
   box-shadow:
-    inset 0 0 30px rgba(197,163,91,.055);
+    inset 0 0 30px
+    rgba(197,163,91,.055);
 }
+
+/* Sello de distrito */
 
 .district .seal{
   width:76px;
   height:76px;
 
   border-radius:50%;
+
   border:1px solid #3c3c37;
 
   margin:0 auto 14px;
 
   display:grid;
+
   place-items:center;
 
   position:relative;
@@ -259,10 +294,12 @@ h1{
 
 .district.unlocked .seal{
   border-color:var(--gold);
+
   color:var(--gold);
 
   box-shadow:
-    0 0 22px rgba(197,163,91,.12);
+    0 0 22px
+    rgba(197,163,91,.12);
 }
 
 .seal b{
@@ -272,20 +309,25 @@ h1{
 
 .seal small{
   position:absolute;
+
   bottom:8px;
 
   font:7px Arial,sans-serif;
+
   letter-spacing:.1em;
 }
 
 .dname{
   font-size:13px;
+
   letter-spacing:.16em;
+
   text-transform:uppercase;
 }
 
 .status{
   font:9px Arial,sans-serif;
+
   letter-spacing:.18em;
 
   text-transform:uppercase;
@@ -303,6 +345,7 @@ h1{
   position:absolute;
 
   right:9px;
+
   top:9px;
 
   font:12px Arial,sans-serif;
@@ -314,9 +357,9 @@ h1{
   color:var(--gold);
 }
 
-/* =========================
+/* ========================================
    TARJETAS
-========================= */
+======================================== */
 
 .card{
   max-width:620px;
@@ -337,20 +380,8 @@ h1{
   text-align:center;
 
   position:relative;
-}
 
-.watermark{
-  position:absolute;
-  inset:0;
-
-  display:grid;
-  place-items:center;
-
-  pointer-events:none;
-
-  opacity:.025;
-
-  font-size:180px;
+  overflow:hidden;
 }
 
 .big-seal{
@@ -362,6 +393,7 @@ h1{
   border-radius:50%;
 
   display:grid;
+
   place-items:center;
 
   margin:5px auto 22px;
@@ -405,9 +437,9 @@ h1{
   font-size:14px;
 }
 
-/* =========================
+/* ========================================
    PIN
-========================= */
+======================================== */
 
 .pin-label{
   font:10px Arial,sans-serif;
@@ -433,6 +465,7 @@ h1{
 
 .pin input{
   width:52px;
+
   height:61px;
 
   text-align:center;
@@ -452,12 +485,13 @@ h1{
   border-color:var(--gold);
 }
 
-/* =========================
+/* ========================================
    BOTONES
-========================= */
+======================================== */
 
 .action{
   width:100%;
+
   max-width:330px;
 
   border:1px solid var(--gold2);
@@ -502,7 +536,7 @@ h1{
 }
 
 .error{
-  height:22px;
+  min-height:22px;
 
   margin-top:12px;
 
@@ -515,9 +549,9 @@ h1{
   text-transform:uppercase;
 }
 
-/* =========================
+/* ========================================
    REGALO
-========================= */
+======================================== */
 
 .supply-box{
   border:1px solid var(--gold2);
@@ -528,6 +562,10 @@ h1{
 
   background:
     rgba(197,163,91,.035);
+
+  position:relative;
+
+  z-index:2;
 }
 
 .supply-box .tag{
@@ -558,22 +596,23 @@ h1{
   text-transform:uppercase;
 }
 
-/* =========================
-   ADMIN
-========================= */
+/* ========================================
+   PANEL ADMIN
+======================================== */
 
 .modal{
   position:fixed;
 
   inset:0;
 
-  background:rgba(0,0,0,.91);
+  background:rgba(0,0,0,.94);
 
   z-index:30;
 
   display:none;
 
   align-items:center;
+
   justify-content:center;
 
   padding:20px;
@@ -595,6 +634,21 @@ h1{
   border:1px solid var(--gold2);
 
   padding:25px;
+}
+
+.admin-logo{
+  width:75px;
+
+  height:75px;
+
+  margin:0 auto 20px;
+}
+
+.admin-logo img{
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
 }
 
 .admin h2{
@@ -673,6 +727,10 @@ h1{
   color:#c57a70 !important;
 }
 
+/* ========================================
+   TOAST
+======================================== */
+
 .toast{
   position:fixed;
 
@@ -711,10 +769,22 @@ h1{
   transform:translateX(-50%);
 }
 
+/* ========================================
+   MÓVIL
+======================================== */
+
 @media(max-width:680px){
 
+  .screen{
+    padding:
+      max(24px,env(safe-area-inset-top))
+      14px
+      40px;
+  }
+
   .grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
   .district{
@@ -726,153 +796,240 @@ h1{
     height:65px;
   }
 
+  .capitol-logo{
+    width:88px;
+    height:88px;
+  }
+
   .admin-actions{
     grid-template-columns:1fr;
   }
 
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- ======================================================
-     ALMACÉN
-====================================================== -->
 
-<section id="home" class="screen active">
+<!-- ==========================================
+     PANTALLA PRINCIPAL
+========================================== -->
+
+<section
+id="home"
+class="screen active">
 
 <div class="shell">
 
+
 <header class="capitol-header">
 
-<div class="capitol-logo admin-trigger">
-<span>✦</span>
+<div
+class="capitol-logo admin-trigger">
+
+<img
+src="capitolio.png.webp"
+alt="Emblema del Capitolio">
+
 </div>
+
 
 <div class="eyebrow">
+
 CAPITOLIO · DIVISIÓN DE SUMINISTROS
+
 </div>
 
+
 <h1>
+
 Almacén de Suministros<br>
 de los Distritos
+
 </h1>
 
+
 <div class="sub">
+
 TRIBUTO: SAMUEL
+
 </div>
 
 </header>
 
+
 <div class="rule"></div>
+
 
 <div class="progress-wrap">
 
 <div class="progress">
+
 <i id="bar"></i>
+
 </div>
+
 
 <div
 class="progress-count"
 id="progressText">
+
 0 / 12 RECUPERADOS
+
 </div>
 
 </div>
+
 
 <div
 class="grid"
 id="districtGrid">
 </div>
 
+
 </div>
 
 </section>
 
 
-<!-- ======================================================
-     INTRODUCIR PIN
-====================================================== -->
 
-<section id="access" class="screen">
+<!-- ==========================================
+     ACCESO DISTRITO
+========================================== -->
+
+<section
+id="access"
+class="screen">
 
 <div class="shell">
+
 
 <button
 class="back"
 onclick="goHome()">
+
 ← VOLVER AL ALMACÉN
+
 </button>
+
 
 <header class="capitol-header">
 
-<div class="capitol-logo admin-trigger">
-<span>✦</span>
+
+<div
+class="capitol-logo admin-trigger">
+
+<img
+src="capitolio.png.webp"
+alt="Emblema del Capitolio">
+
 </div>
 
+
 <div class="eyebrow">
+
 CAPITOLIO · ACCESO RESTRINGIDO
+
 </div>
 
 </header>
 
+
 <div class="card">
 
+
 <div class="watermark">
-✦
+
+<img
+src="capitolio.png.webp"
+alt="">
+
 </div>
+
 
 <div
 class="big-seal"
 id="accessSeal">
+
 1
+
 </div>
+
 
 <div
 class="tiny"
 id="accessCategory">
 </div>
 
+
 <h2 id="accessTitle">
+
 DISTRITO 1
+
 </h2>
 
+
 <p>
+
 Este suministro permanece clasificado.
 Introduzca el PIN recuperado del alijo
 correspondiente para autorizar su apertura.
+
 </p>
 
+
 <div class="pin-label">
+
 CÓDIGO DE ACCESO AL ALIJO
+
 </div>
+
 
 <div
 class="pin"
 id="pinInputs">
 
-<input inputmode="numeric" maxlength="1">
 
-<input inputmode="numeric" maxlength="1">
+<input
+inputmode="numeric"
+maxlength="1">
 
-<input inputmode="numeric" maxlength="1">
 
-<input inputmode="numeric" maxlength="1">
+<input
+inputmode="numeric"
+maxlength="1">
+
+
+<input
+inputmode="numeric"
+maxlength="1">
+
+
+<input
+inputmode="numeric"
+maxlength="1">
+
 
 </div>
+
 
 <button
 class="action"
 onclick="verifyPin()">
+
 VERIFICAR CÓDIGO
+
 </button>
+
 
 <div
 class="error"
 id="pinError">
 </div>
 
+
 </div>
 
 </div>
@@ -880,74 +1037,111 @@ id="pinError">
 </section>
 
 
-<!-- ======================================================
-     SUMINISTRO DESBLOQUEADO
-====================================================== -->
 
-<section id="supply" class="screen">
+<!-- ==========================================
+     SUMINISTRO DESBLOQUEADO
+========================================== -->
+
+<section
+id="supply"
+class="screen">
 
 <div class="shell">
+
 
 <button
 class="back"
 onclick="goHome()">
+
 ← VOLVER AL ALMACÉN
+
 </button>
+
 
 <header class="capitol-header">
 
-<div class="capitol-logo admin-trigger">
-<span>✦</span>
+
+<div
+class="capitol-logo admin-trigger">
+
+<img
+src="capitolio.png.webp"
+alt="Emblema del Capitolio">
+
 </div>
 
+
 <div class="eyebrow">
+
 CAPITOLIO · SUMINISTRO AUTORIZADO
+
 </div>
 
 </header>
+
 
 <div
 class="card"
 id="supplyCard">
 
+
 <div class="watermark">
-✦
+
+<img
+src="capitolio.png.webp"
+alt="">
+
 </div>
+
 
 <div
 class="big-seal"
 id="supplySeal">
 </div>
 
+
 <div
 class="tiny"
 id="supplyCategory">
 </div>
 
+
 <h2 id="supplyTitle">
 </h2>
 
+
 <div class="supply-box">
 
+
 <div class="tag">
+
 SUMINISTRO RECUPERADO
+
 </div>
+
 
 <h3 id="giftTitle">
 </h3>
 
+
 <p id="giftDescription">
 </p>
 
+
 </div>
+
 
 <p id="districtLore">
 </p>
 
+
 <div class="tiny">
+
 REGISTRO VALIDADO POR EL CAPITOLIO ·
 ACCESO PERMANENTE CONCEDIDO
+
 </div>
+
 
 </div>
 
@@ -956,29 +1150,51 @@ ACCESO PERMANENTE CONCEDIDO
 </section>
 
 
-<!-- ======================================================
-     PANEL SECRETO
-====================================================== -->
+
+<!-- ==========================================
+     CONTROL SECRETO DEL CAPITOLIO
+========================================== -->
 
 <div
 class="modal"
 id="adminModal">
 
+
 <div class="admin">
+
 
 <div id="adminLogin">
 
-<div class="eyebrow">
-PROTOCOLO RESERVADO
+
+<div class="admin-logo">
+
+<img
+src="capitolio.png.webp"
+alt="Capitolio">
+
 </div>
 
+
+<div class="eyebrow">
+
+PROTOCOLO RESERVADO
+
+</div>
+
+
 <h2>
+
 CONTROL DEL CAPITOLIO
+
 </h2>
 
+
 <p class="tiny">
+
 INTRODUZCA CREDENCIAL DE VIGILANTE
+
 </p>
+
 
 <input
 id="adminPin"
@@ -988,77 +1204,118 @@ inputmode="numeric"
 maxlength="6"
 placeholder="••••">
 
+
 <button
 class="action"
 style="max-width:none;margin-top:12px"
 onclick="adminLogin()">
+
 AUTORIZAR ACCESO
+
 </button>
+
 
 <div
 class="error"
 id="adminError">
 </div>
 
+
 <button
 class="action secondary"
 style="max-width:none"
 onclick="closeAdmin()">
+
 CANCELAR
+
 </button>
 
+
 </div>
+
 
 
 <div
 id="adminPanel"
 style="display:none">
 
-<div class="eyebrow">
-CREDENCIAL ACEPTADA
+
+<div class="admin-logo">
+
+<img
+src="capitolio.png.webp"
+alt="Capitolio">
+
 </div>
+
+
+<div class="eyebrow">
+
+CREDENCIAL ACEPTADA
+
+</div>
+
 
 <h2>
+
 CONTROL DEL CAPITOLIO
+
 </h2>
 
+
 <div class="tiny">
+
 GESTIÓN LOCAL DEL ALMACÉN
+
 </div>
+
 
 <div
 id="adminDistricts"
 style="margin-top:18px">
 </div>
 
+
 <div class="admin-actions">
+
 
 <button
 class="action"
 onclick="unlockAll()">
+
 DESBLOQUEAR TODOS
+
 </button>
+
 
 <button
 class="action danger"
 onclick="resetAll()">
+
 RESTABLECER ALMACÉN
+
 </button>
 
+
 </div>
+
 
 <button
 class="action secondary"
 style="max-width:none"
 onclick="closeAdmin()">
+
 CERRAR CONTROL
+
 </button>
 
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 
 
 <div
@@ -1067,19 +1324,14 @@ id="toast">
 </div>
 
 
+
 <script>
 
-/* ==========================================================
+/* ==========================================
    CONFIGURACIÓN
 
-   AQUÍ CAMBIAREMOS DESPUÉS:
-   - PIN
-   - REGALO
-   - DESCRIPCIÓN
-   - DISTRITOS QUE USAREMOS
-
    PIN ADMINISTRADOR: 2026
-========================================================== */
+========================================== */
 
 const ADMIN_PIN = "2026";
 
@@ -1197,18 +1449,20 @@ lore:"El Distrito 12 está históricamente ligado a la minería del carbón."
 ];
 
 
-/* ==========================================================
-   PROGRESO
-========================================================== */
+/* ==========================================
+   DATOS GUARDADOS
+========================================== */
 
 let currentDistrict = null;
 
 const storageKey =
 "capitol_supply_unlocked_v1";
 
+
 let unlocked =
 JSON.parse(
-localStorage.getItem(storageKey) || "[]"
+localStorage.getItem(storageKey)
+|| "[]"
 );
 
 
@@ -1229,33 +1483,48 @@ return unlocked.includes(id);
 }
 
 
-/* ==========================================================
-   CREAR DISTRITOS
-========================================================== */
+/* ==========================================
+   GENERAR DISTRITOS
+========================================== */
 
 function renderGrid(){
 
 const grid =
-document.getElementById("districtGrid");
+document.getElementById(
+"districtGrid"
+);
+
 
 grid.innerHTML = "";
 
 
 districts.forEach(d => {
 
+
 const button =
-document.createElement("button");
+document.createElement(
+"button"
+);
+
 
 button.className =
 "district " +
-(isUnlocked(d.id) ? "unlocked" : "");
+(
+isUnlocked(d.id)
+? "unlocked"
+: ""
+);
 
 
 button.innerHTML = `
 
 <span class="lock">
 
-${isUnlocked(d.id) ? "◆" : "◇"}
+${
+isUnlocked(d.id)
+? "◆"
+: "◇"
+}
 
 </span>
 
@@ -1290,55 +1559,81 @@ isUnlocked(d.id)
 
 
 button.onclick =
-() => openDistrict(d.id);
+() =>
+openDistrict(d.id);
 
 
-grid.appendChild(button);
+grid.appendChild(
+button
+);
 
 });
 
 
 const recovered =
 unlocked.filter(
+
 id =>
-districts.some(d => d.id === id)
+
+districts.some(
+d => d.id === id
+)
+
 ).length;
 
 
 document.getElementById(
 "progressText"
 ).textContent =
+
 `${recovered} / ${districts.length} RECUPERADOS`;
 
 
 document.getElementById(
 "bar"
 ).style.width =
-(recovered / districts.length * 100) + "%";
+
+(
+recovered /
+districts.length *
+100
+) + "%";
 
 }
 
 
-/* ==========================================================
+/* ==========================================
    NAVEGACIÓN
-========================================================== */
+========================================== */
 
 function show(id){
 
 document
-.querySelectorAll(".screen")
+.querySelectorAll(
+".screen"
+)
 .forEach(
+
 screen =>
-screen.classList.remove("active")
+
+screen.classList.remove(
+"active"
+)
+
 );
 
 
 document
 .getElementById(id)
-.classList.add("active");
+.classList.add(
+"active"
+);
 
 
-window.scrollTo(0,0);
+window.scrollTo(
+0,
+0
+);
 
 }
 
@@ -1354,9 +1649,9 @@ show("home");
 }
 
 
-/* ==========================================================
+/* ==========================================
    ABRIR DISTRITO
-========================================================== */
+========================================== */
 
 function openDistrict(id){
 
@@ -1366,7 +1661,9 @@ d => d.id === id
 );
 
 
-if(isUnlocked(id)){
+if(
+isUnlocked(id)
+){
 
 showSupply();
 
@@ -1395,33 +1692,46 @@ currentDistrict.category;
 
 document.getElementById(
 "pinError"
-).textContent = "";
+).textContent =
+"";
 
 
 document
-.querySelectorAll("#pinInputs input")
+.querySelectorAll(
+"#pinInputs input"
+)
 .forEach(
-input => input.value = ""
+
+input =>
+input.value = ""
+
 );
 
 
-show("access");
+show(
+"access"
+);
 
 
-setTimeout(() => {
+setTimeout(
+() => {
 
 document
-.querySelector("#pinInputs input")
+.querySelector(
+"#pinInputs input"
+)
 .focus();
 
-},250);
+},
+250
+);
 
 }
 
 
-/* ==========================================================
-   CASILLAS PIN
-========================================================== */
+/* ==========================================
+   PIN
+========================================== */
 
 const pinBoxes =
 [
@@ -1434,22 +1744,30 @@ const pinBoxes =
 pinBoxes.forEach(
 (box,index) => {
 
+
 box.addEventListener(
 "input",
 () => {
 
+
 box.value =
 box.value
-.replace(/\D/g,"")
+.replace(
+/\D/g,
+""
+)
 .slice(-1);
 
 
 if(
 box.value &&
-index < pinBoxes.length - 1
+index <
+pinBoxes.length - 1
 ){
 
-pinBoxes[index + 1].focus();
+pinBoxes[
+index + 1
+].focus();
 
 }
 
@@ -1460,19 +1778,26 @@ box.addEventListener(
 "keydown",
 event => {
 
+
 if(
-event.key === "Backspace" &&
+event.key ===
+"Backspace" &&
+
 !box.value &&
+
 index > 0
 ){
 
-pinBoxes[index - 1].focus();
+pinBoxes[
+index - 1
+].focus();
 
 }
 
 
 if(
-event.key === "Enter"
+event.key ===
+"Enter"
 ){
 
 verifyPin();
@@ -1481,22 +1806,84 @@ verifyPin();
 
 });
 
+
+box.addEventListener(
+"paste",
+event => {
+
+
+const digits =
+
+(
+event.clipboardData
+.getData("text")
+|| ""
+)
+
+.replace(
+/\D/g,
+""
+)
+
+.slice(
+0,
+4
+);
+
+
+if(digits){
+
+event.preventDefault();
+
+
+digits
+.split("")
+.forEach(
+(value,i) => {
+
+if(pinBoxes[i]){
+
+pinBoxes[i].value =
+value;
+
+}
+
 });
 
 
-/* ==========================================================
-   VERIFICAR PIN
-========================================================== */
+pinBoxes[
+Math.min(
+digits.length,
+4
+) - 1
+].focus();
+
+}
+
+});
+
+});
+
+
+/* ==========================================
+   VERIFICAR CÓDIGO
+========================================== */
 
 function verifyPin(){
 
 const entered =
+
 pinBoxes
-.map(input => input.value)
+.map(
+input =>
+input.value
+)
 .join("");
 
 
-if(!currentDistrict)
+if(
+!currentDistrict
+)
 return;
 
 
@@ -1504,6 +1891,7 @@ if(
 entered ===
 currentDistrict.pin
 ){
+
 
 if(
 !isUnlocked(
@@ -1522,12 +1910,22 @@ save();
 
 document.getElementById(
 "pinError"
+).style.color =
+"#9cad75";
+
+
+document.getElementById(
+"pinError"
 ).textContent =
 "ACCESO AUTORIZADO";
 
 
 setTimeout(
-showSupply,
+() => {
+
+showSupply();
+
+},
 700
 );
 
@@ -1537,12 +1935,21 @@ showSupply,
 
 document.getElementById(
 "pinError"
+).style.color =
+"#a84e45";
+
+
+document.getElementById(
+"pinError"
 ).textContent =
 "ACCESO DENEGADO · CÓDIGO NO VÁLIDO";
 
 
 pinBoxes.forEach(
-input => input.value = ""
+
+input =>
+input.value = ""
+
 );
 
 
@@ -1553,9 +1960,9 @@ pinBoxes[0].focus();
 }
 
 
-/* ==========================================================
-   MOSTRAR REGALO
-========================================================== */
+/* ==========================================
+   MOSTRAR SUMINISTRO
+========================================== */
 
 function showSupply(){
 
@@ -1599,17 +2006,19 @@ document.getElementById(
 d.lore;
 
 
-show("supply");
+show(
+"supply"
+);
 
 }
 
 
-/* ==========================================================
-   ACCESO SECRETO ADMIN
+/* ==========================================
+   ACCESO SECRETO
 
-   MANTENER PULSADO LOGO
-   DURANTE 3 SEGUNDOS
-========================================================== */
+   MANTENER PULSADO EL LOGO
+   DEL CAPITOLIO 3 SEGUNDOS
+========================================== */
 
 let holdTimer;
 
@@ -1617,16 +2026,21 @@ let holdTimer;
 function bindAdminTriggers(){
 
 document
-.querySelectorAll(".admin-trigger")
+.querySelectorAll(
+".admin-trigger"
+)
 .forEach(
 logo => {
 
 
-const start = () => {
+const start =
+() => {
+
 
 clearTimeout(
 holdTimer
 );
+
 
 holdTimer =
 setTimeout(
@@ -1637,7 +2051,8 @@ openAdmin,
 };
 
 
-const stop = () => {
+const stop =
+() => {
 
 clearTimeout(
 holdTimer
@@ -1688,17 +2103,18 @@ stop
 }
 
 
-/* ==========================================================
-   ADMIN
-========================================================== */
+/* ==========================================
+   ABRIR ADMIN
+========================================== */
 
 function openAdmin(){
 
-document
-.getElementById(
+document.getElementById(
 "adminModal"
 )
-.classList.add("open");
+.classList.add(
+"open"
+);
 
 
 document.getElementById(
@@ -1727,16 +2143,25 @@ document.getElementById(
 }
 
 
+/* ==========================================
+   CERRAR ADMIN
+========================================== */
+
 function closeAdmin(){
 
-document
-.getElementById(
+document.getElementById(
 "adminModal"
 )
-.classList.remove("open");
+.classList.remove(
+"open"
+);
 
 }
 
+
+/* ==========================================
+   LOGIN ADMIN
+========================================== */
 
 function adminLogin(){
 
@@ -1746,6 +2171,7 @@ document.getElementById(
 ).value ===
 ADMIN_PIN
 ){
+
 
 document.getElementById(
 "adminLogin"
@@ -1775,9 +2201,9 @@ document.getElementById(
 }
 
 
-/* ==========================================================
-   LISTA ADMIN
-========================================================== */
+/* ==========================================
+   PANEL ADMIN
+========================================== */
 
 function renderAdmin(){
 
@@ -1787,7 +2213,8 @@ document.getElementById(
 );
 
 
-container.innerHTML = "";
+container.innerHTML =
+"";
 
 
 districts.forEach(
@@ -1817,7 +2244,9 @@ DISTRITO ${district.id}
 <span class="tiny">
 
 ${
-isUnlocked(district.id)
+isUnlocked(
+district.id
+)
 ? "DESBLOQUEADO"
 : "BLOQUEADO"
 }
@@ -1828,10 +2257,16 @@ isUnlocked(district.id)
 
 
 <button
-onclick="toggleDistrict(${district.id})">
+onclick="
+toggleDistrict(
+${district.id}
+)
+">
 
 ${
-isUnlocked(district.id)
+isUnlocked(
+district.id
+)
 ? "BLOQUEAR"
 : "DESBLOQUEAR"
 }
@@ -1850,9 +2285,9 @@ row
 }
 
 
-/* ==========================================================
-   CAMBIAR ESTADO DISTRITO
-========================================================== */
+/* ==========================================
+   BLOQUEAR / DESBLOQUEAR
+========================================== */
 
 function toggleDistrict(id){
 
@@ -1868,7 +2303,9 @@ districtId !== id
 
 }else{
 
-unlocked.push(id);
+unlocked.push(
+id
+);
 
 }
 
@@ -1882,9 +2319,9 @@ renderGrid();
 }
 
 
-/* ==========================================================
-   DESBLOQUEAR TODO
-========================================================== */
+/* ==========================================
+   DESBLOQUEAR TODOS
+========================================== */
 
 function unlockAll(){
 
@@ -1901,6 +2338,7 @@ renderAdmin();
 
 renderGrid();
 
+
 toast(
 "TODOS LOS SUMINISTROS DESBLOQUEADOS"
 );
@@ -1908,9 +2346,9 @@ toast(
 }
 
 
-/* ==========================================================
-   RESET TOTAL
-========================================================== */
+/* ==========================================
+   RESTABLECER
+========================================== */
 
 function resetAll(){
 
@@ -1922,11 +2360,13 @@ confirm(
 
 unlocked = [];
 
+
 save();
 
 renderAdmin();
 
 renderGrid();
+
 
 toast(
 "ALMACÉN RESTABLECIDO"
@@ -1937,9 +2377,9 @@ toast(
 }
 
 
-/* ==========================================================
+/* ==========================================
    MENSAJES
-========================================================== */
+========================================== */
 
 function toast(message){
 
@@ -1959,19 +2399,22 @@ element.classList.add(
 
 
 setTimeout(
-() =>
+() => {
+
 element.classList.remove(
 "show"
-),
+);
+
+},
 1800
 );
 
 }
 
 
-/* ==========================================================
-   INICIO
-========================================================== */
+/* ==========================================
+   CERRAR ADMIN TOCANDO FUERA
+========================================== */
 
 document
 .getElementById(
@@ -1992,6 +2435,10 @@ closeAdmin();
 
 });
 
+
+/* ==========================================
+   INICIAR
+========================================== */
 
 bindAdminTriggers();
 
