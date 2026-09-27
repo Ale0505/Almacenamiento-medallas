@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#070808">
+
+<title>Almacén de Suministros de los Distritos</title>
+
+<style>
+:root{
+  --bg:#050606;
+  --panel:#0d0f0f;
+  --gold:#c5a35b;
+  --gold2:#786235;
+  --text:#eee9dd;
+  --muted:#8e8c84;
+  --danger:#a84e45;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:#050606;
+  color:var(--text);
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(197,163,91,.10),transparent 32rem),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.012) 0 1px,
+      transparent 1px 7px
+    ),
+    #050606;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.screen{
+  display:none;
+  min-height:100vh;
+  padding:28px 18px 48px;
+  animation:fade .35s ease;
+}
+
+.screen.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(4px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.shell{
+  width:min(980px,100%);
+  margin:auto;
+}
+
+/* =========================
+   CAPITOLIO
+========================= */
+
+.capitol-header{
+  text-align:center;
+  margin-bottom:28px;
+  user-select:none;
+}
+
+.capitol-logo{
+  width:86px;
+  height:86px;
+  margin:0 auto 13px;
+
+  border:1px solid var(--gold2);
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  position:relative;
+
+  color:var(--gold);
+
+  box-shadow:
+    0 0 30px rgba(197,163,91,.08),
+    inset 0 0 20px rgba(197,163,91,.05);
+}
+
+.capitol-logo:before,
+.capitol-logo:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(197,163,91,.32);
+  border-radius:50%;
+}
+
+.capitol-logo:before{
+  inset:8px;
+}
+
+.capitol-logo:after{
+  inset:16px;
+}
+
+.capitol-logo span{
+  font-size:25px;
+  z-index:2;
+}
+
+.eyebrow{
+  font:11px Arial,sans-serif;
+  letter-spacing:.34em;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+
+h1{
+  font-size:clamp(27px,6vw,48px);
+  font-weight:400;
+  letter-spacing:.06em;
+  margin:9px 0 5px;
+  text-transform:uppercase;
+}
+
+.sub{
+  font:12px Arial,sans-serif;
+  letter-spacing:.22em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+.rule{
+  height:1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold2),
+      transparent
+    );
+
+  margin:22px 0;
+}
+
+/* =========================
+   PROGRESO
+========================= */
+
+.progress-wrap{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  margin:0 auto 28px;
+  max-width:650px;
+}
+
+.progress{
+  height:5px;
+  background:#1d201f;
+  flex:1;
+  overflow:hidden;
+}
+
+.progress > i{
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--gold);
+  transition:.4s;
+}
+
+.progress-count{
+  font:11px Arial,sans-serif;
+  letter-spacing:.15em;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+/* =========================
+   DISTRITOS
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+
+.district{
+  min-height:178px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #111313,
+      #090a0a
+    );
+
+  border:1px solid #292a27;
+
+  color:var(--text);
+
+  padding:20px 10px;
+
+  position:relative;
+  overflow:hidden;
+
+  transition:.2s;
+}
+
+.district:active{
+  transform:scale(.985);
+}
+
+.district.unlocked{
+  border-color:var(--gold2);
+
+  box-shadow:
+    inset 0 0 30px rgba(197,163,91,.055);
+}
+
+.district .seal{
+  width:76px;
+  height:76px;
+
+  border-radius:50%;
+  border:1px solid #3c3c37;
+
+  margin:0 auto 14px;
+
+  display:grid;
+  place-items:center;
+
+  position:relative;
+}
+
+.district.unlocked .seal{
+  border-color:var(--gold);
+  color:var(--gold);
+
+  box-shadow:
+    0 0 22px rgba(197,163,91,.12);
+}
+
+.seal b{
+  font-size:31px;
+  font-weight:400;
+}
+
+.seal small{
+  position:absolute;
+  bottom:8px;
+
+  font:7px Arial,sans-serif;
+  letter-spacing:.1em;
+}
+
+.dname{
+  font-size:13px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.status{
+  font:9px Arial,sans-serif;
+  letter-spacing:.18em;
+
+  text-transform:uppercase;
+
+  color:#696b67;
+
+  margin-top:7px;
+}
+
+.unlocked .status{
+  color:var(--gold);
+}
+
+.lock{
+  position:absolute;
+
+  right:9px;
+  top:9px;
+
+  font:12px Arial,sans-serif;
+
+  color:#62635e;
+}
+
+.unlocked .lock{
+  color:var(--gold);
+}
+
+/* =========================
+   TARJETAS
+========================= */
+
+.card{
+  max-width:620px;
+
+  margin:0 auto;
+
+  background:
+    linear-gradient(
+      145deg,
+      #111313,
+      #090a0a
+    );
+
+  border:1px solid #292a27;
+
+  padding:28px 22px;
+
+  text-align:center;
+
+  position:relative;
+}
+
+.watermark{
+  position:absolute;
+  inset:0;
+
+  display:grid;
+  place-items:center;
+
+  pointer-events:none;
+
+  opacity:.025;
+
+  font-size:180px;
+}
+
+.big-seal{
+  width:122px;
+  height:122px;
+
+  border:1px solid var(--gold2);
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  margin:5px auto 22px;
+
+  color:var(--gold);
+
+  font-size:48px;
+
+  position:relative;
+}
+
+.big-seal:after{
+  content:"CAPITOLIO";
+
+  position:absolute;
+
+  bottom:17px;
+
+  font:7px Arial,sans-serif;
+
+  letter-spacing:.25em;
+}
+
+.card h2{
+  font-weight:400;
+
+  text-transform:uppercase;
+
+  letter-spacing:.12em;
+
+  margin:5px 0 8px;
+}
+
+.card p{
+  color:#aaa79d;
+
+  line-height:1.65;
+
+  font-family:Arial,sans-serif;
+
+  font-size:14px;
+}
+
+/* =========================
+   PIN
+========================= */
+
+.pin-label{
+  font:10px Arial,sans-serif;
+
+  letter-spacing:.2em;
+
+  color:var(--muted);
+
+  text-transform:uppercase;
+
+  margin:26px 0 12px;
+}
+
+.pin{
+  display:flex;
+
+  justify-content:center;
+
+  gap:8px;
+
+  margin-bottom:17px;
+}
+
+.pin input{
+  width:52px;
+  height:61px;
+
+  text-align:center;
+
+  font:26px Arial,sans-serif;
+
+  background:#050606;
+
+  border:1px solid #373834;
+
+  color:var(--gold);
+
+  outline:none;
+}
+
+.pin input:focus{
+  border-color:var(--gold);
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.action{
+  width:100%;
+  max-width:330px;
+
+  border:1px solid var(--gold2);
+
+  background:transparent;
+
+  color:var(--gold);
+
+  padding:14px;
+
+  text-transform:uppercase;
+
+  font:10px Arial,sans-serif;
+
+  letter-spacing:.22em;
+}
+
+.action.secondary{
+  border-color:#343633;
+
+  color:#aaa;
+
+  margin-top:10px;
+}
+
+.back{
+  border:0;
+
+  background:none;
+
+  color:#7e7e78;
+
+  font:10px Arial,sans-serif;
+
+  letter-spacing:.2em;
+
+  text-transform:uppercase;
+
+  margin-bottom:20px;
+
+  padding:8px 0;
+}
+
+.error{
+  height:22px;
+
+  margin-top:12px;
+
+  color:var(--danger);
+
+  font:10px Arial,sans-serif;
+
+  letter-spacing:.12em;
+
+  text-transform:uppercase;
+}
+
+/* =========================
+   REGALO
+========================= */
+
+.supply-box{
+  border:1px solid var(--gold2);
+
+  padding:22px;
+
+  margin:24px 0;
+
+  background:
+    rgba(197,163,91,.035);
+}
+
+.supply-box .tag{
+  font:9px Arial,sans-serif;
+
+  letter-spacing:.22em;
+
+  color:var(--gold);
+
+  text-transform:uppercase;
+}
+
+.supply-box h3{
+  font-weight:400;
+
+  font-size:24px;
+
+  margin:10px 0;
+}
+
+.tiny{
+  font:9px Arial,sans-serif;
+
+  color:#686a65;
+
+  letter-spacing:.12em;
+
+  text-transform:uppercase;
+}
+
+/* =========================
+   ADMIN
+========================= */
+
+.modal{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.91);
+
+  z-index:30;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+}
+
+.modal.open{
+  display:flex;
+}
+
+.admin{
+  width:min(600px,100%);
+
+  max-height:90vh;
+
+  overflow:auto;
+
+  background:#0d0f0f;
+
+  border:1px solid var(--gold2);
+
+  padding:25px;
+}
+
+.admin h2{
+  font-weight:400;
+
+  letter-spacing:.1em;
+
+  text-transform:uppercase;
+}
+
+.admin-pin{
+  width:100%;
+
+  padding:14px;
+
+  background:#050606;
+
+  color:var(--text);
+
+  border:1px solid #343633;
+
+  text-align:center;
+
+  letter-spacing:.4em;
+
+  font:20px Arial,sans-serif;
+
+  outline:none;
+}
+
+.admin-row{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  padding:12px 0;
+
+  border-bottom:1px solid #232522;
+
+  font:12px Arial,sans-serif;
+}
+
+.admin-row button{
+  background:none;
+
+  border:1px solid #41423e;
+
+  color:#bbb;
+
+  padding:7px 10px;
+
+  font-size:9px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.1em;
+}
+
+.admin-actions{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:8px;
+
+  margin-top:18px;
+}
+
+.danger{
+  border-color:#63332f !important;
+
+  color:#c57a70 !important;
+}
+
+.toast{
+  position:fixed;
+
+  left:50%;
+
+  bottom:30px;
+
+  transform:
+    translateX(-50%)
+    translateY(20px);
+
+  background:#151715;
+
+  border:1px solid var(--gold2);
+
+  padding:12px 18px;
+
+  font:10px Arial,sans-serif;
+
+  letter-spacing:.15em;
+
+  text-transform:uppercase;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.25s;
+
+  z-index:50;
+}
+
+.toast.show{
+  opacity:1;
+
+  transform:translateX(-50%);
+}
+
+@media(max-width:680px){
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .district{
+    min-height:160px;
+  }
+
+  .district .seal{
+    width:65px;
+    height:65px;
+  }
+
+  .admin-actions{
+    grid-template-columns:1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- ======================================================
+     ALMACÉN
+====================================================== -->
+
+<section id="home" class="screen active">
+
+<div class="shell">
+
+<header class="capitol-header">
+
+<div class="capitol-logo admin-trigger">
+<span>✦</span>
+</div>
+
+<div class="eyebrow">
+CAPITOLIO · DIVISIÓN DE SUMINISTROS
+</div>
+
+<h1>
+Almacén de Suministros<br>
+de los Distritos
+</h1>
+
+<div class="sub">
+TRIBUTO: SAMUEL
+</div>
+
+</header>
+
+<div class="rule"></div>
+
+<div class="progress-wrap">
+
+<div class="progress">
+<i id="bar"></i>
+</div>
+
+<div
+class="progress-count"
+id="progressText">
+0 / 12 RECUPERADOS
+</div>
+
+</div>
+
+<div
+class="grid"
+id="districtGrid">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     INTRODUCIR PIN
+====================================================== -->
+
+<section id="access" class="screen">
+
+<div class="shell">
+
+<button
+class="back"
+onclick="goHome()">
+← VOLVER AL ALMACÉN
+</button>
+
+<header class="capitol-header">
+
+<div class="capitol-logo admin-trigger">
+<span>✦</span>
+</div>
+
+<div class="eyebrow">
+CAPITOLIO · ACCESO RESTRINGIDO
+</div>
+
+</header>
+
+<div class="card">
+
+<div class="watermark">
+✦
+</div>
+
+<div
+class="big-seal"
+id="accessSeal">
+1
+</div>
+
+<div
+class="tiny"
+id="accessCategory">
+</div>
+
+<h2 id="accessTitle">
+DISTRITO 1
+</h2>
+
+<p>
+Este suministro permanece clasificado.
+Introduzca el PIN recuperado del alijo
+correspondiente para autorizar su apertura.
+</p>
+
+<div class="pin-label">
+CÓDIGO DE ACCESO AL ALIJO
+</div>
+
+<div
+class="pin"
+id="pinInputs">
+
+<input inputmode="numeric" maxlength="1">
+
+<input inputmode="numeric" maxlength="1">
+
+<input inputmode="numeric" maxlength="1">
+
+<input inputmode="numeric" maxlength="1">
+
+</div>
+
+<button
+class="action"
+onclick="verifyPin()">
+VERIFICAR CÓDIGO
+</button>
+
+<div
+class="error"
+id="pinError">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     SUMINISTRO DESBLOQUEADO
+====================================================== -->
+
+<section id="supply" class="screen">
+
+<div class="shell">
+
+<button
+class="back"
+onclick="goHome()">
+← VOLVER AL ALMACÉN
+</button>
+
+<header class="capitol-header">
+
+<div class="capitol-logo admin-trigger">
+<span>✦</span>
+</div>
+
+<div class="eyebrow">
+CAPITOLIO · SUMINISTRO AUTORIZADO
+</div>
+
+</header>
+
+<div
+class="card"
+id="supplyCard">
+
+<div class="watermark">
+✦
+</div>
+
+<div
+class="big-seal"
+id="supplySeal">
+</div>
+
+<div
+class="tiny"
+id="supplyCategory">
+</div>
+
+<h2 id="supplyTitle">
+</h2>
+
+<div class="supply-box">
+
+<div class="tag">
+SUMINISTRO RECUPERADO
+</div>
+
+<h3 id="giftTitle">
+</h3>
+
+<p id="giftDescription">
+</p>
+
+</div>
+
+<p id="districtLore">
+</p>
+
+<div class="tiny">
+REGISTRO VALIDADO POR EL CAPITOLIO ·
+ACCESO PERMANENTE CONCEDIDO
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     PANEL SECRETO
+====================================================== -->
+
+<div
+class="modal"
+id="adminModal">
+
+<div class="admin">
+
+<div id="adminLogin">
+
+<div class="eyebrow">
+PROTOCOLO RESERVADO
+</div>
+
+<h2>
+CONTROL DEL CAPITOLIO
+</h2>
+
+<p class="tiny">
+INTRODUZCA CREDENCIAL DE VIGILANTE
+</p>
+
+<input
+id="adminPin"
+class="admin-pin"
+type="password"
+inputmode="numeric"
+maxlength="6"
+placeholder="••••">
+
+<button
+class="action"
+style="max-width:none;margin-top:12px"
+onclick="adminLogin()">
+AUTORIZAR ACCESO
+</button>
+
+<div
+class="error"
+id="adminError">
+</div>
+
+<button
+class="action secondary"
+style="max-width:none"
+onclick="closeAdmin()">
+CANCELAR
+</button>
+
+</div>
+
+
+<div
+id="adminPanel"
+style="display:none">
+
+<div class="eyebrow">
+CREDENCIAL ACEPTADA
+</div>
+
+<h2>
+CONTROL DEL CAPITOLIO
+</h2>
+
+<div class="tiny">
+GESTIÓN LOCAL DEL ALMACÉN
+</div>
+
+<div
+id="adminDistricts"
+style="margin-top:18px">
+</div>
+
+<div class="admin-actions">
+
+<button
+class="action"
+onclick="unlockAll()">
+DESBLOQUEAR TODOS
+</button>
+
+<button
+class="action danger"
+onclick="resetAll()">
+RESTABLECER ALMACÉN
+</button>
+
+</div>
+
+<button
+class="action secondary"
+style="max-width:none"
+onclick="closeAdmin()">
+CERRAR CONTROL
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="toast"
+id="toast">
+</div>
+
+
+<script>
+
+/* ==========================================================
+   CONFIGURACIÓN
+
+   AQUÍ CAMBIAREMOS DESPUÉS:
+   - PIN
+   - REGALO
+   - DESCRIPCIÓN
+   - DISTRITOS QUE USAREMOS
+
+   PIN ADMINISTRADOR: 2026
+========================================================== */
+
+const ADMIN_PIN = "2026";
+
+
+const districts = [
+
+{
+id:1,
+category:"Lujo",
+pin:"1847",
+gift:"Suministro del Distrito 1",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 1 abastece al Capitolio de artículos de lujo y bienes exclusivos."
+},
+
+{
+id:2,
+category:"Mampostería y defensa",
+pin:"2714",
+gift:"Suministro del Distrito 2",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 2 está vinculado a la piedra, la construcción y la preparación militar."
+},
+
+{
+id:3,
+category:"Tecnología",
+pin:"3058",
+gift:"Suministro del Distrito 3",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 3 concentra la producción tecnológica y electrónica de Panem."
+},
+
+{
+id:4,
+category:"Pesca",
+pin:"4428",
+gift:"Suministro del Distrito 4",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 4 vive ligado al mar, la pesca y los recursos marítimos."
+},
+
+{
+id:5,
+category:"Energía",
+pin:"5193",
+gift:"Suministro del Distrito 5",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 5 es responsable de la generación y distribución de energía."
+},
+
+{
+id:6,
+category:"Transporte",
+pin:"6381",
+gift:"Suministro del Distrito 6",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 6 sostiene las redes de transporte de Panem."
+},
+
+{
+id:7,
+category:"Madera",
+pin:"7046",
+gift:"Suministro del Distrito 7",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 7 se especializa en bosques, madera y trabajos forestales."
+},
+
+{
+id:8,
+category:"Textiles",
+pin:"8265",
+gift:"Suministro del Distrito 8",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 8 produce tejidos, prendas y otros bienes textiles."
+},
+
+{
+id:9,
+category:"Grano",
+pin:"9137",
+gift:"Suministro del Distrito 9",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 9 está dedicado a la producción y procesamiento de grano."
+},
+
+{
+id:10,
+category:"Ganadería",
+pin:"1064",
+gift:"Suministro del Distrito 10",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 10 está asociado a la ganadería y sus productos."
+},
+
+{
+id:11,
+category:"Agricultura",
+pin:"1172",
+gift:"Suministro del Distrito 11",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 11 es uno de los grandes centros agrícolas de Panem."
+},
+
+{
+id:12,
+category:"Minería",
+pin:"1259",
+gift:"Suministro del Distrito 12",
+desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
+lore:"El Distrito 12 está históricamente ligado a la minería del carbón."
+}
+
+];
+
+
+/* ==========================================================
+   PROGRESO
+========================================================== */
+
+let currentDistrict = null;
+
+const storageKey =
+"capitol_supply_unlocked_v1";
+
+let unlocked =
+JSON.parse(
+localStorage.getItem(storageKey) || "[]"
+);
+
+
+function save(){
+
+localStorage.setItem(
+storageKey,
+JSON.stringify(unlocked)
+);
+
+}
+
+
+function isUnlocked(id){
+
+return unlocked.includes(id);
+
+}
+
+
+/* ==========================================================
+   CREAR DISTRITOS
+========================================================== */
+
+function renderGrid(){
+
+const grid =
+document.getElementById("districtGrid");
+
+grid.innerHTML = "";
+
+
+districts.forEach(d => {
+
+const button =
+document.createElement("button");
+
+button.className =
+"district " +
+(isUnlocked(d.id) ? "unlocked" : "");
+
+
+button.innerHTML = `
+
+<span class="lock">
+
+${isUnlocked(d.id) ? "◆" : "◇"}
+
+</span>
+
+
+<div class="seal">
+
+<b>${d.id}</b>
+
+<small>DISTRITO</small>
+
+</div>
+
+
+<div class="dname">
+
+DISTRITO ${d.id}
+
+</div>
+
+
+<div class="status">
+
+${
+isUnlocked(d.id)
+? "SUMINISTRO RECUPERADO"
+: "SUMINISTRO BLOQUEADO"
+}
+
+</div>
+
+`;
+
+
+button.onclick =
+() => openDistrict(d.id);
+
+
+grid.appendChild(button);
+
+});
+
+
+const recovered =
+unlocked.filter(
+id =>
+districts.some(d => d.id === id)
+).length;
+
+
+document.getElementById(
+"progressText"
+).textContent =
+`${recovered} / ${districts.length} RECUPERADOS`;
+
+
+document.getElementById(
+"bar"
+).style.width =
+(recovered / districts.length * 100) + "%";
+
+}
+
+
+/* ==========================================================
+   NAVEGACIÓN
+========================================================== */
+
+function show(id){
+
+document
+.querySelectorAll(".screen")
+.forEach(
+screen =>
+screen.classList.remove("active")
+);
+
+
+document
+.getElementById(id)
+.classList.add("active");
+
+
+window.scrollTo(0,0);
+
+}
+
+
+function goHome(){
+
+currentDistrict = null;
+
+renderGrid();
+
+show("home");
+
+}
+
+
+/* ==========================================================
+   ABRIR DISTRITO
+========================================================== */
+
+function openDistrict(id){
+
+currentDistrict =
+districts.find(
+d => d.id === id
+);
+
+
+if(isUnlocked(id)){
+
+showSupply();
+
+return;
+
+}
+
+
+document.getElementById(
+"accessSeal"
+).textContent =
+id;
+
+
+document.getElementById(
+"accessTitle"
+).textContent =
+`DISTRITO ${id}`;
+
+
+document.getElementById(
+"accessCategory"
+).textContent =
+currentDistrict.category;
+
+
+document.getElementById(
+"pinError"
+).textContent = "";
+
+
+document
+.querySelectorAll("#pinInputs input")
+.forEach(
+input => input.value = ""
+);
+
+
+show("access");
+
+
+setTimeout(() => {
+
+document
+.querySelector("#pinInputs input")
+.focus();
+
+},250);
+
+}
+
+
+/* ==========================================================
+   CASILLAS PIN
+========================================================== */
+
+const pinBoxes =
+[
+...document.querySelectorAll(
+"#pinInputs input"
+)
+];
+
+
+pinBoxes.forEach(
+(box,index) => {
+
+box.addEventListener(
+"input",
+() => {
+
+box.value =
+box.value
+.replace(/\D/g,"")
+.slice(-1);
+
+
+if(
+box.value &&
+index < pinBoxes.length - 1
+){
+
+pinBoxes[index + 1].focus();
+
+}
+
+});
+
+
+box.addEventListener(
+"keydown",
+event => {
+
+if(
+event.key === "Backspace" &&
+!box.value &&
+index > 0
+){
+
+pinBoxes[index - 1].focus();
+
+}
+
+
+if(
+event.key === "Enter"
+){
+
+verifyPin();
+
+}
+
+});
+
+});
+
+
+/* ==========================================================
+   VERIFICAR PIN
+========================================================== */
+
+function verifyPin(){
+
+const entered =
+pinBoxes
+.map(input => input.value)
+.join("");
+
+
+if(!currentDistrict)
+return;
+
+
+if(
+entered ===
+currentDistrict.pin
+){
+
+if(
+!isUnlocked(
+currentDistrict.id
+)
+){
+
+unlocked.push(
+currentDistrict.id
+);
+
+save();
+
+}
+
+
+document.getElementById(
+"pinError"
+).textContent =
+"ACCESO AUTORIZADO";
+
+
+setTimeout(
+showSupply,
+700
+);
+
+
+}else{
+
+
+document.getElementById(
+"pinError"
+).textContent =
+"ACCESO DENEGADO · CÓDIGO NO VÁLIDO";
+
+
+pinBoxes.forEach(
+input => input.value = ""
+);
+
+
+pinBoxes[0].focus();
+
+}
+
+}
+
+
+/* ==========================================================
+   MOSTRAR REGALO
+========================================================== */
+
+function showSupply(){
+
+const d =
+currentDistrict;
+
+
+document.getElementById(
+"supplySeal"
+).textContent =
+d.id;
+
+
+document.getElementById(
+"supplyCategory"
+).textContent =
+d.category;
+
+
+document.getElementById(
+"supplyTitle"
+).textContent =
+`DISTRITO ${d.id}`;
+
+
+document.getElementById(
+"giftTitle"
+).textContent =
+d.gift;
+
+
+document.getElementById(
+"giftDescription"
+).textContent =
+d.desc;
+
+
+document.getElementById(
+"districtLore"
+).textContent =
+d.lore;
+
+
+show("supply");
+
+}
+
+
+/* ==========================================================
+   ACCESO SECRETO ADMIN
+
+   MANTENER PULSADO LOGO
+   DURANTE 3 SEGUNDOS
+========================================================== */
+
+let holdTimer;
+
+
+function bindAdminTriggers(){
+
+document
+.querySelectorAll(".admin-trigger")
+.forEach(
+logo => {
+
+
+const start = () => {
+
+clearTimeout(
+holdTimer
+);
+
+holdTimer =
+setTimeout(
+openAdmin,
+3000
+);
+
+};
+
+
+const stop = () => {
+
+clearTimeout(
+holdTimer
+);
+
+};
+
+
+logo.addEventListener(
+"touchstart",
+start,
+{passive:true}
+);
+
+
+logo.addEventListener(
+"touchend",
+stop
+);
+
+
+logo.addEventListener(
+"touchcancel",
+stop
+);
+
+
+logo.addEventListener(
+"mousedown",
+start
+);
+
+
+logo.addEventListener(
+"mouseup",
+stop
+);
+
+
+logo.addEventListener(
+"mouseleave",
+stop
+);
+
+
+});
+
+}
+
+
+/* ==========================================================
+   ADMIN
+========================================================== */
+
+function openAdmin(){
+
+document
+.getElementById(
+"adminModal"
+)
+.classList.add("open");
+
+
+document.getElementById(
+"adminLogin"
+).style.display =
+"block";
+
+
+document.getElementById(
+"adminPanel"
+).style.display =
+"none";
+
+
+document.getElementById(
+"adminPin"
+).value =
+"";
+
+
+document.getElementById(
+"adminError"
+).textContent =
+"";
+
+}
+
+
+function closeAdmin(){
+
+document
+.getElementById(
+"adminModal"
+)
+.classList.remove("open");
+
+}
+
+
+function adminLogin(){
+
+if(
+document.getElementById(
+"adminPin"
+).value ===
+ADMIN_PIN
+){
+
+document.getElementById(
+"adminLogin"
+).style.display =
+"none";
+
+
+document.getElementById(
+"adminPanel"
+).style.display =
+"block";
+
+
+renderAdmin();
+
+
+}else{
+
+
+document.getElementById(
+"adminError"
+).textContent =
+"CREDENCIAL DENEGADA";
+
+}
+
+}
+
+
+/* ==========================================================
+   LISTA ADMIN
+========================================================== */
+
+function renderAdmin(){
+
+const container =
+document.getElementById(
+"adminDistricts"
+);
+
+
+container.innerHTML = "";
+
+
+districts.forEach(
+district => {
+
+
+const row =
+document.createElement(
+"div"
+);
+
+
+row.className =
+"admin-row";
+
+
+row.innerHTML = `
+
+<span>
+
+DISTRITO ${district.id}
+
+· PIN ${district.pin}
+
+<br>
+
+<span class="tiny">
+
+${
+isUnlocked(district.id)
+? "DESBLOQUEADO"
+: "BLOQUEADO"
+}
+
+</span>
+
+</span>
+
+
+<button
+onclick="toggleDistrict(${district.id})">
+
+${
+isUnlocked(district.id)
+? "BLOQUEAR"
+: "DESBLOQUEAR"
+}
+
+</button>
+
+`;
+
+
+container.appendChild(
+row
+);
+
+});
+
+}
+
+
+/* ==========================================================
+   CAMBIAR ESTADO DISTRITO
+========================================================== */
+
+function toggleDistrict(id){
+
+if(
+isUnlocked(id)
+){
+
+unlocked =
+unlocked.filter(
+districtId =>
+districtId !== id
+);
+
+}else{
+
+unlocked.push(id);
+
+}
+
+
+save();
+
+renderAdmin();
+
+renderGrid();
+
+}
+
+
+/* ==========================================================
+   DESBLOQUEAR TODO
+========================================================== */
+
+function unlockAll(){
+
+unlocked =
+districts.map(
+district =>
+district.id
+);
+
+
+save();
+
+renderAdmin();
+
+renderGrid();
+
+toast(
+"TODOS LOS SUMINISTROS DESBLOQUEADOS"
+);
+
+}
+
+
+/* ==========================================================
+   RESET TOTAL
+========================================================== */
+
+function resetAll(){
+
+if(
+confirm(
+"¿RESTABLECER TODO EL PROGRESO DEL ALMACÉN?"
+)
+){
+
+unlocked = [];
+
+save();
+
+renderAdmin();
+
+renderGrid();
+
+toast(
+"ALMACÉN RESTABLECIDO"
+);
+
+}
+
+}
+
+
+/* ==========================================================
+   MENSAJES
+========================================================== */
+
+function toast(message){
+
+const element =
+document.getElementById(
+"toast"
+);
+
+
+element.textContent =
+message;
+
+
+element.classList.add(
+"show"
+);
+
+
+setTimeout(
+() =>
+element.classList.remove(
+"show"
+),
+1800
+);
+
+}
+
+
+/* ==========================================================
+   INICIO
+========================================================== */
+
+document
+.getElementById(
+"adminModal"
+)
+.addEventListener(
+"click",
+event => {
+
+if(
+event.target.id ===
+"adminModal"
+){
+
+closeAdmin();
+
+}
+
+});
+
+
+bindAdminTriggers();
+
+renderGrid();
+
+</script>
+
+</body>
+</html>
