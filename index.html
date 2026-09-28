@@ -3,19 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#070808">
+<meta name="theme-color" content="#050606">
 
-<title>Almacén de Suministros de los Distritos</title>
+<title>Protocolo de Supervivencia</title>
 
 <style>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
 :root{
   --bg:#050606;
   --panel:#0d0f0f;
+  --panel2:#121514;
+
   --gold:#c5a35b;
   --gold2:#786235;
+
   --text:#eee9dd;
   --muted:#8e8c84;
+
   --danger:#a84e45;
+  --green:#9cad75;
 }
 
 *{
@@ -23,27 +33,43 @@
   -webkit-tap-highlight-color:transparent;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 html,body{
   margin:0;
   min-height:100%;
-  background:#050606;
-  color:var(--text);
-  font-family:Georgia,"Times New Roman",serif;
 }
 
 body{
-  min-height:100vh;
+
   background:
-    radial-gradient(circle at 50% 0%,rgba(197,163,91,.10),transparent 32rem),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,.012) 0 1px,
-      transparent 1px 7px
-    ),
-    #050606;
+
+  radial-gradient(
+    circle at 50% 0%,
+    rgba(197,163,91,.10),
+    transparent 35rem
+  ),
+
+  repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,.012) 0 1px,
+    transparent 1px 7px
+  ),
+
+  var(--bg);
+
+  color:var(--text);
+
+  font-family:
+  Georgia,
+  "Times New Roman",
+  serif;
 }
 
-button,input{
+button,
+input{
   font:inherit;
 }
 
@@ -51,11 +77,26 @@ button{
   cursor:pointer;
 }
 
+.hidden{
+  display:none !important;
+}
+
+/* =========================================================
+   ESTRUCTURA
+========================================================= */
+
 .screen{
   display:none;
+
   min-height:100vh;
-  padding:28px 18px 48px;
-  animation:fade .35s ease;
+
+  padding:
+  max(25px,env(safe-area-inset-top))
+  16px
+  50px;
+
+  animation:
+  fade .35s ease;
 }
 
 .screen.active{
@@ -63,397 +104,1142 @@ button{
 }
 
 @keyframes fade{
+
   from{
     opacity:0;
-    transform:translateY(4px);
+    transform:translateY(5px);
   }
+
   to{
     opacity:1;
     transform:none;
   }
+
 }
 
 .shell{
-  width:min(980px,100%);
+  width:min(1000px,100%);
   margin:auto;
 }
 
-/* ========================================
-   LOGO DEL CAPITOLIO
-======================================== */
+/* =========================================================
+   CAPITOLIO
+========================================================= */
 
 .capitol-header{
   text-align:center;
-  margin-bottom:28px;
+
+  margin-bottom:25px;
+
   user-select:none;
 }
 
 .capitol-logo{
-  width:100px;
-  height:100px;
-  margin:0 auto 14px;
+
+  width:95px;
+  height:95px;
+
+  margin:
+  0 auto
+  15px;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
-
-  position:relative;
-
-  user-select:none;
 }
 
 .capitol-logo img{
+
   width:100%;
   height:100%;
+
   object-fit:contain;
 
-  display:block;
+  pointer-events:none;
 
   filter:
-    drop-shadow(0 0 10px rgba(197,163,91,.18))
-    drop-shadow(0 0 24px rgba(197,163,91,.08));
-
-  pointer-events:none;
+  drop-shadow(
+    0 0 12px
+    rgba(197,163,91,.18)
+  );
 }
-
-/* Marca de agua */
-
-.watermark{
-  position:absolute;
-  inset:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  pointer-events:none;
-
-  overflow:hidden;
-
-  opacity:.025;
-}
-
-.watermark img{
-  width:75%;
-  max-width:320px;
-  object-fit:contain;
-}
-
-/* ========================================
-   TEXTOS
-======================================== */
 
 .eyebrow{
-  font:11px Arial,sans-serif;
-  letter-spacing:.34em;
+
+  font:
+  10px Arial,sans-serif;
+
+  letter-spacing:.32em;
+
   color:var(--gold);
+
   text-transform:uppercase;
 }
 
 h1{
-  font-size:clamp(27px,6vw,48px);
-  font-weight:400;
-  letter-spacing:.06em;
-  margin:9px 0 5px;
-  text-transform:uppercase;
-}
 
-.sub{
-  font:12px Arial,sans-serif;
-  letter-spacing:.22em;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-
-.rule{
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      var(--gold2),
-      transparent
-    );
-
-  margin:22px 0;
-}
-
-/* ========================================
-   PROGRESO
-======================================== */
-
-.progress-wrap{
-  display:flex;
-  align-items:center;
-  gap:14px;
-
-  margin:0 auto 28px;
-
-  max-width:650px;
-}
-
-.progress{
-  height:5px;
-
-  background:#1d201f;
-
-  flex:1;
-
-  overflow:hidden;
-}
-
-.progress > i{
-  display:block;
-
-  height:100%;
-
-  width:0;
-
-  background:var(--gold);
-
-  transition:.4s;
-}
-
-.progress-count{
-  font:11px Arial,sans-serif;
-
-  letter-spacing:.15em;
-
-  color:var(--muted);
-
-  white-space:nowrap;
-}
-
-/* ========================================
-   DISTRITOS
-======================================== */
-
-.grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:13px;
-}
-
-.district{
-  min-height:178px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #111313,
-      #090a0a
-    );
-
-  border:1px solid #292a27;
-
-  color:var(--text);
-
-  padding:20px 10px;
-
-  position:relative;
-
-  overflow:hidden;
-
-  transition:.2s;
-}
-
-.district:active{
-  transform:scale(.985);
-}
-
-.district.unlocked{
-  border-color:var(--gold2);
-
-  box-shadow:
-    inset 0 0 30px
-    rgba(197,163,91,.055);
-}
-
-/* Sello de distrito */
-
-.district .seal{
-  width:76px;
-  height:76px;
-
-  border-radius:50%;
-
-  border:1px solid #3c3c37;
-
-  margin:0 auto 14px;
-
-  display:grid;
-
-  place-items:center;
-
-  position:relative;
-}
-
-.district.unlocked .seal{
-  border-color:var(--gold);
-
-  color:var(--gold);
-
-  box-shadow:
-    0 0 22px
-    rgba(197,163,91,.12);
-}
-
-.seal b{
-  font-size:31px;
-  font-weight:400;
-}
-
-.seal small{
-  position:absolute;
-
-  bottom:8px;
-
-  font:7px Arial,sans-serif;
-
-  letter-spacing:.1em;
-}
-
-.dname{
-  font-size:13px;
-
-  letter-spacing:.16em;
-
-  text-transform:uppercase;
-}
-
-.status{
-  font:9px Arial,sans-serif;
-
-  letter-spacing:.18em;
-
-  text-transform:uppercase;
-
-  color:#696b67;
-
-  margin-top:7px;
-}
-
-.unlocked .status{
-  color:var(--gold);
-}
-
-.lock{
-  position:absolute;
-
-  right:9px;
-
-  top:9px;
-
-  font:12px Arial,sans-serif;
-
-  color:#62635e;
-}
-
-.unlocked .lock{
-  color:var(--gold);
-}
-
-/* ========================================
-   TARJETAS
-======================================== */
-
-.card{
-  max-width:620px;
-
-  margin:0 auto;
-
-  background:
-    linear-gradient(
-      145deg,
-      #111313,
-      #090a0a
-    );
-
-  border:1px solid #292a27;
-
-  padding:28px 22px;
-
-  text-align:center;
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.big-seal{
-  width:122px;
-  height:122px;
-
-  border:1px solid var(--gold2);
-
-  border-radius:50%;
-
-  display:grid;
-
-  place-items:center;
-
-  margin:5px auto 22px;
-
-  color:var(--gold);
-
-  font-size:48px;
-
-  position:relative;
-}
-
-.big-seal:after{
-  content:"CAPITOLIO";
-
-  position:absolute;
-
-  bottom:17px;
-
-  font:7px Arial,sans-serif;
-
-  letter-spacing:.25em;
-}
-
-.card h2{
   font-weight:400;
 
+  font-size:
+  clamp(
+    28px,
+    6vw,
+    48px
+  );
+
+  letter-spacing:.07em;
+
   text-transform:uppercase;
 
-  letter-spacing:.12em;
-
-  margin:5px 0 8px;
+  margin:
+  10px 0
+  6px;
 }
 
-.card p{
-  color:#aaa79d;
+.subtitle{
 
-  line-height:1.65;
-
-  font-family:Arial,sans-serif;
-
-  font-size:14px;
-}
-
-/* ========================================
-   PIN
-======================================== */
-
-.pin-label{
-  font:10px Arial,sans-serif;
+  font:
+  11px Arial,sans-serif;
 
   letter-spacing:.2em;
 
   color:var(--muted);
 
   text-transform:uppercase;
+}
 
-  margin:26px 0 12px;
+.rule{
+
+  height:1px;
+
+  margin:
+  22px 0;
+
+  background:
+
+  linear-gradient(
+    90deg,
+    transparent,
+    var(--gold2),
+    transparent
+  );
+}
+
+/* =========================================================
+   STATUS SUPERIOR
+========================================================= */
+
+.status-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:8px;
+
+  margin-bottom:22px;
+}
+
+.status-box{
+
+  border:
+  1px solid #292b28;
+
+  background:
+  rgba(15,17,16,.7);
+
+  padding:
+  13px 8px;
+
+  text-align:center;
+}
+
+.status-label{
+
+  font:
+  8px Arial,sans-serif;
+
+  letter-spacing:.18em;
+
+  color:var(--muted);
+
+  text-transform:uppercase;
+}
+
+.status-value{
+
+  margin-top:7px;
+
+  font-size:17px;
+
+  color:var(--gold);
+}
+
+/* =========================================================
+   PROGRESO
+========================================================= */
+
+.progress-area{
+
+  margin:
+  0 auto
+  28px;
+
+  max-width:700px;
+}
+
+.progress-top{
+
+  display:flex;
+
+  justify-content:
+  space-between;
+
+  align-items:center;
+
+  margin-bottom:9px;
+
+  font:
+  9px Arial,sans-serif;
+
+  letter-spacing:.17em;
+
+  text-transform:uppercase;
+
+  color:var(--muted);
+}
+
+.progress{
+
+  height:5px;
+
+  background:#1d201f;
+
+  overflow:hidden;
+}
+
+.progress-bar{
+
+  display:block;
+
+  height:100%;
+
+  width:0%;
+
+  background:var(--gold);
+
+  transition:
+  width .5s ease;
+}
+
+/* =========================================================
+   TRIBUTO
+========================================================= */
+
+.tribute-layout{
+
+  display:grid;
+
+  grid-template-columns:
+  1.1fr .9fr;
+
+  gap:14px;
+
+  margin-bottom:28px;
+}
+
+.tribute-card,
+.inventory-card{
+
+  background:
+
+  linear-gradient(
+    145deg,
+    #111313,
+    #090a0a
+  );
+
+  border:
+  1px solid #292a27;
+
+  min-height:420px;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.section-head{
+
+  padding:
+  17px 18px;
+
+  border-bottom:
+  1px solid #292a27;
+}
+
+.section-head small{
+
+  display:block;
+
+  font:
+  8px Arial,sans-serif;
+
+  letter-spacing:.22em;
+
+  color:var(--gold);
+
+  text-transform:uppercase;
+}
+
+.section-head h2{
+
+  margin:
+  7px 0 0;
+
+  font-size:18px;
+
+  font-weight:400;
+
+  letter-spacing:.1em;
+
+  text-transform:uppercase;
+}
+
+/* =========================================================
+   SILUETA
+========================================================= */
+
+.character-area{
+
+  height:360px;
+
+  position:relative;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+}
+
+/* Silueta masculina */
+
+.character{
+
+  width:160px;
+
+  height:315px;
+
+  position:relative;
+}
+
+/* cabeza */
+
+.head{
+
+  position:absolute;
+
+  width:48px;
+  height:48px;
+
+  border-radius:50%;
+
+  background:#292c2a;
+
+  left:56px;
+  top:0;
+}
+
+/* cuello */
+
+.neck{
+
+  position:absolute;
+
+  width:25px;
+  height:22px;
+
+  background:#292c2a;
+
+  left:68px;
+  top:43px;
+}
+
+/* torso */
+
+.torso{
+
+  position:absolute;
+
+  width:85px;
+  height:125px;
+
+  background:#292c2a;
+
+  left:38px;
+  top:60px;
+
+  clip-path:
+  polygon(
+    18% 0,
+    82% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+/* brazos */
+
+.arm{
+
+  position:absolute;
+
+  width:27px;
+  height:125px;
+
+  background:#292c2a;
+
+  top:67px;
+
+  border-radius:
+  15px;
+}
+
+.arm.left{
+
+  left:18px;
+
+  transform:
+  rotate(7deg);
+}
+
+.arm.right{
+
+  right:18px;
+
+  transform:
+  rotate(-7deg);
+}
+
+/* piernas */
+
+.leg{
+
+  position:absolute;
+
+  width:34px;
+  height:140px;
+
+  background:#292c2a;
+
+  top:177px;
+
+  border-radius:
+  0 0 15px 15px;
+}
+
+.leg.left{
+  left:43px;
+}
+
+.leg.right{
+  right:43px;
+}
+
+/* =========================================================
+   EQUIPAMIENTO SOBRE EL CUERPO
+========================================================= */
+
+.equipment{
+
+  position:absolute;
+
+  opacity:0;
+
+  transform:
+  scale(.5);
+
+  transition:
+  .6s cubic-bezier(.2,.8,.2,1);
+
+  filter:
+  drop-shadow(
+    0 0 7px
+    rgba(197,163,91,.25)
+  );
+}
+
+.equipment.visible{
+
+  opacity:1;
+
+  transform:
+  scale(1);
+}
+
+/* arco */
+
+.eq-bow{
+
+  font-size:65px;
+
+  right:-5px;
+
+  top:90px;
+
+  transform:
+  rotate(-20deg)
+  scale(.5);
+}
+
+.eq-bow.visible{
+
+  transform:
+  rotate(-20deg)
+  scale(1);
+}
+
+/* cuchillo */
+
+.eq-knife{
+
+  font-size:34px;
+
+  left:20px;
+
+  top:170px;
+}
+
+/* mochila */
+
+.eq-bag{
+
+  font-size:48px;
+
+  right:13px;
+
+  top:105px;
+
+  z-index:-1;
+}
+
+/* chaqueta / textil */
+
+.eq-clothes{
+
+  font-size:42px;
+
+  left:59px;
+
+  top:95px;
+}
+
+/* medicina */
+
+.eq-medicine{
+
+  font-size:31px;
+
+  left:15px;
+
+  top:120px;
+}
+
+/* flechas */
+
+.eq-arrows{
+
+  font-size:48px;
+
+  right:5px;
+
+  top:52px;
+}
+
+/* =========================================================
+   INVENTARIO
+========================================================= */
+
+.inventory-content{
+
+  padding:
+  15px;
+}
+
+.inventory-empty{
+
+  text-align:center;
+
+  color:#666963;
+
+  font:
+  10px Arial,sans-serif;
+
+  letter-spacing:.15em;
+
+  text-transform:uppercase;
+
+  padding:
+  60px 20px;
+}
+
+.inventory-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+  padding:
+  12px;
+
+  border-bottom:
+  1px solid #252724;
+
+  animation:
+  itemIn .4s ease;
+}
+
+@keyframes itemIn{
+
+  from{
+    opacity:0;
+    transform:
+    translateX(-10px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+
+}
+
+.item-icon{
+
+  width:42px;
+  height:42px;
+
+  display:grid;
+
+  place-items:center;
+
+  border:
+  1px solid var(--gold2);
+
+  font-size:22px;
+}
+
+.item-info{
+
+  flex:1;
+}
+
+.item-name{
+
+  font-size:13px;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+}
+
+.item-source{
+
+  margin-top:5px;
+
+  font:
+  8px Arial,sans-serif;
+
+  letter-spacing:.14em;
+
+  color:var(--muted);
+
+  text-transform:uppercase;
+}
+
+.item-status{
+
+  font:
+  8px Arial,sans-serif;
+
+  letter-spacing:.1em;
+
+  color:var(--gold);
+
+  text-transform:uppercase;
+}
+
+/* =========================================================
+   BOTÓN ALIJOS ENCONTRADOS
+========================================================= */
+
+.found-button{
+
+  width:100%;
+
+  margin-top:15px;
+
+  padding:15px;
+
+  border:
+  1px solid var(--gold);
+
+  background:
+  rgba(197,163,91,.08);
+
+  color:var(--gold);
+
+  font:
+  10px Arial,sans-serif;
+
+  letter-spacing:.18em;
+
+  text-transform:uppercase;
+
+  animation:
+  glow 2s infinite;
+}
+
+@keyframes glow{
+
+  0%,100%{
+    box-shadow:
+    0 0 0
+    rgba(197,163,91,0);
+  }
+
+  50%{
+    box-shadow:
+    0 0 20px
+    rgba(197,163,91,.12);
+  }
+
+}
+
+/* =========================================================
+   ALIJOS
+========================================================= */
+
+.title-section{
+
+  text-align:center;
+
+  margin:
+  35px 0
+  18px;
+}
+
+.title-section small{
+
+  font:
+  9px Arial,sans-serif;
+
+  color:var(--gold);
+
+  letter-spacing:.25em;
+
+  text-transform:uppercase;
+}
+
+.title-section h2{
+
+  font-weight:400;
+
+  text-transform:uppercase;
+
+  letter-spacing:.1em;
+
+  margin:
+  8px 0;
+}
+
+.title-section p{
+
+  max-width:580px;
+
+  margin:auto;
+
+  color:var(--muted);
+
+  font:
+  12px Arial,sans-serif;
+
+  line-height:1.6;
+}
+
+.supply-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:11px;
+}
+
+.supply{
+
+  background:
+
+  linear-gradient(
+    145deg,
+    #111313,
+    #090a0a
+  );
+
+  border:
+  1px solid #292a27;
+
+  min-height:180px;
+
+  padding:
+  17px 10px;
+
+  text-align:center;
+
+  color:var(--text);
+
+  position:relative;
+
+  transition:.2s;
+}
+
+.supply:active{
+
+  transform:
+  scale(.985);
+}
+
+.supply.recovered{
+
+  border-color:
+  var(--gold2);
+}
+
+.supply-logo{
+
+  width:68px;
+  height:68px;
+
+  border:
+  1px solid #3b3d39;
+
+  border-radius:50%;
+
+  margin:
+  0 auto
+  13px;
+
+  display:grid;
+
+  place-items:center;
+
+  font-size:27px;
+
+  color:#777;
+}
+
+.supply.recovered
+.supply-logo{
+
+  border-color:
+  var(--gold);
+
+  color:var(--gold);
+}
+
+.supply-logo.capitol img{
+
+  width:55px;
+  height:55px;
+
+  object-fit:contain;
+}
+
+.supply-name{
+
+  font-size:13px;
+
+  letter-spacing:.12em;
+
+  text-transform:uppercase;
+}
+
+.supply-industry{
+
+  font:
+  8px Arial,sans-serif;
+
+  color:var(--muted);
+
+  letter-spacing:.13em;
+
+  margin-top:6px;
+
+  text-transform:uppercase;
+}
+
+.supply-state{
+
+  margin-top:13px;
+
+  font:
+  8px Arial,sans-serif;
+
+  letter-spacing:.15em;
+
+  color:#666963;
+
+  text-transform:uppercase;
+}
+
+.supply.recovered
+.supply-state{
+
+  color:var(--gold);
+}
+
+/* =========================================================
+   RECOMPENSAS DE VICTORIA
+========================================================= */
+
+.rewards{
+
+  margin-top:35px;
+
+  border:
+  1px solid #292a27;
+
+  background:
+  linear-gradient(
+    145deg,
+    #101212,
+    #080909
+  );
+
+  padding:
+  25px;
+
+  text-align:center;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.rewards.locked{
+
+  opacity:.72;
+}
+
+.reward-logo{
+
+  width:70px;
+  height:70px;
+
+  margin:
+  0 auto
+  15px;
+}
+
+.reward-logo img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+}
+
+.reward-lock{
+
+  font-size:30px;
+
+  margin-bottom:10px;
+}
+
+.rewards h2{
+
+  font-weight:400;
+
+  letter-spacing:.12em;
+
+  text-transform:uppercase;
+
+  margin:
+  8px 0;
+}
+
+.rewards p{
+
+  font:
+  12px Arial,sans-serif;
+
+  color:var(--muted);
+
+  line-height:1.7;
+
+  max-width:580px;
+
+  margin:
+  10px auto;
+}
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.action{
+
+  width:100%;
+
+  max-width:340px;
+
+  border:
+  1px solid var(--gold2);
+
+  background:transparent;
+
+  color:var(--gold);
+
+  padding:14px;
+
+  text-transform:uppercase;
+
+  font:
+  10px Arial,sans-serif;
+
+  letter-spacing:.2em;
+}
+
+.action.secondary{
+
+  border-color:#353734;
+
+  color:#999;
+
+  margin-top:9px;
+}
+
+.back{
+
+  border:0;
+
+  background:none;
+
+  color:#7e7e78;
+
+  padding:
+  8px 0;
+
+  margin-bottom:18px;
+
+  font:
+  9px Arial,sans-serif;
+
+  letter-spacing:.2em;
+
+  text-transform:uppercase;
+}
+
+/* =========================================================
+   PANTALLA PIN
+========================================================= */
+
+.access-card{
+
+  max-width:590px;
+
+  margin:auto;
+
+  border:
+  1px solid #292a27;
+
+  background:
+  linear-gradient(
+    145deg,
+    #111313,
+    #090a0a
+  );
+
+  padding:
+  27px 20px;
+
+  text-align:center;
+}
+
+.access-emblem{
+
+  width:110px;
+  height:110px;
+
+  border:
+  1px solid var(--gold2);
+
+  border-radius:50%;
+
+  display:grid;
+
+  place-items:center;
+
+  margin:
+  0 auto
+  20px;
+
+  font-size:42px;
+
+  color:var(--gold);
+}
+
+.access-emblem img{
+
+  width:85px;
+  height:85px;
+
+  object-fit:contain;
+}
+
+.access-card h2{
+
+  font-weight:400;
+
+  text-transform:uppercase;
+
+  letter-spacing:.1em;
+}
+
+.access-card p{
+
+  font:
+  12px Arial,sans-serif;
+
+  color:var(--muted);
+
+  line-height:1.7;
+}
+
+.pin-title{
+
+  margin:
+  25px 0
+  11px;
+
+  font:
+  9px Arial,sans-serif;
+
+  letter-spacing:.2em;
+
+  text-transform:uppercase;
+
+  color:var(--muted);
 }
 
 .pin{
+
   display:flex;
 
   justify-content:center;
@@ -464,150 +1250,147 @@ h1{
 }
 
 .pin input{
+
   width:52px;
-
-  height:61px;
-
-  text-align:center;
-
-  font:26px Arial,sans-serif;
+  height:60px;
 
   background:#050606;
 
-  border:1px solid #373834;
+  border:
+  1px solid #373934;
 
   color:var(--gold);
+
+  text-align:center;
+
+  font:
+  25px Arial,sans-serif;
 
   outline:none;
 }
 
 .pin input:focus{
-  border-color:var(--gold);
-}
 
-/* ========================================
-   BOTONES
-======================================== */
-
-.action{
-  width:100%;
-
-  max-width:330px;
-
-  border:1px solid var(--gold2);
-
-  background:transparent;
-
-  color:var(--gold);
-
-  padding:14px;
-
-  text-transform:uppercase;
-
-  font:10px Arial,sans-serif;
-
-  letter-spacing:.22em;
-}
-
-.action.secondary{
-  border-color:#343633;
-
-  color:#aaa;
-
-  margin-top:10px;
-}
-
-.back{
-  border:0;
-
-  background:none;
-
-  color:#7e7e78;
-
-  font:10px Arial,sans-serif;
-
-  letter-spacing:.2em;
-
-  text-transform:uppercase;
-
-  margin-bottom:20px;
-
-  padding:8px 0;
+  border-color:
+  var(--gold);
 }
 
 .error{
-  min-height:22px;
+
+  min-height:25px;
 
   margin-top:12px;
 
+  font:
+  9px Arial,sans-serif;
+
+  letter-spacing:.14em;
+
   color:var(--danger);
-
-  font:10px Arial,sans-serif;
-
-  letter-spacing:.12em;
 
   text-transform:uppercase;
 }
 
-/* ========================================
-   REGALO
-======================================== */
+/* =========================================================
+   OBJETO ENCONTRADO
+========================================================= */
 
-.supply-box{
-  border:1px solid var(--gold2);
+.found-card{
 
-  padding:22px;
+  max-width:590px;
 
-  margin:24px 0;
+  margin:auto;
+
+  text-align:center;
+
+  border:
+  1px solid var(--gold2);
 
   background:
-    rgba(197,163,91,.035);
+  linear-gradient(
+    145deg,
+    #111313,
+    #080909
+  );
 
-  position:relative;
-
-  z-index:2;
+  padding:
+  35px 20px;
 }
 
-.supply-box .tag{
-  font:9px Arial,sans-serif;
+.found-icon{
 
-  letter-spacing:.22em;
+  font-size:70px;
+
+  margin:
+  15px 0;
+
+  animation:
+  foundObject .7s ease;
+}
+
+@keyframes foundObject{
+
+  from{
+    opacity:0;
+    transform:
+    scale(.3)
+    rotate(-15deg);
+  }
+
+  to{
+    opacity:1;
+    transform:
+    scale(1)
+    rotate(0);
+  }
+
+}
+
+.found-card h2{
+
+  font-weight:400;
+
+  text-transform:uppercase;
+
+  letter-spacing:.12em;
+}
+
+.found-card h3{
 
   color:var(--gold);
 
-  text-transform:uppercase;
-}
+  font-size:25px;
 
-.supply-box h3{
   font-weight:400;
 
-  font-size:24px;
-
-  margin:10px 0;
+  margin:
+  12px 0;
 }
 
-.tiny{
-  font:9px Arial,sans-serif;
+.found-card p{
 
-  color:#686a65;
+  font:
+  12px Arial,sans-serif;
 
-  letter-spacing:.12em;
+  line-height:1.7;
 
-  text-transform:uppercase;
+  color:var(--muted);
 }
 
-/* ========================================
-   PANEL ADMIN
-======================================== */
+/* =========================================================
+   MODAL TODOS LOS ALIJOS
+========================================================= */
 
 .modal{
+
   position:fixed;
 
   inset:0;
 
-  background:rgba(0,0,0,.94);
+  z-index:50;
 
-  z-index:30;
+  background:
+  rgba(0,0,0,.94);
 
   display:none;
 
@@ -619,11 +1402,13 @@ h1{
 }
 
 .modal.open{
+
   display:flex;
 }
 
-.admin{
-  width:min(600px,100%);
+.modal-card{
+
+  width:min(570px,100%);
 
   max-height:90vh;
 
@@ -631,27 +1416,34 @@ h1{
 
   background:#0d0f0f;
 
-  border:1px solid var(--gold2);
+  border:
+  1px solid var(--gold2);
 
   padding:25px;
+
+  text-align:center;
 }
 
-.admin-logo{
-  width:75px;
+.modal-logo{
 
-  height:75px;
+  width:80px;
+  height:80px;
 
-  margin:0 auto 20px;
+  margin:
+  0 auto
+  17px;
 }
 
-.admin-logo img{
+.modal-logo img{
+
   width:100%;
   height:100%;
 
   object-fit:contain;
 }
 
-.admin h2{
+.modal-card h2{
+
   font-weight:400;
 
   letter-spacing:.1em;
@@ -659,150 +1451,113 @@ h1{
   text-transform:uppercase;
 }
 
+.modal-card p{
+
+  font:
+  12px Arial,sans-serif;
+
+  color:var(--muted);
+
+  line-height:1.7;
+}
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:
+  space-between;
+
+  gap:10px;
+
+  padding:
+  12px 0;
+
+  border-bottom:
+  1px solid #242623;
+
+  text-align:left;
+
+  font:
+  11px Arial,sans-serif;
+}
+
+.admin-row button{
+
+  background:none;
+
+  border:
+  1px solid #41433f;
+
+  color:#aaa;
+
+  padding:
+  7px 9px;
+
+  font:
+  8px Arial,sans-serif;
+
+  letter-spacing:.1em;
+
+  text-transform:uppercase;
+}
+
 .admin-pin{
+
   width:100%;
 
   padding:14px;
 
   background:#050606;
 
-  color:var(--text);
+  border:
+  1px solid #373934;
 
-  border:1px solid #343633;
+  color:var(--gold);
 
   text-align:center;
 
-  letter-spacing:.4em;
+  font:
+  21px Arial,sans-serif;
 
-  font:20px Arial,sans-serif;
+  letter-spacing:.4em;
 
   outline:none;
 }
 
-.admin-row{
-  display:flex;
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-  align-items:center;
+@media(
+  max-width:720px
+){
 
-  justify-content:space-between;
+  .tribute-layout{
 
-  gap:12px;
-
-  padding:12px 0;
-
-  border-bottom:1px solid #232522;
-
-  font:12px Arial,sans-serif;
-}
-
-.admin-row button{
-  background:none;
-
-  border:1px solid #41423e;
-
-  color:#bbb;
-
-  padding:7px 10px;
-
-  font-size:9px;
-
-  text-transform:uppercase;
-
-  letter-spacing:.1em;
-}
-
-.admin-actions{
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-
-  gap:8px;
-
-  margin-top:18px;
-}
-
-.danger{
-  border-color:#63332f !important;
-
-  color:#c57a70 !important;
-}
-
-/* ========================================
-   TOAST
-======================================== */
-
-.toast{
-  position:fixed;
-
-  left:50%;
-
-  bottom:30px;
-
-  transform:
-    translateX(-50%)
-    translateY(20px);
-
-  background:#151715;
-
-  border:1px solid var(--gold2);
-
-  padding:12px 18px;
-
-  font:10px Arial,sans-serif;
-
-  letter-spacing:.15em;
-
-  text-transform:uppercase;
-
-  opacity:0;
-
-  pointer-events:none;
-
-  transition:.25s;
-
-  z-index:50;
-}
-
-.toast.show{
-  opacity:1;
-
-  transform:translateX(-50%);
-}
-
-/* ========================================
-   MÓVIL
-======================================== */
-
-@media(max-width:680px){
-
-  .screen{
-    padding:
-      max(24px,env(safe-area-inset-top))
-      14px
-      40px;
-  }
-
-  .grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .district{
-    min-height:160px;
-  }
-
-  .district .seal{
-    width:65px;
-    height:65px;
-  }
-
-  .capitol-logo{
-    width:88px;
-    height:88px;
-  }
-
-  .admin-actions{
     grid-template-columns:1fr;
+  }
+
+  .supply-grid{
+
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+  .tribute-card{
+
+    min-height:auto;
+  }
+
+  .inventory-card{
+
+    min-height:auto;
   }
 
 }
@@ -812,17 +1567,15 @@ h1{
 
 <body>
 
-
-<!-- ==========================================
+<!-- =====================================================
      PANTALLA PRINCIPAL
-========================================== -->
+===================================================== -->
 
 <section
 id="home"
 class="screen active">
 
 <div class="shell">
-
 
 <header class="capitol-header">
 
@@ -831,61 +1584,316 @@ class="capitol-logo admin-trigger">
 
 <img
 src="capitolio.png.webp"
-alt="Emblema del Capitolio">
+alt="Capitolio">
 
 </div>
-
 
 <div class="eyebrow">
-
-CAPITOLIO · DIVISIÓN DE SUMINISTROS
-
+CAPITOLIO · PROTOCOLO DE SUPERVIVENCIA
 </div>
 
-
 <h1>
-
-Almacén de Suministros<br>
-de los Distritos
-
+ESTADO DEL TRIBUTO
 </h1>
 
-
-<div class="sub">
-
-TRIBUTO: SAMUEL
-
+<div class="subtitle">
+TRIBUTO SAMUEL · ARENA ACTIVA
 </div>
 
 </header>
 
 
-<div class="rule"></div>
+<div class="status-grid">
+
+<div class="status-box">
+
+<div class="status-label">
+ESTADO
+</div>
+
+<div class="status-value">
+VIVO
+</div>
+
+</div>
 
 
-<div class="progress-wrap">
+<div class="status-box">
+
+<div class="status-label">
+ALIJOS
+</div>
+
+<div
+class="status-value"
+id="topCount">
+0 / 6
+</div>
+
+</div>
+
+
+<div class="status-box">
+
+<div class="status-label">
+PROTOCOLO
+</div>
+
+<div class="status-value">
+ACTIVO
+</div>
+
+</div>
+
+</div>
+
+
+<div class="progress-area">
+
+<div class="progress-top">
+
+<span>
+SUMINISTROS RECUPERADOS
+</span>
+
+<span id="progressText">
+0 DE 6
+</span>
+
+</div>
 
 <div class="progress">
 
-<i id="bar"></i>
+<i
+class="progress-bar"
+id="progressBar">
+</i>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     TRIBUTO + INVENTARIO
+===================================================== -->
+
+<div class="tribute-layout">
+
+
+<!-- PERSONAJE -->
+
+<div class="tribute-card">
+
+<div class="section-head">
+
+<small>
+REGISTRO DEL TRIBUTO
+</small>
+
+<h2>
+EQUIPAMIENTO
+</h2>
+
+</div>
+
+
+<div class="character-area">
+
+<div class="character">
+
+<div class="head"></div>
+
+<div class="neck"></div>
+
+<div class="torso"></div>
+
+<div class="arm left"></div>
+
+<div class="arm right"></div>
+
+<div class="leg left"></div>
+
+<div class="leg right"></div>
+
+
+<div
+id="eq-bow"
+class="equipment eq-bow">
+🏹
+</div>
+
+
+<div
+id="eq-knife"
+class="equipment eq-knife">
+🔪
+</div>
+
+
+<div
+id="eq-bag"
+class="equipment eq-bag">
+🎒
+</div>
+
+
+<div
+id="eq-clothes"
+class="equipment eq-clothes">
+🧥
+</div>
+
+
+<div
+id="eq-medicine"
+class="equipment eq-medicine">
+🌿
+</div>
+
+
+<div
+id="eq-arrows"
+class="equipment eq-arrows">
+➶
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- INVENTARIO -->
+
+<div class="inventory-card">
+
+<div class="section-head">
+
+<small>
+SUMINISTROS ACTIVOS
+</small>
+
+<h2>
+INVENTARIO
+</h2>
 
 </div>
 
 
 <div
-class="progress-count"
-id="progressText">
+class="inventory-content"
+id="inventory">
+</div>
 
-0 / 12 RECUPERADOS
+
+<button
+id="allFoundButton"
+class="found-button hidden"
+onclick="openAllFound()">
+
+ALIJOS ENCONTRADOS · 6/6
+
+</button>
 
 </div>
+
+</div>
+
+
+<!-- =====================================================
+     ALIJOS
+===================================================== -->
+
+<div class="title-section">
+
+<small>
+TRANSMISIONES DE PATROCINADORES
+</small>
+
+<h2>
+ALIJOS DE SUMINISTROS
+</h2>
+
+<p>
+
+Algunos distritos han decidido proporcionar
+recursos al tributo durante los Juegos.
+
+Localiza los alijos e introduce sus códigos
+para incorporar cada suministro a tu inventario.
+
+</p>
 
 </div>
 
 
 <div
-class="grid"
-id="districtGrid">
+class="supply-grid"
+id="supplyGrid">
+</div>
+
+
+<!-- =====================================================
+     RECOMPENSAS
+===================================================== -->
+
+<div
+class="rewards locked"
+id="rewards">
+
+<div class="reward-logo">
+
+<img
+src="capitolio.png.webp"
+alt="Capitolio">
+
+</div>
+
+<div
+class="eyebrow">
+
+PROTOCOLO POST-JUEGOS
+
+</div>
+
+<div class="reward-lock">
+◇
+</div>
+
+<h2>
+RECOMPENSAS DE VICTORIA
+</h2>
+
+<p>
+
+Los suministros encontrados en la Arena
+solo aumentan tus posibilidades de supervivencia.
+
+Los verdaderos obsequios permanecen
+custodiados por el Capitolio.
+
+</p>
+
+<p>
+
+<strong>
+SI SOBREVIVES A LOS JUEGOS,
+DESBLOQUEARÁS LAS RECOMPENSAS
+ENVIADAS POR LOS DISTRITOS.
+</strong>
+
+</p>
+
+<div class="subtitle">
+
+ACCESO BLOQUEADO ·
+FINALIZA LOS JUEGOS
+
+</div>
+
 </div>
 
 
@@ -894,10 +1902,9 @@ id="districtGrid">
 </section>
 
 
-
-<!-- ==========================================
-     ACCESO DISTRITO
-========================================== -->
+<!-- =====================================================
+     INTRODUCIR CÓDIGO
+===================================================== -->
 
 <section
 id="access"
@@ -910,79 +1917,65 @@ class="screen">
 class="back"
 onclick="goHome()">
 
-← VOLVER AL ALMACÉN
+← VOLVER AL ESTADO DEL TRIBUTO
 
 </button>
 
 
 <header class="capitol-header">
 
-
 <div
 class="capitol-logo admin-trigger">
 
 <img
 src="capitolio.png.webp"
-alt="Emblema del Capitolio">
+alt="Capitolio">
 
 </div>
 
-
 <div class="eyebrow">
 
-CAPITOLIO · ACCESO RESTRINGIDO
+CAPITOLIO · VERIFICACIÓN DE ALIJO
 
 </div>
 
 </header>
 
 
-<div class="card">
+<div class="access-card">
 
 
-<div class="watermark">
-
-<img
-src="capitolio.png.webp"
-alt="">
-
+<div
+class="access-emblem"
+id="accessEmblem">
 </div>
 
 
 <div
-class="big-seal"
-id="accessSeal">
-
-1
-
-</div>
-
-
-<div
-class="tiny"
-id="accessCategory">
+class="subtitle"
+id="accessSource">
 </div>
 
 
 <h2 id="accessTitle">
-
-DISTRITO 1
-
+ALIJO
 </h2>
 
 
 <p>
 
-Este suministro permanece clasificado.
-Introduzca el PIN recuperado del alijo
-correspondiente para autorizar su apertura.
+El suministro permanece sellado.
+
+Introduce el código localizado junto
+al alijo para autorizar su incorporación
+al inventario del tributo.
 
 </p>
 
 
-<div class="pin-label">
+<div class="pin-title">
 
-CÓDIGO DE ACCESO AL ALIJO
+CÓDIGO DEL ALIJO
 
 </div>
 
@@ -991,26 +1984,21 @@ CÓDIGO DE ACCESO AL ALIJO
 class="pin"
 id="pinInputs">
 
+<input
+inputmode="numeric"
+maxlength="1">
 
 <input
 inputmode="numeric"
 maxlength="1">
 
-
 <input
 inputmode="numeric"
 maxlength="1">
 
-
 <input
 inputmode="numeric"
 maxlength="1">
-
-
-<input
-inputmode="numeric"
-maxlength="1">
-
 
 </div>
 
@@ -1019,7 +2007,7 @@ maxlength="1">
 class="action"
 onclick="verifyPin()">
 
-VERIFICAR CÓDIGO
+VERIFICAR SUMINISTRO
 
 </button>
 
@@ -1037,110 +2025,86 @@ id="pinError">
 </section>
 
 
-
-<!-- ==========================================
-     SUMINISTRO DESBLOQUEADO
-========================================== -->
+<!-- =====================================================
+     OBJETO CONSEGUIDO
+===================================================== -->
 
 <section
-id="supply"
+id="found"
 class="screen">
 
 <div class="shell">
 
 
-<button
-class="back"
-onclick="goHome()">
-
-← VOLVER AL ALMACÉN
-
-</button>
-
-
 <header class="capitol-header">
 
-
-<div
-class="capitol-logo admin-trigger">
+<div class="capitol-logo">
 
 <img
 src="capitolio.png.webp"
-alt="Emblema del Capitolio">
+alt="Capitolio">
 
 </div>
 
-
 <div class="eyebrow">
 
-CAPITOLIO · SUMINISTRO AUTORIZADO
+TRANSMISIÓN DEL CAPITOLIO
 
 </div>
 
 </header>
 
 
-<div
-class="card"
-id="supplyCard">
+<div class="found-card">
 
 
-<div class="watermark">
+<div class="subtitle">
 
-<img
-src="capitolio.png.webp"
-alt="">
+SUMINISTRO AUTORIZADO
 
 </div>
 
 
 <div
-class="big-seal"
-id="supplySeal">
+class="found-icon"
+id="foundIcon">
 </div>
 
 
-<div
-class="tiny"
-id="supplyCategory">
-</div>
-
-
-<h2 id="supplyTitle">
+<h2>
+OBJETO OBTENIDO
 </h2>
 
 
-<div class="supply-box">
-
-
-<div class="tag">
-
-SUMINISTRO RECUPERADO
-
-</div>
-
-
-<h3 id="giftTitle">
+<h3 id="foundName">
 </h3>
 
 
-<p id="giftDescription">
+<p id="foundDescription">
 </p>
 
 
+<div
+class="rule">
 </div>
 
 
-<p id="districtLore">
-</p>
-
-
-<div class="tiny">
-
-REGISTRO VALIDADO POR EL CAPITOLIO ·
-ACCESO PERMANENTE CONCEDIDO
-
+<div
+class="subtitle"
+id="foundSource">
 </div>
+
+
+<br>
+
+
+<button
+class="action"
+onclick="goHome()">
+
+INCORPORAR AL INVENTARIO
+
+</button>
 
 
 </div>
@@ -1150,23 +2114,18 @@ ACCESO PERMANENTE CONCEDIDO
 </section>
 
 
-
-<!-- ==========================================
-     CONTROL SECRETO DEL CAPITOLIO
-========================================== -->
+<!-- =====================================================
+     TODOS LOS ALIJOS
+===================================================== -->
 
 <div
 class="modal"
-id="adminModal">
+id="allFoundModal">
+
+<div class="modal-card">
 
 
-<div class="admin">
-
-
-<div id="adminLogin">
-
-
-<div class="admin-logo">
+<div class="modal-logo">
 
 <img
 src="capitolio.png.webp"
@@ -1177,22 +2136,97 @@ alt="Capitolio">
 
 <div class="eyebrow">
 
+PROTOCOLO DE SUPERVIVENCIA
+
+</div>
+
+
+<h2>
+TODOS LOS ALIJOS RECUPERADOS
+</h2>
+
+
+<p>
+
+El tributo ha localizado todos los
+suministros enviados a la Arena.
+
+</p>
+
+
+<p>
+
+Tu inventario está completo.
+
+A partir de este momento no recibirás
+más ayuda externa.
+
+</p>
+
+
+<p style="
+color:#c5a35b;
+letter-spacing:.08em;
+">
+
+UTILIZA TUS RECURSOS.<br>
+SOBREVIVE A LOS JUEGOS.
+
+</p>
+
+
+<button
+class="action"
+onclick="closeAllFound()">
+
+CONTINUAR
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     ADMIN SECRETO
+===================================================== -->
+
+<div
+class="modal"
+id="adminModal">
+
+<div class="modal-card">
+
+
+<div class="modal-logo">
+
+<img
+src="capitolio.png.webp"
+alt="Capitolio">
+
+</div>
+
+
+<div
+id="adminLogin">
+
+
+<div class="eyebrow">
+
 PROTOCOLO RESERVADO
 
 </div>
 
 
 <h2>
-
 CONTROL DEL CAPITOLIO
-
 </h2>
 
 
-<p class="tiny">
-
-INTRODUZCA CREDENCIAL DE VIGILANTE
-
+<p>
+Introduce la credencial de administrador.
 </p>
 
 
@@ -1205,12 +2239,14 @@ maxlength="6"
 placeholder="••••">
 
 
+<br><br>
+
+
 <button
 class="action"
-style="max-width:none;margin-top:12px"
 onclick="adminLogin()">
 
-AUTORIZAR ACCESO
+AUTORIZAR
 
 </button>
 
@@ -1223,7 +2259,6 @@ id="adminError">
 
 <button
 class="action secondary"
-style="max-width:none"
 onclick="closeAdmin()">
 
 CANCELAR
@@ -1234,392 +2269,275 @@ CANCELAR
 </div>
 
 
-
 <div
 id="adminPanel"
-style="display:none">
-
-
-<div class="admin-logo">
-
-<img
-src="capitolio.png.webp"
-alt="Capitolio">
-
-</div>
+class="hidden">
 
 
 <div class="eyebrow">
 
-CREDENCIAL ACEPTADA
+ACCESO CONCEDIDO
 
 </div>
 
 
 <h2>
-
 CONTROL DEL CAPITOLIO
-
 </h2>
 
 
-<div class="tiny">
-
-GESTIÓN LOCAL DEL ALMACÉN
-
-</div>
-
-
 <div
-id="adminDistricts"
-style="margin-top:18px">
+id="adminList">
 </div>
 
 
-<div class="admin-actions">
+<br>
 
 
 <button
 class="action"
 onclick="unlockAll()">
 
-DESBLOQUEAR TODOS
+RECUPERAR TODOS
 
 </button>
-
-
-<button
-class="action danger"
-onclick="resetAll()">
-
-RESTABLECER ALMACÉN
-
-</button>
-
-
-</div>
 
 
 <button
 class="action secondary"
-style="max-width:none"
+onclick="resetAll()">
+
+RESTABLECER PROGRESO
+
+</button>
+
+
+<button
+class="action secondary"
 onclick="closeAdmin()">
 
-CERRAR CONTROL
+CERRAR
 
 </button>
 
 
 </div>
 
-</div>
 
 </div>
 
-
-
-<div
-class="toast"
-id="toast">
 </div>
-
 
 
 <script>
 
-/* ==========================================
+/* =========================================================
    CONFIGURACIÓN
-
-   PIN ADMINISTRADOR: 2026
-========================================== */
+========================================================= */
 
 const ADMIN_PIN = "2026";
 
 
-const districts = [
+/*
+
+AQUÍ TENEMOS LOS 6 ALIJOS REALES.
+
+Los objetos son provisionales y podemos
+cambiarlos después cuando diseñemos
+cada prueba física.
+
+*/
+
+const supplies = [
 
 {
-id:1,
-category:"Lujo",
+
+id:"capitol",
+
+source:"Capitolio",
+
+industry:"Anfitrión de los Juegos",
+
+pin:"2025",
+
+icon:"🎒",
+
+equipment:"bag",
+
+item:"Mochila de supervivencia",
+
+description:
+"Una mochila ligera preparada para transportar los suministros que consigas durante los Juegos."
+
+},
+
+{
+
+id:"d1",
+
+source:"Distrito 1",
+
+industry:"Lujo",
+
 pin:"1847",
-gift:"Suministro del Distrito 1",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 1 abastece al Capitolio de artículos de lujo y bienes exclusivos."
+
+icon:"🔪",
+
+equipment:"knife",
+
+item:"Cuchillo",
+
+description:
+"Una hoja ligera y resistente. Puede convertirse en una herramienta esencial dentro de la Arena."
+
 },
 
 {
-id:2,
-category:"Mampostería y defensa",
+
+id:"d2",
+
+source:"Distrito 2",
+
+industry:"Mampostería y defensa",
+
 pin:"2714",
-gift:"Suministro del Distrito 2",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 2 está vinculado a la piedra, la construcción y la preparación militar."
+
+icon:"🏹",
+
+equipment:"bow",
+
+item:"Arco de caza",
+
+description:
+"Has encontrado un arco de caza. Sin embargo, el suministro no contiene flechas. Estado del arma: INCOMPLETO."
+
 },
 
 {
-id:3,
-category:"Tecnología",
-pin:"3058",
-gift:"Suministro del Distrito 3",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 3 concentra la producción tecnológica y electrónica de Panem."
-},
 
-{
-id:4,
-category:"Pesca",
-pin:"4428",
-gift:"Suministro del Distrito 4",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 4 vive ligado al mar, la pesca y los recursos marítimos."
-},
+id:"d8",
 
-{
-id:5,
-category:"Energía",
-pin:"5193",
-gift:"Suministro del Distrito 5",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 5 es responsable de la generación y distribución de energía."
-},
+source:"Distrito 8",
 
-{
-id:6,
-category:"Transporte",
-pin:"6381",
-gift:"Suministro del Distrito 6",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 6 sostiene las redes de transporte de Panem."
-},
+industry:"Textiles",
 
-{
-id:7,
-category:"Madera",
-pin:"7046",
-gift:"Suministro del Distrito 7",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 7 se especializa en bosques, madera y trabajos forestales."
-},
-
-{
-id:8,
-category:"Textiles",
 pin:"8265",
-gift:"Suministro del Distrito 8",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 8 produce tejidos, prendas y otros bienes textiles."
+
+icon:"🧥",
+
+equipment:"clothes",
+
+item:"Protección térmica",
+
+description:
+"Una prenda resistente enviada por el Distrito 8 para protegerte durante tu permanencia en la Arena."
+
 },
 
 {
-id:9,
-category:"Grano",
-pin:"9137",
-gift:"Suministro del Distrito 9",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 9 está dedicado a la producción y procesamiento de grano."
-},
 
-{
-id:10,
-category:"Ganadería",
-pin:"1064",
-gift:"Suministro del Distrito 10",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 10 está asociado a la ganadería y sus productos."
-},
+id:"d11",
 
-{
-id:11,
-category:"Agricultura",
+source:"Distrito 11",
+
+industry:"Agricultura",
+
 pin:"1172",
-gift:"Suministro del Distrito 11",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 11 es uno de los grandes centros agrícolas de Panem."
+
+icon:"🌿",
+
+equipment:"medicine",
+
+item:"Kit de recursos naturales",
+
+description:
+"Plantas, alimento y recursos básicos seleccionados por el Distrito 11 para aumentar tus posibilidades de supervivencia."
+
 },
 
 {
-id:12,
-category:"Minería",
+
+id:"d12",
+
+source:"Distrito 12",
+
+industry:"Minería",
+
 pin:"1259",
-gift:"Suministro del Distrito 12",
-desc:"Aquí aparecerá el regalo real cuando lo decidamos.",
-lore:"El Distrito 12 está históricamente ligado a la minería del carbón."
+
+icon:"➶",
+
+equipment:"arrows",
+
+item:"Carcaj de flechas",
+
+description:
+"Un carcaj con flechas. El arco recuperado anteriormente ya puede utilizarse. Estado del arma: OPERATIVO."
+
 }
 
 ];
 
 
-/* ==========================================
-   DATOS GUARDADOS
-========================================== */
+/* =========================================================
+   GUARDADO
+========================================================= */
 
-let currentDistrict = null;
-
-const storageKey =
-"capitol_supply_unlocked_v1";
+const STORAGE_KEY =
+"arena_supplies_v2";
 
 
-let unlocked =
+let recovered =
 JSON.parse(
-localStorage.getItem(storageKey)
-|| "[]"
+localStorage.getItem(
+STORAGE_KEY
+) || "[]"
 );
+
+
+let currentSupply =
+null;
 
 
 function save(){
 
 localStorage.setItem(
-storageKey,
-JSON.stringify(unlocked)
-);
 
-}
+STORAGE_KEY,
 
-
-function isUnlocked(id){
-
-return unlocked.includes(id);
-
-}
-
-
-/* ==========================================
-   GENERAR DISTRITOS
-========================================== */
-
-function renderGrid(){
-
-const grid =
-document.getElementById(
-"districtGrid"
-);
-
-
-grid.innerHTML = "";
-
-
-districts.forEach(d => {
-
-
-const button =
-document.createElement(
-"button"
-);
-
-
-button.className =
-"district " +
-(
-isUnlocked(d.id)
-? "unlocked"
-: ""
-);
-
-
-button.innerHTML = `
-
-<span class="lock">
-
-${
-isUnlocked(d.id)
-? "◆"
-: "◇"
-}
-
-</span>
-
-
-<div class="seal">
-
-<b>${d.id}</b>
-
-<small>DISTRITO</small>
-
-</div>
-
-
-<div class="dname">
-
-DISTRITO ${d.id}
-
-</div>
-
-
-<div class="status">
-
-${
-isUnlocked(d.id)
-? "SUMINISTRO RECUPERADO"
-: "SUMINISTRO BLOQUEADO"
-}
-
-</div>
-
-`;
-
-
-button.onclick =
-() =>
-openDistrict(d.id);
-
-
-grid.appendChild(
-button
-);
-
-});
-
-
-const recovered =
-unlocked.filter(
-
-id =>
-
-districts.some(
-d => d.id === id
+JSON.stringify(
+recovered
 )
 
-).length;
-
-
-document.getElementById(
-"progressText"
-).textContent =
-
-`${recovered} / ${districts.length} RECUPERADOS`;
-
-
-document.getElementById(
-"bar"
-).style.width =
-
-(
-recovered /
-districts.length *
-100
-) + "%";
+);
 
 }
 
 
-/* ==========================================
-   NAVEGACIÓN
-========================================== */
+function isRecovered(id){
 
-function show(id){
+return recovered.includes(
+id
+);
+
+}
+
+
+/* =========================================================
+   PANTALLAS
+========================================================= */
+
+function showScreen(id){
 
 document
 .querySelectorAll(
 ".screen"
 )
 .forEach(
-
 screen =>
-
 screen.classList.remove(
 "active"
 )
-
 );
 
 
@@ -1640,54 +2558,235 @@ window.scrollTo(
 
 function goHome(){
 
-currentDistrict = null;
+currentSupply =
+null;
 
-renderGrid();
+renderEverything();
 
-show("home");
+showScreen(
+"home"
+);
 
 }
 
 
-/* ==========================================
-   ABRIR DISTRITO
-========================================== */
+/* =========================================================
+   RENDER GENERAL
+========================================================= */
 
-function openDistrict(id){
+function renderEverything(){
 
-currentDistrict =
-districts.find(
-d => d.id === id
+renderSupplies();
+
+renderInventory();
+
+renderCharacter();
+
+renderProgress();
+
+}
+
+
+/* =========================================================
+   ALIJOS
+========================================================= */
+
+function renderSupplies(){
+
+const grid =
+document.getElementById(
+"supplyGrid"
+);
+
+
+grid.innerHTML =
+"";
+
+
+supplies.forEach(
+s => {
+
+
+const recoveredState =
+isRecovered(
+s.id
+);
+
+
+const button =
+document.createElement(
+"button"
+);
+
+
+button.className =
+
+"supply " +
+
+(
+recoveredState
+? "recovered"
+: ""
+);
+
+
+let emblem;
+
+
+if(
+s.id ===
+"capitol"
+){
+
+emblem = `
+
+<div class="supply-logo capitol">
+
+<img
+src="capitolio.png.webp"
+alt="Capitolio">
+
+</div>
+
+`;
+
+}else{
+
+const districtNumber =
+s.id.replace(
+"d",
+""
+);
+
+
+emblem = `
+
+<div class="supply-logo">
+
+${districtNumber}
+
+</div>
+
+`;
+
+}
+
+
+button.innerHTML = `
+
+${emblem}
+
+<div class="supply-name">
+
+${s.source}
+
+</div>
+
+
+<div class="supply-industry">
+
+${s.industry}
+
+</div>
+
+
+<div class="supply-state">
+
+${
+recoveredState
+? "SUMINISTRO RECUPERADO"
+: "ALIJO NO VERIFICADO"
+}
+
+</div>
+
+`;
+
+
+button.onclick =
+() =>
+openSupply(
+s.id
+);
+
+
+grid.appendChild(
+button
+);
+
+});
+
+}
+
+
+/* =========================================================
+   ABRIR ALIJO
+========================================================= */
+
+function openSupply(id){
+
+currentSupply =
+supplies.find(
+s => s.id === id
 );
 
 
 if(
-isUnlocked(id)
+isRecovered(id)
 ){
 
-showSupply();
+showFound(
+currentSupply
+);
 
 return;
 
 }
 
 
+const emblem =
 document.getElementById(
-"accessSeal"
+"accessEmblem"
+);
+
+
+if(
+id ===
+"capitol"
+){
+
+emblem.innerHTML = `
+
+<img
+src="capitolio.png.webp"
+alt="Capitolio">
+
+`;
+
+}else{
+
+emblem.textContent =
+id.replace(
+"d",
+""
+);
+
+}
+
+
+document.getElementById(
+"accessSource"
 ).textContent =
-id;
+
+currentSupply.source;
 
 
 document.getElementById(
 "accessTitle"
 ).textContent =
-`DISTRITO ${id}`;
 
-
-document.getElementById(
-"accessCategory"
-).textContent =
-currentDistrict.category;
+"ALIJO DE " +
+currentSupply.source;
 
 
 document.getElementById(
@@ -1696,48 +2795,36 @@ document.getElementById(
 "";
 
 
-document
-.querySelectorAll(
-"#pinInputs input"
-)
-.forEach(
-
-input =>
-input.value = ""
-
+pinBoxes.forEach(
+box =>
+box.value = ""
 );
 
 
-show(
+showScreen(
 "access"
 );
 
 
 setTimeout(
-() => {
-
-document
-.querySelector(
-"#pinInputs input"
-)
-.focus();
-
-},
+() =>
+pinBoxes[0].focus(),
 250
 );
 
 }
 
 
-/* ==========================================
+/* =========================================================
    PIN
-========================================== */
+========================================================= */
 
-const pinBoxes =
-[
+const pinBoxes = [
+
 ...document.querySelectorAll(
 "#pinInputs input"
 )
+
 ];
 
 
@@ -1751,6 +2838,7 @@ box.addEventListener(
 
 
 box.value =
+
 box.value
 .replace(
 /\D/g,
@@ -1761,6 +2849,7 @@ box.value
 
 if(
 box.value &&
+
 index <
 pinBoxes.length - 1
 ){
@@ -1806,101 +2895,41 @@ verifyPin();
 
 });
 
-
-box.addEventListener(
-"paste",
-event => {
-
-
-const digits =
-
-(
-event.clipboardData
-.getData("text")
-|| ""
-)
-
-.replace(
-/\D/g,
-""
-)
-
-.slice(
-0,
-4
-);
-
-
-if(digits){
-
-event.preventDefault();
-
-
-digits
-.split("")
-.forEach(
-(value,i) => {
-
-if(pinBoxes[i]){
-
-pinBoxes[i].value =
-value;
-
-}
-
 });
 
-
-pinBoxes[
-Math.min(
-digits.length,
-4
-) - 1
-].focus();
-
-}
-
-});
-
-});
-
-
-/* ==========================================
-   VERIFICAR CÓDIGO
-========================================== */
 
 function verifyPin(){
+
+if(
+!currentSupply
+)
+return;
+
 
 const entered =
 
 pinBoxes
 .map(
-input =>
-input.value
+box =>
+box.value
 )
 .join("");
 
 
 if(
-!currentDistrict
-)
-return;
-
-
-if(
 entered ===
-currentDistrict.pin
+currentSupply.pin
 ){
 
 
 if(
-!isUnlocked(
-currentDistrict.id
+!isRecovered(
+currentSupply.id
 )
 ){
 
-unlocked.push(
-currentDistrict.id
+recovered.push(
+currentSupply.id
 );
 
 save();
@@ -1917,13 +2946,16 @@ document.getElementById(
 document.getElementById(
 "pinError"
 ).textContent =
-"ACCESO AUTORIZADO";
+
+"CÓDIGO VERIFICADO · SUMINISTRO AUTORIZADO";
 
 
 setTimeout(
 () => {
 
-showSupply();
+showFound(
+currentSupply
+);
 
 },
 700
@@ -1942,14 +2974,13 @@ document.getElementById(
 document.getElementById(
 "pinError"
 ).textContent =
-"ACCESO DENEGADO · CÓDIGO NO VÁLIDO";
+
+"ACCESO DENEGADO · CÓDIGO INCORRECTO";
 
 
 pinBoxes.forEach(
-
-input =>
-input.value = ""
-
+box =>
+box.value = ""
 );
 
 
@@ -1960,70 +2991,340 @@ pinBoxes[0].focus();
 }
 
 
-/* ==========================================
-   MOSTRAR SUMINISTRO
-========================================== */
+/* =========================================================
+   OBJETO ENCONTRADO
+========================================================= */
 
-function showSupply(){
+function showFound(s){
 
-const d =
-currentDistrict;
-
-
-document.getElementById(
-"supplySeal"
-).textContent =
-d.id;
+currentSupply =
+s;
 
 
 document.getElementById(
-"supplyCategory"
+"foundIcon"
 ).textContent =
-d.category;
+s.icon;
 
 
 document.getElementById(
-"supplyTitle"
+"foundName"
 ).textContent =
-`DISTRITO ${d.id}`;
+s.item;
 
 
 document.getElementById(
-"giftTitle"
+"foundDescription"
 ).textContent =
-d.gift;
+s.description;
 
 
 document.getElementById(
-"giftDescription"
+"foundSource"
 ).textContent =
-d.desc;
+
+"SUMINISTRO ENVIADO POR " +
+s.source.toUpperCase();
 
 
-document.getElementById(
-"districtLore"
-).textContent =
-d.lore;
-
-
-show(
-"supply"
+showScreen(
+"found"
 );
 
 }
 
 
-/* ==========================================
-   ACCESO SECRETO
+/* =========================================================
+   INVENTARIO
+========================================================= */
 
-   MANTENER PULSADO EL LOGO
-   DEL CAPITOLIO 3 SEGUNDOS
-========================================== */
+function renderInventory(){
+
+const inventory =
+document.getElementById(
+"inventory"
+);
+
+
+const owned =
+supplies.filter(
+s =>
+isRecovered(
+s.id
+)
+);
+
+
+if(
+owned.length === 0
+){
+
+inventory.innerHTML = `
+
+<div class="inventory-empty">
+
+NO SE HAN RECUPERADO
+SUMINISTROS
+
+</div>
+
+`;
+
+}else{
+
+inventory.innerHTML =
+"";
+
+
+owned.forEach(
+item => {
+
+
+const div =
+document.createElement(
+"div"
+);
+
+
+div.className =
+"inventory-item";
+
+
+let state =
+"DISPONIBLE";
+
+
+if(
+item.equipment ===
+"bow" &&
+!isRecovered(
+"d12"
+)
+){
+
+state =
+"INCOMPLETO";
+
+}
+
+
+if(
+item.equipment ===
+"bow" &&
+isRecovered(
+"d12"
+)
+){
+
+state =
+"OPERATIVO";
+
+}
+
+
+div.innerHTML = `
+
+<div class="item-icon">
+
+${item.icon}
+
+</div>
+
+
+<div class="item-info">
+
+<div class="item-name">
+
+${item.item}
+
+</div>
+
+
+<div class="item-source">
+
+${item.source}
+
+</div>
+
+</div>
+
+
+<div class="item-status">
+
+${state}
+
+</div>
+
+`;
+
+
+inventory.appendChild(
+div
+);
+
+});
+
+}
+
+
+/* =========================================================
+   PERSONAJE
+========================================================= */
+
+function renderCharacter(){
+
+document
+.querySelectorAll(
+".equipment"
+)
+.forEach(
+element =>
+element.classList.remove(
+"visible"
+)
+);
+
+
+supplies.forEach(
+s => {
+
+
+if(
+isRecovered(
+s.id
+)
+){
+
+const equipment =
+document.getElementById(
+
+"eq-" +
+s.equipment
+
+);
+
+
+if(equipment){
+
+equipment.classList.add(
+"visible"
+);
+
+}
+
+}
+
+});
+
+}
+
+
+/* =========================================================
+   PROGRESO
+========================================================= */
+
+function renderProgress(){
+
+const count =
+recovered.filter(
+id =>
+supplies.some(
+s =>
+s.id === id
+)
+).length;
+
+
+const total =
+supplies.length;
+
+
+document.getElementById(
+"topCount"
+).textContent =
+
+count +
+" / " +
+total;
+
+
+document.getElementById(
+"progressText"
+).textContent =
+
+count +
+" DE " +
+total;
+
+
+document.getElementById(
+"progressBar"
+).style.width =
+
+(
+count /
+total *
+100
+) + "%";
+
+
+const button =
+document.getElementById(
+"allFoundButton"
+);
+
+
+if(
+count === total
+){
+
+button.classList.remove(
+"hidden"
+);
+
+}else{
+
+button.classList.add(
+"hidden"
+);
+
+}
+
+}
+
+
+/* =========================================================
+   TODOS LOS ALIJOS
+========================================================= */
+
+function openAllFound(){
+
+document.getElementById(
+"allFoundModal"
+).classList.add(
+"open"
+);
+
+}
+
+
+function closeAllFound(){
+
+document.getElementById(
+"allFoundModal"
+).classList.remove(
+"open"
+);
+
+}
+
+
+/* =========================================================
+   ADMIN SECRETO
+========================================================= */
 
 let holdTimer;
 
-
-function bindAdminTriggers(){
 
 document
 .querySelectorAll(
@@ -2100,33 +3401,28 @@ stop
 
 });
 
-}
-
-
-/* ==========================================
-   ABRIR ADMIN
-========================================== */
 
 function openAdmin(){
 
 document.getElementById(
 "adminModal"
-)
-.classList.add(
+).classList.add(
 "open"
 );
 
 
 document.getElementById(
 "adminLogin"
-).style.display =
-"block";
+).classList.remove(
+"hidden"
+);
 
 
 document.getElementById(
 "adminPanel"
-).style.display =
-"none";
+).classList.add(
+"hidden"
+);
 
 
 document.getElementById(
@@ -2143,25 +3439,16 @@ document.getElementById(
 }
 
 
-/* ==========================================
-   CERRAR ADMIN
-========================================== */
-
 function closeAdmin(){
 
 document.getElementById(
 "adminModal"
-)
-.classList.remove(
+).classList.remove(
 "open"
 );
 
 }
 
-
-/* ==========================================
-   LOGIN ADMIN
-========================================== */
 
 function adminLogin(){
 
@@ -2172,28 +3459,28 @@ document.getElementById(
 ADMIN_PIN
 ){
 
-
 document.getElementById(
 "adminLogin"
-).style.display =
-"none";
+).classList.add(
+"hidden"
+);
 
 
 document.getElementById(
 "adminPanel"
-).style.display =
-"block";
+).classList.remove(
+"hidden"
+);
 
 
 renderAdmin();
 
-
 }else{
-
 
 document.getElementById(
 "adminError"
 ).textContent =
+
 "CREDENCIAL DENEGADA";
 
 }
@@ -2201,24 +3488,24 @@ document.getElementById(
 }
 
 
-/* ==========================================
+/* =========================================================
    PANEL ADMIN
-========================================== */
+========================================================= */
 
 function renderAdmin(){
 
-const container =
+const list =
 document.getElementById(
-"adminDistricts"
+"adminList"
 );
 
 
-container.innerHTML =
+list.innerHTML =
 "";
 
 
-districts.forEach(
-district => {
+supplies.forEach(
+s => {
 
 
 const row =
@@ -2235,21 +3522,16 @@ row.innerHTML = `
 
 <span>
 
-DISTRITO ${district.id}
-
-· PIN ${district.pin}
+${s.source}
 
 <br>
 
-<span class="tiny">
+<span style="
+color:#777;
+font-size:8px;
+">
 
-${
-isUnlocked(
-district.id
-)
-? "DESBLOQUEADO"
-: "BLOQUEADO"
-}
+PIN ${s.pin}
 
 </span>
 
@@ -2258,17 +3540,17 @@ district.id
 
 <button
 onclick="
-toggleDistrict(
-${district.id}
+toggleSupply(
+'${s.id}'
 )
 ">
 
 ${
-isUnlocked(
-district.id
+isRecovered(
+s.id
 )
-? "BLOQUEAR"
-: "DESBLOQUEAR"
+? "RESTABLECER"
+: "RECUPERAR"
 }
 
 </button>
@@ -2276,7 +3558,7 @@ district.id
 `;
 
 
-container.appendChild(
+list.appendChild(
 row
 );
 
@@ -2285,25 +3567,21 @@ row
 }
 
 
-/* ==========================================
-   BLOQUEAR / DESBLOQUEAR
-========================================== */
-
-function toggleDistrict(id){
+function toggleSupply(id){
 
 if(
-isUnlocked(id)
+isRecovered(id)
 ){
 
-unlocked =
-unlocked.filter(
-districtId =>
-districtId !== id
+recovered =
+recovered.filter(
+item =>
+item !== id
 );
 
 }else{
 
-unlocked.push(
+recovered.push(
 id
 );
 
@@ -2314,135 +3592,63 @@ save();
 
 renderAdmin();
 
-renderGrid();
+renderEverything();
 
 }
 
 
-/* ==========================================
-   DESBLOQUEAR TODOS
-========================================== */
+/* =========================================================
+   ADMIN: TODOS
+========================================================= */
 
 function unlockAll(){
 
-unlocked =
-districts.map(
-district =>
-district.id
+recovered =
+supplies.map(
+s =>
+s.id
 );
 
 
 save();
 
+renderEverything();
+
 renderAdmin();
-
-renderGrid();
-
-
-toast(
-"TODOS LOS SUMINISTROS DESBLOQUEADOS"
-);
 
 }
 
 
-/* ==========================================
-   RESTABLECER
-========================================== */
+/* =========================================================
+   ADMIN: RESET
+========================================================= */
 
 function resetAll(){
 
 if(
 confirm(
-"¿RESTABLECER TODO EL PROGRESO DEL ALMACÉN?"
+"¿RESTABLECER TODOS LOS ALIJOS?"
 )
 ){
 
-unlocked = [];
-
+recovered = [];
 
 save();
 
+renderEverything();
+
 renderAdmin();
 
-renderGrid();
-
-
-toast(
-"ALMACÉN RESTABLECIDO"
-);
-
 }
 
 }
 
 
-/* ==========================================
-   MENSAJES
-========================================== */
+/* =========================================================
+   INICIO
+========================================================= */
 
-function toast(message){
-
-const element =
-document.getElementById(
-"toast"
-);
-
-
-element.textContent =
-message;
-
-
-element.classList.add(
-"show"
-);
-
-
-setTimeout(
-() => {
-
-element.classList.remove(
-"show"
-);
-
-},
-1800
-);
-
-}
-
-
-/* ==========================================
-   CERRAR ADMIN TOCANDO FUERA
-========================================== */
-
-document
-.getElementById(
-"adminModal"
-)
-.addEventListener(
-"click",
-event => {
-
-if(
-event.target.id ===
-"adminModal"
-){
-
-closeAdmin();
-
-}
-
-});
-
-
-/* ==========================================
-   INICIAR
-========================================== */
-
-bindAdminTriggers();
-
-renderGrid();
+renderEverything();
 
 </script>
 
