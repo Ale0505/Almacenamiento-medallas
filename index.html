@@ -206,7 +206,7 @@ h1{
   text-transform:uppercase;
 }
 
-/* PERSONAJE */
+/* CHARACTER */
 
 .character-stage{
   position:relative;
@@ -794,7 +794,7 @@ h1{
   to{opacity:0;}
 }
 
-/* DESTINO FINAL */
+/* DESTINY */
 
 #destiny{
   background:
@@ -1070,8 +1070,6 @@ h1{
   letter-spacing:.1em;
 }
 
-/* MOBILE */
-
 @media(max-width:720px){
 
   .main-layout{
@@ -1112,9 +1110,7 @@ h1{
 <img src="capitolio.png.webp" alt="Capitolio">
 </div>
 
-<div class="eyebrow">
-CAPITOLIO · REGISTRO DEL TRIBUTO
-</div>
+<div class="eyebrow">CAPITOLIO · REGISTRO DEL TRIBUTO</div>
 
 <h1>INVENTARIO</h1>
 
@@ -1210,8 +1206,7 @@ VER MI DESTINO
 
 <p>
 Localiza las medallas ocultas durante los Juegos.
-Cada una contiene un código de autorización asociado
-a un suministro.
+Cada una contiene un código de autorización asociado a un suministro.
 </p>
 
 </div>
@@ -1222,9 +1217,7 @@ a un suministro.
 
 <img src="capitolio.png.webp" alt="Capitolio">
 
-<div class="eyebrow">
-PROTOCOLO POST-JUEGOS
-</div>
+<div class="eyebrow">PROTOCOLO POST-JUEGOS</div>
 
 <div class="reward-lock">◇</div>
 
@@ -1280,9 +1273,7 @@ Si la identificación es correcta,
 el Capitolio autorizará el acceso al suministro.
 </p>
 
-<div class="pin-label">
-CÓDIGO DE AUTORIZACIÓN
-</div>
+<div class="pin-label">CÓDIGO DE AUTORIZACIÓN</div>
 
 <div class="pin" id="pinInputs">
 <input inputmode="numeric" maxlength="1">
@@ -1321,9 +1312,7 @@ TRANSMISIÓN DEL CAPITOLIO
 
 <div class="found-card">
 
-<div class="subtitle">
-SUMINISTRO AUTORIZADO
-</div>
+<div class="subtitle">SUMINISTRO AUTORIZADO</div>
 
 <div class="found-icon" id="foundIcon"></div>
 
@@ -1351,7 +1340,7 @@ VOLVER AL INVENTARIO
 </div>
 </section>
 
-<!-- DESTINO FINAL -->
+<!-- DESTINY -->
 
 <section id="destiny" class="screen">
 
@@ -1394,14 +1383,14 @@ Las condiciones continúan empeorando.
 </p>
 
 <p>
-<strong>Uno a uno, los sistemas de vigilancia dejan de detectar sus señales.</strong>
+<strong>
+Uno a uno, los sistemas de vigilancia dejan de detectar sus señales.
+</strong>
 </p>
 
 <div class="rule"></div>
 
-<div class="eyebrow">
-ANÁLISIS DEL TRIBUTO
-</div>
+<div class="eyebrow">ANÁLISIS DEL TRIBUTO</div>
 
 <h2 style="font-weight:400;letter-spacing:.1em;">
 PERO TÚ ESTABAS PREPARADO
@@ -1466,21 +1455,13 @@ Tu sistema de defensa pasa a estar completamente operativo.
 
 </div>
 
-<p>
-Te escondes.
-</p>
+<p>Te escondes.</p>
 
-<p>
-Esperas.
-</p>
+<p>Esperas.</p>
 
-<p>
-La tormenta continúa durante horas.
-</p>
+<p>La tormenta continúa durante horas.</p>
 
-<p>
-Hasta que, finalmente, vuelve el silencio.
-</p>
+<p>Hasta que, finalmente, vuelve el silencio.</p>
 
 </div>
 
@@ -1490,9 +1471,7 @@ Hasta que, finalmente, vuelve el silencio.
 ESCANEO FINAL DE LA ARENA
 </div>
 
-<div class="life-count">
-1
-</div>
+<div class="life-count">1</div>
 
 <div class="life-scan-label">
 TRIBUTO CON VIDA
@@ -1550,7 +1529,7 @@ han preparado sus recompensas para el vencedor.
 
 <p>
 <strong style="color:#eee9dd;">
-Regresa a la brújula de la primera transmisión.
+Regresa a la brújula.
 </strong>
 </p>
 
@@ -1568,11 +1547,6 @@ TE ESPERAN AL FINAL.
 <button class="action glow" onclick="returnToCompass()">
 VOLVER A LA BRÚJULA
 </button>
-
-<p style="font-size:9px;margin-top:16px;">
-Si la brújula continúa abierta en otra pestaña,
-vuelve a ella para continuar.
-</p>
 
 </div>
 
@@ -1612,7 +1586,7 @@ ANALIZANDO EQUIPAMIENTO
 </div>
 </div>
 
-<!-- DESTINY MODAL -->
+<!-- FINAL MODAL -->
 
 <div class="modal" id="allFoundModal">
 
@@ -1666,7 +1640,9 @@ TODAVÍA NO
 PROTOCOLO RESERVADO
 </div>
 
-<h2>CONTROL DEL CAPITOLIO</h2>
+<h2>
+CONTROL DEL CAPITOLIO
+</h2>
 
 <p>
 Introduce la credencial de administrador.
@@ -1700,7 +1676,9 @@ CANCELAR
 ACCESO CONCEDIDO
 </div>
 
-<h2>CONTROL DEL CAPITOLIO</h2>
+<h2>
+CONTROL DEL CAPITOLIO
+</h2>
 
 <div id="adminList"></div>
 
@@ -1737,20 +1715,65 @@ CERRAR
 
 const ADMIN_PIN = "2026";
 
-const STORAGE_MINIMUM = "tribute_minimum_equipment_v4";
-const STORAGE_FOUND = "tribute_found_supplies_v4";
-const STORAGE_EQUIPPED = "tribute_equipped_supplies_v4";
+const COMPASS_URL =
+"https://ale0505.github.io/Los-juegos-del-hambre-1/";
+
+const STORAGE_MINIMUM =
+"tribute_minimum_equipment_v4";
+
+const STORAGE_FOUND =
+"tribute_found_supplies_v4";
+
+const STORAGE_EQUIPPED =
+"tribute_equipped_supplies_v4";
+
+/* CHARACTER */
 
 const characterStages = [
-  {image:"tributo_00.png",label:"NINGUNO"},
-  {image:"tributo_01.png",label:"EQUIPO MÍNIMO"},
-  {image:"tributo_02.png",label:"MOCHILA EQUIPADA"},
-  {image:"tributo_03.png",label:"CUCHILLO EQUIPADO"},
-  {image:"tributo_04.png",label:"ARCO · SIN FLECHAS"},
-  {image:"tributo_05.png",label:"PROTECCIÓN TÉRMICA"},
-  {image:"tributo_06.png",label:"RECURSOS NATURALES"},
-  {image:"tributo_07.png",label:"EQUIPAMIENTO COMPLETO"}
+
+{
+image:"tributo_00.png",
+label:"NINGUNO"
+},
+
+{
+image:"tributo_01.png",
+label:"EQUIPO MÍNIMO"
+},
+
+{
+image:"tributo_02.png",
+label:"MOCHILA EQUIPADA"
+},
+
+{
+image:"tributo_03.png",
+label:"CUCHILLO EQUIPADO"
+},
+
+{
+image:"tributo_04.png",
+label:"ARCO · SIN FLECHAS"
+},
+
+{
+image:"tributo_05.png",
+label:"PROTECCIÓN TÉRMICA"
+},
+
+{
+image:"tributo_06.png",
+label:"RECURSOS NATURALES"
+},
+
+{
+image:"tributo_07.png",
+label:"EQUIPAMIENTO COMPLETO"
+}
+
 ];
+
+/* SUPPLIES */
 
 const supplies = [
 
@@ -1763,7 +1786,8 @@ pin:"2025",
 logo:"capitolio.png.webp",
 icon:"🎒",
 item:"Mochila de supervivencia",
-description:"El Capitolio ha autorizado una mochila de supervivencia para transportar los recursos recuperados durante los Juegos."
+description:
+"El Capitolio ha autorizado una mochila de supervivencia para transportar los recursos recuperados durante los Juegos."
 },
 
 {
@@ -1775,7 +1799,8 @@ pin:"1847",
 logo:"distrito_1.webp",
 icon:"🔪",
 item:"Cuchillo de supervivencia",
-description:"Una hoja resistente acompañada de un soporte de muslo. Un recurso útil para la supervivencia dentro de la Arena."
+description:
+"Una hoja resistente acompañada de un soporte de muslo. Un recurso útil para la supervivencia dentro de la Arena."
 },
 
 {
@@ -1787,7 +1812,8 @@ pin:"2714",
 logo:"distrito_2.webp",
 icon:"🏹",
 item:"Arco",
-description:"Has recuperado un arco. El suministro no contiene flechas. Estado actual del arma: INCOMPLETO."
+description:
+"Has recuperado un arco. El suministro no contiene flechas. Estado actual del arma: INCOMPLETO."
 },
 
 {
@@ -1799,7 +1825,8 @@ pin:"8265",
 logo:"distrito_8.webp",
 icon:"🧥",
 item:"Protección térmica",
-description:"Equipamiento térmico diseñado para aumentar la protección del tributo frente a las condiciones de la Arena."
+description:
+"Equipamiento térmico diseñado para aumentar la protección del tributo frente a las condiciones de la Arena."
 },
 
 {
@@ -1811,7 +1838,8 @@ pin:"1172",
 logo:"distrito_11.webp",
 icon:"🌿",
 item:"Recursos naturales",
-description:"Recursos naturales seleccionados por el Distrito 11 para aumentar tus posibilidades de supervivencia."
+description:
+"Recursos naturales seleccionados por el Distrito 11 para aumentar tus posibilidades de supervivencia."
 },
 
 {
@@ -1823,7 +1851,8 @@ pin:"1259",
 logo:"distrito_12.webp",
 icon:"➶",
 item:"Carcaj de flechas",
-description:"Un carcaj equipado con flechas. El arco recuperado anteriormente pasa a estado OPERATIVO."
+description:
+"Un carcaj equipado con flechas. El arco recuperado anteriormente pasa a estado OPERATIVO."
 }
 
 ];
@@ -1834,10 +1863,14 @@ let minimumEquipped =
 localStorage.getItem(STORAGE_MINIMUM) === "true";
 
 let foundSupplies =
-JSON.parse(localStorage.getItem(STORAGE_FOUND) || "[]");
+JSON.parse(
+localStorage.getItem(STORAGE_FOUND) || "[]"
+);
 
 let equippedSupplies =
-JSON.parse(localStorage.getItem(STORAGE_EQUIPPED) || "[]");
+JSON.parse(
+localStorage.getItem(STORAGE_EQUIPPED) || "[]"
+);
 
 let currentSupply = null;
 
@@ -1874,16 +1907,17 @@ return equippedSupplies.includes(id);
 
 function showScreen(id){
 
-document.querySelectorAll(".screen").forEach(screen=>{
+document
+.querySelectorAll(".screen")
+.forEach(screen=>{
 screen.classList.remove("active");
 });
 
-document.getElementById(id).classList.add("active");
+document
+.getElementById(id)
+.classList.add("active");
 
-window.scrollTo({
-top:0,
-behavior:"instant"
-});
+window.scrollTo(0,0);
 
 }
 
@@ -1926,12 +1960,14 @@ document.getElementById("minimumButton");
 
 if(!minimumEquipped){
 
-image.src = characterStages[0].image;
+image.src =
+characterStages[0].image;
 
 label.textContent =
 characterStages[0].label;
 
-top.textContent = "NINGUNO";
+top.textContent =
+"NINGUNO";
 
 button.classList.remove("hidden");
 
@@ -1960,18 +1996,22 @@ supply.order + 1;
 const stage =
 characterStages[highestStage];
 
-image.src = stage.image;
+image.src =
+stage.image;
 
-label.textContent = stage.label;
+label.textContent =
+stage.label;
 
 if(equippedSupplies.length === 0){
 
-top.textContent = "MÍNIMO";
+top.textContent =
+"MÍNIMO";
 
 }else{
 
 top.textContent =
-equippedSupplies.length + " EQUIP.";
+equippedSupplies.length +
+" EQUIP.";
 
 }
 
@@ -1981,11 +2021,15 @@ equippedSupplies.length + " EQUIP.";
 
 function equipMinimum(){
 
-if(minimumEquipped) return;
+if(minimumEquipped)
+return;
 
 runEvolution(
+
 "PREPARANDO TRIBUTO",
+
 "EQUIPANDO EQUIPO MÍNIMO",
+
 ()=>{
 
 minimumEquipped = true;
@@ -1995,6 +2039,7 @@ saveState();
 updateTributeImage();
 
 }
+
 );
 
 }
@@ -2007,16 +2052,25 @@ const inventory =
 document.getElementById("inventory");
 
 const found =
-supplies.filter(supply=>isFound(supply.id));
+supplies.filter(
+supply=>isFound(supply.id)
+);
 
 if(found.length === 0){
 
 inventory.innerHTML = `
+
 <div class="empty-inventory">
+
 INVENTARIO VACÍO
+
 <br><br>
-TODAVÍA NO SE HAN LOCALIZADO ALIJOS
+
+TODAVÍA NO SE HAN
+LOCALIZADO ALIJOS
+
 </div>
+
 `;
 
 return;
@@ -2038,7 +2092,8 @@ isEquipped("d2") &&
 !isEquipped("d12")
 ){
 
-state = "INCOMPLETO";
+state =
+"INCOMPLETO";
 
 }
 
@@ -2047,14 +2102,16 @@ supply.id === "d2" &&
 isEquipped("d12")
 ){
 
-state = "OPERATIVO";
+state =
+"OPERATIVO";
 
 }
 
 const item =
 document.createElement("div");
 
-item.className = "inventory-item";
+item.className =
+"inventory-item";
 
 item.innerHTML = `
 
@@ -2074,8 +2131,13 @@ ${supply.source}
 
 </div>
 
-<div class="item-state ${!isEquipped(supply.id) ? "pending" : ""}">
+<div class="
+item-state
+${!isEquipped(supply.id) ? "pending" : ""}
+">
+
 ${state}
+
 </div>
 
 `;
@@ -2087,7 +2149,8 @@ isFound(supply.id) &&
 !isEquipped(supply.id)
 ){
 
-currentSupply = supply;
+currentSupply =
+supply;
 
 showFound(supply);
 
@@ -2146,9 +2209,11 @@ status =
 button.innerHTML = `
 
 <div class="supply-emblem">
+
 <img
 src="${supply.logo}"
 alt="${supply.source}">
+
 </div>
 
 <div class="supply-name">
@@ -2179,7 +2244,9 @@ grid.appendChild(button);
 function openSupply(id){
 
 currentSupply =
-supplies.find(supply=>supply.id === id);
+supplies.find(
+supply=>supply.id === id
+);
 
 if(isFound(id)){
 
@@ -2189,26 +2256,41 @@ return;
 
 }
 
-document.getElementById("accessEmblem").innerHTML = `
+document
+.getElementById("accessEmblem")
+.innerHTML = `
+
 <img
 src="${currentSupply.logo}"
 alt="${currentSupply.source}">
+
 `;
 
-document.getElementById("accessSource").textContent =
+document
+.getElementById("accessSource")
+.textContent =
 currentSupply.source;
 
-document.getElementById("accessTitle").textContent =
-"MEDALLA DE " + currentSupply.source;
+document
+.getElementById("accessTitle")
+.textContent =
+"MEDALLA DE " +
+currentSupply.source;
 
-document.getElementById("pinError").textContent = "";
+document
+.getElementById("pinError")
+.textContent = "";
 
-pinBoxes.forEach(box=>box.value="");
+pinBoxes.forEach(
+box=>box.value=""
+);
 
 showScreen("access");
 
 setTimeout(()=>{
+
 pinBoxes[0].focus();
+
 },200);
 
 }
@@ -2216,14 +2298,20 @@ pinBoxes[0].focus();
 /* PIN */
 
 const pinBoxes =
-[...document.querySelectorAll("#pinInputs input")];
+[
+...document.querySelectorAll(
+"#pinInputs input"
+)
+];
 
 pinBoxes.forEach((box,index)=>{
 
 box.addEventListener("input",()=>{
 
 box.value =
-box.value.replace(/\D/g,"").slice(-1);
+box.value
+.replace(/\D/g,"")
+.slice(-1);
 
 if(
 box.value &&
@@ -2236,7 +2324,9 @@ pinBoxes[index+1].focus();
 
 });
 
-box.addEventListener("keydown",event=>{
+box.addEventListener(
+"keydown",
+event=>{
 
 if(
 event.key === "Backspace" &&
@@ -2254,30 +2344,41 @@ verifyPin();
 
 }
 
-});
+}
+);
 
-box.addEventListener("paste",event=>{
+box.addEventListener(
+"paste",
+event=>{
 
 const digits =
-(event.clipboardData.getData("text") || "")
+(
+event.clipboardData
+.getData("text") || ""
+)
 .replace(/\D/g,"")
 .slice(0,4);
 
-if(!digits) return;
+if(!digits)
+return;
 
 event.preventDefault();
 
-digits.split("").forEach((digit,i)=>{
+digits
+.split("")
+.forEach((digit,i)=>{
 
 if(pinBoxes[i]){
 
-pinBoxes[i].value = digit;
+pinBoxes[i].value =
+digit;
 
 }
 
 });
 
-});
+}
+);
 
 });
 
@@ -2285,25 +2386,40 @@ pinBoxes[i].value = digit;
 
 function verifyPin(){
 
-if(!currentSupply) return;
+if(!currentSupply)
+return;
 
 const entered =
-pinBoxes.map(box=>box.value).join("");
+pinBoxes
+.map(box=>box.value)
+.join("");
 
 const error =
-document.getElementById("pinError");
+document.getElementById(
+"pinError"
+);
 
-if(entered === currentSupply.pin){
+if(
+entered ===
+currentSupply.pin
+){
 
-if(!isFound(currentSupply.id)){
+if(
+!isFound(
+currentSupply.id
+)
+){
 
-foundSupplies.push(currentSupply.id);
+foundSupplies.push(
+currentSupply.id
+);
 
 saveState();
 
 }
 
-error.style.color = "#9cad75";
+error.style.color =
+"#9cad75";
 
 error.textContent =
 "MEDALLA VERIFICADA · SUMINISTRO AUTORIZADO";
@@ -2312,18 +2428,23 @@ renderProgress();
 
 setTimeout(()=>{
 
-showFound(currentSupply);
+showFound(
+currentSupply
+);
 
 },700);
 
 }else{
 
-error.style.color = "#a84e45";
+error.style.color =
+"#a84e45";
 
 error.textContent =
 "ACCESO DENEGADO · CÓDIGO INCORRECTO";
 
-pinBoxes.forEach(box=>box.value="");
+pinBoxes.forEach(
+box=>box.value=""
+);
 
 pinBoxes[0].focus();
 
@@ -2335,38 +2456,63 @@ pinBoxes[0].focus();
 
 function showFound(supply){
 
-currentSupply = supply;
+currentSupply =
+supply;
 
-document.getElementById("foundIcon").textContent =
+document
+.getElementById("foundIcon")
+.textContent =
 supply.icon;
 
-document.getElementById("foundName").textContent =
+document
+.getElementById("foundName")
+.textContent =
 supply.item;
 
-document.getElementById("foundDescription").textContent =
+document
+.getElementById("foundDescription")
+.textContent =
 supply.description;
 
-document.getElementById("foundSource").textContent =
+document
+.getElementById("foundSource")
+.textContent =
 "SUMINISTRO ENVIADO POR " +
 supply.source.toUpperCase();
 
 const equipButton =
-document.getElementById("equipSupplyButton");
+document.getElementById(
+"equipSupplyButton"
+);
 
 const backButton =
-document.getElementById("alreadyEquippedButton");
+document.getElementById(
+"alreadyEquippedButton"
+);
 
-if(isEquipped(supply.id)){
+if(
+isEquipped(
+supply.id
+)
+){
 
-equipButton.classList.add("hidden");
+equipButton.classList.add(
+"hidden"
+);
 
-backButton.classList.remove("hidden");
+backButton.classList.remove(
+"hidden"
+);
 
 }else{
 
-equipButton.classList.remove("hidden");
+equipButton.classList.remove(
+"hidden"
+);
 
-backButton.classList.add("hidden");
+backButton.classList.add(
+"hidden"
+);
 
 }
 
@@ -2378,11 +2524,17 @@ showScreen("found");
 
 function equipCurrentSupply(){
 
-if(!currentSupply) return;
+if(!currentSupply)
+return;
 
-const supply = currentSupply;
+const supply =
+currentSupply;
 
-if(isEquipped(supply.id)){
+if(
+isEquipped(
+supply.id
+)
+){
 
 goHome();
 return;
@@ -2390,13 +2542,23 @@ return;
 }
 
 runEvolution(
+
 "ACTUALIZANDO TRIBUTO",
-"EQUIPANDO " + supply.item.toUpperCase(),
+
+"EQUIPANDO " +
+supply.item.toUpperCase(),
+
 ()=>{
 
-if(!equippedSupplies.includes(supply.id)){
+if(
+!equippedSupplies.includes(
+supply.id
+)
+){
 
-equippedSupplies.push(supply.id);
+equippedSupplies.push(
+supply.id
+);
 
 }
 
@@ -2405,6 +2567,7 @@ saveState();
 renderEverything();
 
 }
+
 );
 
 setTimeout(()=>{
@@ -2417,29 +2580,51 @@ goHome();
 
 /* EVOLUTION */
 
-function runEvolution(title,subtitle,callback){
+function runEvolution(
+title,
+subtitle,
+callback
+){
 
 const evolution =
-document.getElementById("evolution");
+document.getElementById(
+"evolution"
+);
 
 const percent =
-document.getElementById("evolutionPercent");
+document.getElementById(
+"evolutionPercent"
+);
 
 const image =
-document.getElementById("tributeImage");
+document.getElementById(
+"tributeImage"
+);
 
-document.getElementById("evolutionTitle").textContent =
+document
+.getElementById("evolutionTitle")
+.textContent =
 title;
 
-document.getElementById("evolutionSub").textContent =
+document
+.getElementById("evolutionSub")
+.textContent =
 subtitle;
 
-evolution.classList.remove("flash");
-evolution.classList.add("active");
+evolution.classList.remove(
+"flash"
+);
 
-image.classList.add("evolving");
+evolution.classList.add(
+"active"
+);
 
-percent.textContent = "0 %";
+image.classList.add(
+"evolving"
+);
+
+percent.textContent =
+"0 %";
 
 let value = 0;
 
@@ -2447,13 +2632,17 @@ const interval =
 setInterval(()=>{
 
 value +=
-Math.floor(Math.random()*10)+4;
+Math.floor(
+Math.random()*10
+)+4;
 
 if(value >= 100){
 
 value = 100;
 
-clearInterval(interval);
+clearInterval(
+interval
+);
 
 }
 
@@ -2464,27 +2653,42 @@ value + " %";
 
 setTimeout(()=>{
 
-percent.textContent = "100 %";
+percent.textContent =
+"100 %";
 
-evolution.classList.add("flash");
+evolution.classList.add(
+"flash"
+);
 
 if(callback){
 callback();
 }
 
-image.classList.remove("evolving");
-image.classList.remove("appear");
+image.classList.remove(
+"evolving"
+);
+
+image.classList.remove(
+"appear"
+);
 
 void image.offsetWidth;
 
-image.classList.add("appear");
+image.classList.add(
+"appear"
+);
 
 },2750);
 
 setTimeout(()=>{
 
-evolution.classList.remove("active");
-evolution.classList.remove("flash");
+evolution.classList.remove(
+"active"
+);
+
+evolution.classList.remove(
+"flash"
+);
 
 },3350);
 
@@ -2495,32 +2699,55 @@ evolution.classList.remove("flash");
 function renderProgress(){
 
 const count =
-foundSupplies.filter(id=>
-supplies.some(supply=>supply.id === id)
+foundSupplies.filter(
+id=>
+supplies.some(
+supply=>supply.id === id
+)
 ).length;
 
 const total =
 supplies.length;
 
-document.getElementById("topSupplyCount").textContent =
+document
+.getElementById(
+"topSupplyCount"
+)
+.textContent =
 count + " / " + total;
 
-document.getElementById("progressText").textContent =
+document
+.getElementById(
+"progressText"
+)
+.textContent =
 count + " DE " + total;
 
-document.getElementById("progressBar").style.width =
-(count / total * 100) + "%";
+document
+.getElementById(
+"progressBar"
+)
+.style.width =
+(
+count / total * 100
+) + "%";
 
 const button =
-document.getElementById("allFoundButton");
+document.getElementById(
+"allFoundButton"
+);
 
 if(count === total){
 
-button.classList.remove("hidden");
+button.classList.remove(
+"hidden"
+);
 
 }else{
 
-button.classList.add("hidden");
+button.classList.add(
+"hidden"
+);
 
 }
 
@@ -2530,15 +2757,25 @@ button.classList.add("hidden");
 
 function openAllFound(){
 
-document.getElementById("allFoundModal")
-.classList.add("open");
+document
+.getElementById(
+"allFoundModal"
+)
+.classList.add(
+"open"
+);
 
 }
 
 function closeAllFound(){
 
-document.getElementById("allFoundModal")
-.classList.remove("open");
+document
+.getElementById(
+"allFoundModal"
+)
+.classList.remove(
+"open"
+);
 
 }
 
@@ -2546,37 +2783,18 @@ function showDestiny(){
 
 closeAllFound();
 
-showScreen("destiny");
-
-}
-
-/*
-IMPORTANTE:
-
-Cuando tengas la URL exacta de la web principal
-de la brújula, puedes ponerla aquí.
-
-Ejemplo:
-
-window.location.href =
-"https://tudominio.com/arena/";
-
-Por ahora el botón intenta volver a la pestaña anterior.
-*/
-
-function returnToCompass(){
-
-if(window.history.length > 1){
-
-window.history.back();
-
-}else{
-
-alert(
-"VUELVE A LA BRÚJULA DE LA PRIMERA TRANSMISIÓN PARA CONTINUAR."
+showScreen(
+"destiny"
 );
 
 }
+
+/* VOLVER A LA BRÚJULA */
+
+function returnToCompass(){
+
+window.location.href =
+COMPASS_URL;
 
 }
 
@@ -2584,20 +2802,31 @@ alert(
 
 let holdTimer;
 
-document.querySelectorAll(".admin-trigger").forEach(logo=>{
+document
+.querySelectorAll(
+".admin-trigger"
+)
+.forEach(logo=>{
 
 const start = ()=>{
 
-clearTimeout(holdTimer);
+clearTimeout(
+holdTimer
+);
 
 holdTimer =
-setTimeout(openAdmin,3000);
+setTimeout(
+openAdmin,
+3000
+);
 
 };
 
 const stop = ()=>{
 
-clearTimeout(holdTimer);
+clearTimeout(
+holdTimer
+);
 
 };
 
@@ -2607,55 +2836,120 @@ start,
 {passive:true}
 );
 
-logo.addEventListener("touchend",stop);
-logo.addEventListener("touchcancel",stop);
-logo.addEventListener("mousedown",start);
-logo.addEventListener("mouseup",stop);
-logo.addEventListener("mouseleave",stop);
+logo.addEventListener(
+"touchend",
+stop
+);
+
+logo.addEventListener(
+"touchcancel",
+stop
+);
+
+logo.addEventListener(
+"mousedown",
+start
+);
+
+logo.addEventListener(
+"mouseup",
+stop
+);
+
+logo.addEventListener(
+"mouseleave",
+stop
+);
 
 });
 
 function openAdmin(){
 
-document.getElementById("adminModal")
-.classList.add("open");
+document
+.getElementById(
+"adminModal"
+)
+.classList.add(
+"open"
+);
 
-document.getElementById("adminLogin")
-.classList.remove("hidden");
+document
+.getElementById(
+"adminLogin"
+)
+.classList.remove(
+"hidden"
+);
 
-document.getElementById("adminPanel")
-.classList.add("hidden");
+document
+.getElementById(
+"adminPanel"
+)
+.classList.add(
+"hidden"
+);
 
-document.getElementById("adminPin").value = "";
+document
+.getElementById(
+"adminPin"
+)
+.value = "";
 
-document.getElementById("adminError").textContent = "";
+document
+.getElementById(
+"adminError"
+)
+.textContent = "";
 
 }
 
 function closeAdmin(){
 
-document.getElementById("adminModal")
-.classList.remove("open");
+document
+.getElementById(
+"adminModal"
+)
+.classList.remove(
+"open"
+);
 
 }
 
 function adminLogin(){
 
 if(
-document.getElementById("adminPin").value === ADMIN_PIN
+document
+.getElementById(
+"adminPin"
+)
+.value === ADMIN_PIN
 ){
 
-document.getElementById("adminLogin")
-.classList.add("hidden");
+document
+.getElementById(
+"adminLogin"
+)
+.classList.add(
+"hidden"
+);
 
-document.getElementById("adminPanel")
-.classList.remove("hidden");
+document
+.getElementById(
+"adminPanel"
+)
+.classList.remove(
+"hidden"
+);
 
 renderAdmin();
 
 }else{
 
-document.getElementById("adminError").textContent =
+document
+.getElementById(
+"adminError"
+)
+.textContent =
 "CREDENCIAL DENEGADA";
 
 }
@@ -2665,25 +2959,46 @@ document.getElementById("adminError").textContent =
 function renderAdmin(){
 
 const list =
-document.getElementById("adminList");
+document.getElementById(
+"adminList"
+);
 
 list.innerHTML = "";
 
-supplies.forEach(supply=>{
+supplies.forEach(
+supply=>{
 
 const row =
-document.createElement("div");
+document.createElement(
+"div"
+);
 
-row.className = "admin-row";
+row.className =
+"admin-row";
 
-let status = "NO ENCONTRADO";
+let status =
+"NO ENCONTRADO";
 
-if(isFound(supply.id)){
-status = "ENCONTRADO";
+if(
+isFound(
+supply.id
+)
+){
+
+status =
+"ENCONTRADO";
+
 }
 
-if(isEquipped(supply.id)){
-status = "EQUIPADO";
+if(
+isEquipped(
+supply.id
+)
+){
+
+status =
+"EQUIPADO";
+
 }
 
 row.innerHTML = `
@@ -2694,7 +3009,10 @@ ${supply.source}
 
 <br>
 
-<span style="color:#777;font-size:7px;">
+<span style="
+color:#777;
+font-size:7px;
+">
 
 PIN ${supply.pin}
 · ${status}
@@ -2703,13 +3021,22 @@ PIN ${supply.pin}
 
 </span>
 
-<button onclick="adminToggleSupply('${supply.id}')">
+<button
+onclick="
+adminToggleSupply(
+'${supply.id}'
+)
+">
+
 CAMBIAR
+
 </button>
 
 `;
 
-list.appendChild(row);
+list.appendChild(
+row
+);
 
 });
 
@@ -2717,24 +3044,38 @@ list.appendChild(row);
 
 function adminToggleSupply(id){
 
-if(!isFound(id)){
+if(
+!isFound(id)
+){
 
-foundSupplies.push(id);
+foundSupplies.push(
+id
+);
 
-}else if(
+}
+
+else if(
 isFound(id) &&
 !isEquipped(id)
 ){
 
-equippedSupplies.push(id);
+equippedSupplies.push(
+id
+);
 
-}else{
+}
+
+else{
 
 foundSupplies =
-foundSupplies.filter(item=>item !== id);
+foundSupplies.filter(
+item=>item !== id
+);
 
 equippedSupplies =
-equippedSupplies.filter(item=>item !== id);
+equippedSupplies.filter(
+item=>item !== id
+);
 
 }
 
@@ -2748,7 +3089,8 @@ renderAdmin();
 
 function adminEquipMinimum(){
 
-minimumEquipped = true;
+minimumEquipped =
+true;
 
 saveState();
 
@@ -2761,7 +3103,9 @@ renderAdmin();
 function adminUnlockAll(){
 
 foundSupplies =
-supplies.map(supply=>supply.id);
+supplies.map(
+supply=>supply.id
+);
 
 saveState();
 
@@ -2773,13 +3117,18 @@ renderAdmin();
 
 function adminEquipAll(){
 
-minimumEquipped = true;
+minimumEquipped =
+true;
 
 foundSupplies =
-supplies.map(supply=>supply.id);
+supplies.map(
+supply=>supply.id
+);
 
 equippedSupplies =
-supplies.map(supply=>supply.id);
+supplies.map(
+supply=>supply.id
+);
 
 saveState();
 
@@ -2801,15 +3150,24 @@ return;
 
 }
 
-minimumEquipped = false;
+minimumEquipped =
+false;
 
 foundSupplies = [];
 
 equippedSupplies = [];
 
-localStorage.removeItem(STORAGE_MINIMUM);
-localStorage.removeItem(STORAGE_FOUND);
-localStorage.removeItem(STORAGE_EQUIPPED);
+localStorage.removeItem(
+STORAGE_MINIMUM
+);
+
+localStorage.removeItem(
+STORAGE_FOUND
+);
+
+localStorage.removeItem(
+STORAGE_EQUIPPED
+);
 
 renderEverything();
 
@@ -2819,27 +3177,45 @@ renderAdmin();
 
 /* CLOSE MODALS */
 
-document.getElementById("allFoundModal")
-.addEventListener("click",event=>{
+document
+.getElementById(
+"allFoundModal"
+)
+.addEventListener(
+"click",
+event=>{
 
-if(event.target.id === "allFoundModal"){
+if(
+event.target.id ===
+"allFoundModal"
+){
 
 closeAllFound();
 
 }
 
-});
+}
+);
 
-document.getElementById("adminModal")
-.addEventListener("click",event=>{
+document
+.getElementById(
+"adminModal"
+)
+.addEventListener(
+"click",
+event=>{
 
-if(event.target.id === "adminModal"){
+if(
+event.target.id ===
+"adminModal"
+){
 
 closeAdmin();
 
 }
 
-});
+}
+);
 
 /* START */
 
