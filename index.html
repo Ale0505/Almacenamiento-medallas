@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#050606">
 
-<title>Protocolo de Supervivencia</title>
+<title>Inventario del Tributo</title>
 
 <style>
-
 /* =========================================================
    VARIABLES
 ========================================================= */
@@ -17,13 +16,10 @@
   --bg:#050606;
   --panel:#0d0f0f;
   --panel2:#121514;
-
   --gold:#c5a35b;
   --gold2:#786235;
-
   --text:#eee9dd;
   --muted:#8e8c84;
-
   --danger:#a84e45;
   --green:#9cad75;
 }
@@ -33,43 +29,22 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 html,body{
   margin:0;
   min-height:100%;
 }
 
 body{
-
   background:
-
-  radial-gradient(
-    circle at 50% 0%,
-    rgba(197,163,91,.10),
-    transparent 35rem
-  ),
-
-  repeating-linear-gradient(
-    90deg,
-    rgba(255,255,255,.012) 0 1px,
-    transparent 1px 7px
-  ),
-
-  var(--bg);
+    radial-gradient(circle at 50% 0%,rgba(197,163,91,.10),transparent 34rem),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0 1px,transparent 1px 7px),
+    var(--bg);
 
   color:var(--text);
-
-  font-family:
-  Georgia,
-  "Times New Roman",
-  serif;
+  font-family:Georgia,"Times New Roman",serif;
 }
 
-button,
-input{
+button,input{
   font:inherit;
 }
 
@@ -82,21 +57,19 @@ button{
 }
 
 /* =========================================================
-   ESTRUCTURA
+   PANTALLAS
 ========================================================= */
 
 .screen{
   display:none;
-
   min-height:100vh;
 
   padding:
-  max(25px,env(safe-area-inset-top))
-  16px
-  50px;
+    max(24px,env(safe-area-inset-top))
+    15px
+    max(45px,env(safe-area-inset-bottom));
 
-  animation:
-  fade .35s ease;
+  animation:fade .35s ease;
 }
 
 .screen.active{
@@ -104,7 +77,6 @@ button{
 }
 
 @keyframes fade{
-
   from{
     opacity:0;
     transform:translateY(5px);
@@ -114,167 +86,108 @@ button{
     opacity:1;
     transform:none;
   }
-
 }
 
 .shell{
-  width:min(1000px,100%);
+  width:min(980px,100%);
   margin:auto;
 }
 
 /* =========================================================
-   CAPITOLIO
+   HEADER
 ========================================================= */
 
 .capitol-header{
   text-align:center;
-
-  margin-bottom:25px;
-
+  margin-bottom:23px;
   user-select:none;
 }
 
 .capitol-logo{
-
-  width:95px;
-  height:95px;
-
-  margin:
-  0 auto
-  15px;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
+  width:88px;
+  height:88px;
+  margin:0 auto 13px;
 }
 
 .capitol-logo img{
-
   width:100%;
   height:100%;
-
   object-fit:contain;
 
-  pointer-events:none;
-
   filter:
-  drop-shadow(
-    0 0 12px
-    rgba(197,163,91,.18)
-  );
+    drop-shadow(0 0 12px rgba(197,163,91,.18));
+
+  pointer-events:none;
 }
 
 .eyebrow{
-
-  font:
-  10px Arial,sans-serif;
-
-  letter-spacing:.32em;
-
+  font:9px Arial,sans-serif;
+  letter-spacing:.3em;
   color:var(--gold);
-
   text-transform:uppercase;
 }
 
 h1{
+  margin:9px 0 6px;
 
   font-weight:400;
+  font-size:clamp(27px,6vw,46px);
 
-  font-size:
-  clamp(
-    28px,
-    6vw,
-    48px
-  );
-
-  letter-spacing:.07em;
-
+  letter-spacing:.08em;
   text-transform:uppercase;
-
-  margin:
-  10px 0
-  6px;
 }
 
 .subtitle{
-
-  font:
-  11px Arial,sans-serif;
-
-  letter-spacing:.2em;
-
+  font:10px Arial,sans-serif;
+  letter-spacing:.19em;
   color:var(--muted);
-
   text-transform:uppercase;
 }
 
 .rule{
-
   height:1px;
-
-  margin:
-  22px 0;
+  margin:21px 0;
 
   background:
-
-  linear-gradient(
-    90deg,
-    transparent,
-    var(--gold2),
-    transparent
-  );
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold2),
+      transparent
+    );
 }
 
 /* =========================================================
-   STATUS SUPERIOR
+   ESTADO
 ========================================================= */
 
 .status-grid{
-
   display:grid;
-
-  grid-template-columns:
-  repeat(3,1fr);
-
-  gap:8px;
-
-  margin-bottom:22px;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-bottom:14px;
 }
 
 .status-box{
+  padding:12px 6px;
 
-  border:
-  1px solid #292b28;
-
-  background:
-  rgba(15,17,16,.7);
-
-  padding:
-  13px 8px;
+  border:1px solid #292b28;
+  background:rgba(15,17,16,.78);
 
   text-align:center;
 }
 
 .status-label{
-
-  font:
-  8px Arial,sans-serif;
-
-  letter-spacing:.18em;
-
+  font:7px Arial,sans-serif;
+  letter-spacing:.17em;
   color:var(--muted);
-
   text-transform:uppercase;
 }
 
 .status-value{
-
-  margin-top:7px;
-
-  font-size:17px;
-
+  margin-top:6px;
   color:var(--gold);
+  font-size:15px;
 }
 
 /* =========================================================
@@ -282,811 +195,292 @@ h1{
 ========================================================= */
 
 .progress-area{
-
-  margin:
-  0 auto
-  28px;
-
-  max-width:700px;
+  margin:0 auto 20px;
 }
 
 .progress-top{
-
   display:flex;
+  justify-content:space-between;
 
-  justify-content:
-  space-between;
-
-  align-items:center;
-
-  margin-bottom:9px;
-
-  font:
-  9px Arial,sans-serif;
-
-  letter-spacing:.17em;
-
-  text-transform:uppercase;
+  margin-bottom:8px;
 
   color:var(--muted);
+
+  font:8px Arial,sans-serif;
+  letter-spacing:.16em;
+  text-transform:uppercase;
 }
 
 .progress{
-
-  height:5px;
-
-  background:#1d201f;
-
+  height:4px;
   overflow:hidden;
+  background:#1d201f;
 }
 
 .progress-bar{
-
   display:block;
-
   height:100%;
-
-  width:0%;
+  width:0;
 
   background:var(--gold);
 
-  transition:
-  width .5s ease;
+  transition:width .6s ease;
 }
 
 /* =========================================================
-   TRIBUTO
+   PANEL PRINCIPAL
 ========================================================= */
 
-.tribute-layout{
-
+.main-layout{
   display:grid;
-
-  grid-template-columns:
-  1.1fr .9fr;
-
-  gap:14px;
-
-  margin-bottom:28px;
+  grid-template-columns:1.08fr .92fr;
+  gap:12px;
 }
 
-.tribute-card,
-.inventory-card{
+.panel{
+  position:relative;
+  overflow:hidden;
+
+  border:1px solid #292a27;
 
   background:
-
-  linear-gradient(
-    145deg,
-    #111313,
-    #090a0a
-  );
-
-  border:
-  1px solid #292a27;
-
-  min-height:420px;
-
-  position:relative;
-
-  overflow:hidden;
+    linear-gradient(
+      145deg,
+      #111313,
+      #080909
+    );
 }
 
-.section-head{
-
-  padding:
-  17px 18px;
-
-  border-bottom:
-  1px solid #292a27;
+.panel-head{
+  padding:15px 17px;
+  border-bottom:1px solid #292a27;
 }
 
-.section-head small{
-
+.panel-head small{
   display:block;
-
-  font:
-  8px Arial,sans-serif;
-
-  letter-spacing:.22em;
 
   color:var(--gold);
 
+  font:7px Arial,sans-serif;
+  letter-spacing:.21em;
   text-transform:uppercase;
 }
 
-.section-head h2{
-
-  margin:
-  7px 0 0;
-
-  font-size:18px;
+.panel-head h2{
+  margin:6px 0 0;
 
   font-weight:400;
+  font-size:17px;
 
   letter-spacing:.1em;
-
   text-transform:uppercase;
 }
 
 /* =========================================================
-   SILUETA
+   PERSONAJE
 ========================================================= */
 
-.character-area{
-
-  height:360px;
-
+.character-stage{
   position:relative;
+
+  min-height:600px;
 
   display:flex;
-
-  justify-content:center;
-
+  flex-direction:column;
   align-items:center;
+  justify-content:flex-end;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      ellipse at center 65%,
+      rgba(197,163,91,.07),
+      transparent 50%
+    );
 }
 
-/* Silueta masculina */
+.character-stage::before{
+  content:"";
 
-.character{
+  position:absolute;
+  left:10%;
+  right:10%;
+  bottom:26px;
 
-  width:160px;
+  height:1px;
 
-  height:315px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(197,163,91,.35),
+      transparent
+    );
+}
 
+.character-wrap{
   position:relative;
+
+  width:min(390px,90%);
+  height:500px;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
 }
 
-/* cabeza */
-
-.head{
-
+.character-image{
   position:absolute;
 
-  width:48px;
-  height:48px;
+  left:50%;
+  bottom:0;
 
-  border-radius:50%;
+  transform:translateX(-50%);
 
-  background:#292c2a;
+  height:100%;
+  max-width:100%;
 
-  left:56px;
-  top:0;
-}
-
-/* cuello */
-
-.neck{
-
-  position:absolute;
-
-  width:25px;
-  height:22px;
-
-  background:#292c2a;
-
-  left:68px;
-  top:43px;
-}
-
-/* torso */
-
-.torso{
-
-  position:absolute;
-
-  width:85px;
-  height:125px;
-
-  background:#292c2a;
-
-  left:38px;
-  top:60px;
-
-  clip-path:
-  polygon(
-    18% 0,
-    82% 0,
-    100% 100%,
-    0 100%
-  );
-}
-
-/* brazos */
-
-.arm{
-
-  position:absolute;
-
-  width:27px;
-  height:125px;
-
-  background:#292c2a;
-
-  top:67px;
-
-  border-radius:
-  15px;
-}
-
-.arm.left{
-
-  left:18px;
-
-  transform:
-  rotate(7deg);
-}
-
-.arm.right{
-
-  right:18px;
-
-  transform:
-  rotate(-7deg);
-}
-
-/* piernas */
-
-.leg{
-
-  position:absolute;
-
-  width:34px;
-  height:140px;
-
-  background:#292c2a;
-
-  top:177px;
-
-  border-radius:
-  0 0 15px 15px;
-}
-
-.leg.left{
-  left:43px;
-}
-
-.leg.right{
-  right:43px;
-}
-
-/* =========================================================
-   EQUIPAMIENTO SOBRE EL CUERPO
-========================================================= */
-
-.equipment{
-
-  position:absolute;
-
-  opacity:0;
-
-  transform:
-  scale(.5);
+  object-fit:contain;
 
   transition:
-  .6s cubic-bezier(.2,.8,.2,1);
-
-  filter:
-  drop-shadow(
-    0 0 7px
-    rgba(197,163,91,.25)
-  );
+    opacity .7s ease,
+    filter .7s ease,
+    transform .7s ease;
 }
 
-.equipment.visible{
+#baseCharacter{
+  opacity:1;
+}
 
+#equippedCharacter{
+  opacity:0;
+}
+
+/* Cuando está equipado */
+
+.character-wrap.equipped #baseCharacter{
+  opacity:0;
+
+  filter:
+    blur(8px)
+    brightness(1.8);
+
+  transform:
+    translateX(-50%)
+    scale(.97);
+}
+
+.character-wrap.equipped #equippedCharacter{
   opacity:1;
 
   transform:
-  scale(1);
-}
-
-/* arco */
-
-.eq-bow{
-
-  font-size:65px;
-
-  right:-5px;
-
-  top:90px;
-
-  transform:
-  rotate(-20deg)
-  scale(.5);
-}
-
-.eq-bow.visible{
-
-  transform:
-  rotate(-20deg)
-  scale(1);
-}
-
-/* cuchillo */
-
-.eq-knife{
-
-  font-size:34px;
-
-  left:20px;
-
-  top:170px;
-}
-
-/* mochila */
-
-.eq-bag{
-
-  font-size:48px;
-
-  right:13px;
-
-  top:105px;
-
-  z-index:-1;
-}
-
-/* chaqueta / textil */
-
-.eq-clothes{
-
-  font-size:42px;
-
-  left:59px;
-
-  top:95px;
-}
-
-/* medicina */
-
-.eq-medicine{
-
-  font-size:31px;
-
-  left:15px;
-
-  top:120px;
-}
-
-/* flechas */
-
-.eq-arrows{
-
-  font-size:48px;
-
-  right:5px;
-
-  top:52px;
+    translateX(-50%)
+    scale(1);
 }
 
 /* =========================================================
-   INVENTARIO
+   CAPAS DE EQUIPAMIENTO FUTURAS
 ========================================================= */
 
-.inventory-content{
+.gear-layer{
+  position:absolute;
 
-  padding:
-  15px;
+  left:50%;
+  bottom:0;
+
+  transform:
+    translateX(-50%)
+    scale(.88);
+
+  height:100%;
+  max-width:100%;
+
+  object-fit:contain;
+
+  opacity:0;
+
+  transition:
+    opacity .7s ease,
+    transform .7s ease,
+    filter .7s ease;
+
+  pointer-events:none;
 }
 
-.inventory-empty{
+.gear-layer.active{
+  opacity:1;
 
-  text-align:center;
-
-  color:#666963;
-
-  font:
-  10px Arial,sans-serif;
-
-  letter-spacing:.15em;
-
-  text-transform:uppercase;
-
-  padding:
-  60px 20px;
-}
-
-.inventory-item{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:13px;
-
-  padding:
-  12px;
-
-  border-bottom:
-  1px solid #252724;
+  transform:
+    translateX(-50%)
+    scale(1);
 
   animation:
-  itemIn .4s ease;
+    gearAppear 1s ease;
 }
 
-@keyframes itemIn{
-
-  from{
+@keyframes gearAppear{
+  0%{
     opacity:0;
+    filter:
+      brightness(4)
+      blur(8px);
+
     transform:
-    translateX(-10px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
-
-}
-
-.item-icon{
-
-  width:42px;
-  height:42px;
-
-  display:grid;
-
-  place-items:center;
-
-  border:
-  1px solid var(--gold2);
-
-  font-size:22px;
-}
-
-.item-info{
-
-  flex:1;
-}
-
-.item-name{
-
-  font-size:13px;
-
-  letter-spacing:.08em;
-
-  text-transform:uppercase;
-}
-
-.item-source{
-
-  margin-top:5px;
-
-  font:
-  8px Arial,sans-serif;
-
-  letter-spacing:.14em;
-
-  color:var(--muted);
-
-  text-transform:uppercase;
-}
-
-.item-status{
-
-  font:
-  8px Arial,sans-serif;
-
-  letter-spacing:.1em;
-
-  color:var(--gold);
-
-  text-transform:uppercase;
-}
-
-/* =========================================================
-   BOTÓN ALIJOS ENCONTRADOS
-========================================================= */
-
-.found-button{
-
-  width:100%;
-
-  margin-top:15px;
-
-  padding:15px;
-
-  border:
-  1px solid var(--gold);
-
-  background:
-  rgba(197,163,91,.08);
-
-  color:var(--gold);
-
-  font:
-  10px Arial,sans-serif;
-
-  letter-spacing:.18em;
-
-  text-transform:uppercase;
-
-  animation:
-  glow 2s infinite;
-}
-
-@keyframes glow{
-
-  0%,100%{
-    box-shadow:
-    0 0 0
-    rgba(197,163,91,0);
+      translateX(-50%)
+      scale(.85);
   }
 
   50%{
-    box-shadow:
-    0 0 20px
-    rgba(197,163,91,.12);
+    opacity:1;
+    filter:
+      brightness(2)
+      blur(2px);
   }
 
+  100%{
+    opacity:1;
+    filter:none;
+
+    transform:
+      translateX(-50%)
+      scale(1);
+  }
 }
 
 /* =========================================================
-   ALIJOS
+   INFO PERSONAJE
 ========================================================= */
 
-.title-section{
-
-  text-align:center;
-
-  margin:
-  35px 0
-  18px;
-}
-
-.title-section small{
-
-  font:
-  9px Arial,sans-serif;
-
-  color:var(--gold);
-
-  letter-spacing:.25em;
-
-  text-transform:uppercase;
-}
-
-.title-section h2{
-
-  font-weight:400;
-
-  text-transform:uppercase;
-
-  letter-spacing:.1em;
-
-  margin:
-  8px 0;
-}
-
-.title-section p{
-
-  max-width:580px;
-
-  margin:auto;
-
-  color:var(--muted);
-
-  font:
-  12px Arial,sans-serif;
-
-  line-height:1.6;
-}
-
-.supply-grid{
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(3,1fr);
-
-  gap:11px;
-}
-
-.supply{
-
-  background:
-
-  linear-gradient(
-    145deg,
-    #111313,
-    #090a0a
-  );
-
-  border:
-  1px solid #292a27;
-
-  min-height:180px;
-
-  padding:
-  17px 10px;
-
-  text-align:center;
-
-  color:var(--text);
-
-  position:relative;
-
-  transition:.2s;
-}
-
-.supply:active{
-
-  transform:
-  scale(.985);
-}
-
-.supply.recovered{
-
-  border-color:
-  var(--gold2);
-}
-
-.supply-logo{
-
-  width:68px;
-  height:68px;
-
-  border:
-  1px solid #3b3d39;
-
-  border-radius:50%;
-
-  margin:
-  0 auto
-  13px;
-
-  display:grid;
-
-  place-items:center;
-
-  font-size:27px;
-
-  color:#777;
-}
-
-.supply.recovered
-.supply-logo{
-
-  border-color:
-  var(--gold);
-
-  color:var(--gold);
-}
-
-.supply-logo.capitol img{
-
-  width:55px;
-  height:55px;
-
-  object-fit:contain;
-}
-
-.supply-name{
-
-  font-size:13px;
-
-  letter-spacing:.12em;
-
-  text-transform:uppercase;
-}
-
-.supply-industry{
-
-  font:
-  8px Arial,sans-serif;
-
-  color:var(--muted);
-
-  letter-spacing:.13em;
-
-  margin-top:6px;
-
-  text-transform:uppercase;
-}
-
-.supply-state{
-
-  margin-top:13px;
-
-  font:
-  8px Arial,sans-serif;
-
-  letter-spacing:.15em;
-
-  color:#666963;
-
-  text-transform:uppercase;
-}
-
-.supply.recovered
-.supply-state{
-
-  color:var(--gold);
-}
-
-/* =========================================================
-   RECOMPENSAS DE VICTORIA
-========================================================= */
-
-.rewards{
-
-  margin-top:35px;
-
-  border:
-  1px solid #292a27;
-
-  background:
-  linear-gradient(
-    145deg,
-    #101212,
-    #080909
-  );
-
-  padding:
-  25px;
-
-  text-align:center;
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.rewards.locked{
-
-  opacity:.72;
-}
-
-.reward-logo{
-
-  width:70px;
-  height:70px;
-
-  margin:
-  0 auto
-  15px;
-}
-
-.reward-logo img{
-
+.character-info{
   width:100%;
-  height:100%;
 
-  object-fit:contain;
+  position:relative;
+  z-index:4;
+
+  padding:15px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(5,6,6,.95) 30%
+    );
 }
 
-.reward-lock{
-
-  font-size:30px;
-
-  margin-bottom:10px;
-}
-
-.rewards h2{
-
-  font-weight:400;
-
-  letter-spacing:.12em;
-
-  text-transform:uppercase;
-
-  margin:
-  8px 0;
-}
-
-.rewards p{
-
-  font:
-  12px Arial,sans-serif;
+.equipment-state{
+  margin-bottom:11px;
 
   color:var(--muted);
 
-  line-height:1.7;
+  font:8px Arial,sans-serif;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
 
-  max-width:580px;
-
-  margin:
-  10px auto;
+.equipment-state strong{
+  color:var(--gold);
 }
 
 /* =========================================================
@@ -1094,470 +488,888 @@ h1{
 ========================================================= */
 
 .action{
-
   width:100%;
-
-  max-width:340px;
-
-  border:
-  1px solid var(--gold2);
-
-  background:transparent;
-
-  color:var(--gold);
+  max-width:350px;
 
   padding:14px;
 
-  text-transform:uppercase;
+  border:1px solid var(--gold2);
 
-  font:
-  10px Arial,sans-serif;
+  background:
+    rgba(197,163,91,.025);
 
+  color:var(--gold);
+
+  font:9px Arial,sans-serif;
   letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+.action:active{
+  background:
+    rgba(197,163,91,.09);
 }
 
 .action.secondary{
+  margin-top:8px;
 
-  border-color:#353734;
+  border-color:#343633;
 
   color:#999;
-
-  margin-top:9px;
 }
 
-.back{
+.action.glow{
+  animation:
+    buttonGlow 2.3s infinite;
+}
 
-  border:0;
+@keyframes buttonGlow{
+  0%,100%{
+    box-shadow:
+      0 0 0
+      rgba(197,163,91,0);
+  }
 
-  background:none;
+  50%{
+    box-shadow:
+      0 0 22px
+      rgba(197,163,91,.14);
+  }
+}
 
-  color:#7e7e78;
+/* =========================================================
+   INVENTARIO
+========================================================= */
 
-  padding:
-  8px 0;
+.inventory-content{
+  padding:12px;
+}
 
-  margin-bottom:18px;
+.empty-inventory{
+  padding:65px 20px;
 
-  font:
-  9px Arial,sans-serif;
+  text-align:center;
 
-  letter-spacing:.2em;
+  color:#60635e;
 
+  font:9px Arial,sans-serif;
+  letter-spacing:.16em;
+  line-height:1.8;
+  text-transform:uppercase;
+}
+
+.inventory-item{
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  padding:11px 5px;
+
+  border-bottom:
+    1px solid #252724;
+
+  animation:
+    inventoryIn .45s ease;
+}
+
+@keyframes inventoryIn{
+  from{
+    opacity:0;
+    transform:translateX(-8px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.item-icon{
+  flex:none;
+
+  width:42px;
+  height:42px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid var(--gold2);
+
+  font-size:21px;
+}
+
+.item-info{
+  flex:1;
+}
+
+.item-name{
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.item-source{
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font:7px Arial,sans-serif;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+
+.item-state{
+  color:var(--gold);
+
+  font:7px Arial,sans-serif;
+  letter-spacing:.1em;
   text-transform:uppercase;
 }
 
 /* =========================================================
-   PANTALLA PIN
+   BOTÓN ALIJOS COMPLETOS
 ========================================================= */
 
-.access-card{
+.all-found{
+  width:calc(100% - 24px);
 
-  max-width:590px;
+  margin:12px;
+
+  padding:14px;
+
+  border:1px solid var(--gold);
+
+  background:
+    rgba(197,163,91,.07);
+
+  color:var(--gold);
+
+  font:9px Arial,sans-serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+
+  animation:
+    buttonGlow 2s infinite;
+}
+
+/* =========================================================
+   ALIJOS
+========================================================= */
+
+.section-title{
+  margin:34px 0 17px;
+  text-align:center;
+}
+
+.section-title small{
+  color:var(--gold);
+
+  font:8px Arial,sans-serif;
+  letter-spacing:.23em;
+  text-transform:uppercase;
+}
+
+.section-title h2{
+  margin:7px 0;
+
+  font-weight:400;
+
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.section-title p{
+  max-width:600px;
 
   margin:auto;
 
-  border:
-  1px solid #292a27;
+  color:var(--muted);
+
+  font:11px Arial,sans-serif;
+  line-height:1.65;
+}
+
+.supply-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.supply{
+  min-height:170px;
+
+  padding:16px 8px;
+
+  border:1px solid #292a27;
 
   background:
-  linear-gradient(
-    145deg,
-    #111313,
-    #090a0a
-  );
+    linear-gradient(
+      145deg,
+      #111313,
+      #090a0a
+    );
 
-  padding:
-  27px 20px;
+  color:var(--text);
+
+  text-align:center;
+}
+
+.supply.recovered{
+  border-color:var(--gold2);
+}
+
+.supply-emblem{
+  width:64px;
+  height:64px;
+
+  margin:0 auto 12px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid #3b3d39;
+  border-radius:50%;
+
+  color:#777;
+
+  font-size:25px;
+}
+
+.supply.recovered .supply-emblem{
+  color:var(--gold);
+  border-color:var(--gold);
+}
+
+.supply-emblem img{
+  width:51px;
+  height:51px;
+  object-fit:contain;
+}
+
+.supply-name{
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.supply-industry{
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font:7px Arial,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.supply-status{
+  margin-top:12px;
+
+  color:#646661;
+
+  font:7px Arial,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.supply.recovered .supply-status{
+  color:var(--gold);
+}
+
+/* =========================================================
+   RECOMPENSAS
+========================================================= */
+
+.rewards{
+  margin-top:35px;
+
+  padding:25px 18px;
+
+  border:1px solid #292a27;
+
+  background:
+    linear-gradient(
+      145deg,
+      #101212,
+      #080909
+    );
+
+  text-align:center;
+}
+
+.rewards img{
+  width:65px;
+  height:65px;
+  object-fit:contain;
+}
+
+.rewards h2{
+  font-weight:400;
+
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+
+.rewards p{
+  max-width:580px;
+
+  margin:10px auto;
+
+  color:var(--muted);
+
+  font:11px Arial,sans-serif;
+  line-height:1.7;
+}
+
+.reward-lock{
+  margin:12px;
+  font-size:27px;
+}
+
+/* =========================================================
+   PIN
+========================================================= */
+
+.access-card{
+  max-width:580px;
+
+  margin:auto;
+
+  padding:27px 19px;
+
+  border:1px solid #292a27;
+
+  background:
+    linear-gradient(
+      145deg,
+      #111313,
+      #090a0a
+    );
 
   text-align:center;
 }
 
 .access-emblem{
+  width:105px;
+  height:105px;
 
-  width:110px;
-  height:110px;
-
-  border:
-  1px solid var(--gold2);
-
-  border-radius:50%;
+  margin:0 auto 18px;
 
   display:grid;
-
   place-items:center;
 
-  margin:
-  0 auto
-  20px;
-
-  font-size:42px;
+  border:1px solid var(--gold2);
+  border-radius:50%;
 
   color:var(--gold);
+
+  font-size:40px;
 }
 
 .access-emblem img{
-
-  width:85px;
-  height:85px;
-
+  width:80px;
+  height:80px;
   object-fit:contain;
 }
 
 .access-card h2{
-
   font-weight:400;
-
-  text-transform:uppercase;
-
   letter-spacing:.1em;
+  text-transform:uppercase;
 }
 
 .access-card p{
-
-  font:
-  12px Arial,sans-serif;
-
   color:var(--muted);
 
+  font:11px Arial,sans-serif;
   line-height:1.7;
 }
 
-.pin-title{
-
-  margin:
-  25px 0
-  11px;
-
-  font:
-  9px Arial,sans-serif;
-
-  letter-spacing:.2em;
-
-  text-transform:uppercase;
+.pin-label{
+  margin:23px 0 10px;
 
   color:var(--muted);
+
+  font:8px Arial,sans-serif;
+  letter-spacing:.19em;
+  text-transform:uppercase;
 }
 
 .pin{
-
   display:flex;
-
   justify-content:center;
+  gap:7px;
 
-  gap:8px;
-
-  margin-bottom:17px;
+  margin-bottom:16px;
 }
 
 .pin input{
+  width:51px;
+  height:59px;
 
-  width:52px;
-  height:60px;
+  border:1px solid #373934;
 
   background:#050606;
-
-  border:
-  1px solid #373934;
 
   color:var(--gold);
 
   text-align:center;
 
-  font:
-  25px Arial,sans-serif;
+  font:24px Arial,sans-serif;
 
   outline:none;
 }
 
 .pin input:focus{
-
-  border-color:
-  var(--gold);
+  border-color:var(--gold);
 }
 
 .error{
+  min-height:23px;
 
-  min-height:25px;
-
-  margin-top:12px;
-
-  font:
-  9px Arial,sans-serif;
-
-  letter-spacing:.14em;
+  margin-top:11px;
 
   color:var(--danger);
 
+  font:8px Arial,sans-serif;
+  letter-spacing:.13em;
   text-transform:uppercase;
 }
 
 /* =========================================================
-   OBJETO ENCONTRADO
+   TRANSICIÓN DE EVOLUCIÓN
+========================================================= */
+
+.evolution{
+  position:fixed;
+
+  inset:0;
+
+  z-index:100;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  background:#020303;
+}
+
+.evolution.active{
+  display:flex;
+}
+
+.evolution-bg{
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(197,163,91,.13),
+      transparent 40%
+    );
+}
+
+.evolution-grid{
+  position:absolute;
+  inset:0;
+
+  opacity:.13;
+
+  background-image:
+    linear-gradient(
+      rgba(197,163,91,.2) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(197,163,91,.2) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    35px 35px;
+}
+
+.scan-line{
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  height:2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold),
+      transparent
+    );
+
+  box-shadow:
+    0 0 18px
+    rgba(197,163,91,.8);
+
+  animation:
+    scan 1.8s ease-in-out infinite;
+}
+
+@keyframes scan{
+  0%{
+    top:5%;
+    opacity:0;
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  90%{
+    opacity:1;
+  }
+
+  100%{
+    top:95%;
+    opacity:0;
+  }
+}
+
+.evolution-content{
+  position:relative;
+  z-index:5;
+
+  width:min(420px,88%);
+
+  text-align:center;
+}
+
+.evolution-logo{
+  width:78px;
+  height:78px;
+
+  margin:0 auto 20px;
+}
+
+.evolution-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+
+  animation:
+    logoPulse 1.1s infinite;
+}
+
+@keyframes logoPulse{
+  0%,100%{
+    filter:
+      drop-shadow(
+        0 0 3px
+        rgba(197,163,91,.2)
+      );
+  }
+
+  50%{
+    filter:
+      drop-shadow(
+        0 0 20px
+        rgba(197,163,91,.75)
+      );
+  }
+}
+
+.evolution-title{
+  color:var(--gold);
+
+  font-size:18px;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+}
+
+.evolution-sub{
+  min-height:18px;
+
+  margin-top:10px;
+
+  color:var(--muted);
+
+  font:8px Arial,sans-serif;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+
+.loader{
+  height:3px;
+
+  margin-top:25px;
+
+  overflow:hidden;
+
+  background:#1d201f;
+}
+
+.loader i{
+  display:block;
+
+  width:0;
+  height:100%;
+
+  background:var(--gold);
+}
+
+.evolution.active .loader i{
+  animation:
+    loadEvolution 2.8s
+    cubic-bezier(.2,.7,.2,1)
+    forwards;
+}
+
+@keyframes loadEvolution{
+  0%{width:0;}
+  25%{width:18%;}
+  50%{width:46%;}
+  75%{width:78%;}
+  100%{width:100%;}
+}
+
+.evolution-percent{
+  margin-top:9px;
+
+  color:#74766f;
+
+  font:8px Arial,sans-serif;
+  letter-spacing:.14em;
+}
+
+/* Flash final */
+
+.evolution.flash::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    rgba(220,195,135,.85);
+
+  animation:
+    finalFlash .55s forwards;
+}
+
+@keyframes finalFlash{
+  from{
+    opacity:1;
+  }
+
+  to{
+    opacity:0;
+  }
+}
+
+/* =========================================================
+   OBJETO CONSEGUIDO
 ========================================================= */
 
 .found-card{
-
-  max-width:590px;
+  max-width:580px;
 
   margin:auto;
 
-  text-align:center;
+  padding:34px 20px;
 
-  border:
-  1px solid var(--gold2);
+  border:1px solid var(--gold2);
 
   background:
-  linear-gradient(
-    145deg,
-    #111313,
-    #080909
-  );
+    linear-gradient(
+      145deg,
+      #111313,
+      #080909
+    );
 
-  padding:
-  35px 20px;
+  text-align:center;
 }
 
 .found-icon{
+  margin:16px 0;
 
-  font-size:70px;
-
-  margin:
-  15px 0;
+  font-size:65px;
 
   animation:
-  foundObject .7s ease;
+    found .7s ease;
 }
 
-@keyframes foundObject{
-
+@keyframes found{
   from{
     opacity:0;
     transform:
-    scale(.3)
-    rotate(-15deg);
+      scale(.3)
+      rotate(-12deg);
   }
 
   to{
     opacity:1;
     transform:
-    scale(1)
-    rotate(0);
+      scale(1)
+      rotate(0);
   }
-
 }
 
 .found-card h2{
-
   font-weight:400;
-
-  text-transform:uppercase;
-
   letter-spacing:.12em;
+  text-transform:uppercase;
 }
 
 .found-card h3{
+  margin:12px 0;
 
   color:var(--gold);
 
-  font-size:25px;
-
+  font-size:24px;
   font-weight:400;
-
-  margin:
-  12px 0;
 }
 
 .found-card p{
-
-  font:
-  12px Arial,sans-serif;
-
-  line-height:1.7;
-
   color:var(--muted);
+
+  font:11px Arial,sans-serif;
+  line-height:1.7;
 }
 
 /* =========================================================
-   MODAL TODOS LOS ALIJOS
+   MODALES
 ========================================================= */
 
 .modal{
-
   position:fixed;
-
   inset:0;
 
-  z-index:50;
-
-  background:
-  rgba(0,0,0,.94);
+  z-index:80;
 
   display:none;
 
   align-items:center;
-
   justify-content:center;
 
-  padding:20px;
+  padding:18px;
+
+  background:
+    rgba(0,0,0,.95);
 }
 
 .modal.open{
-
   display:flex;
 }
 
 .modal-card{
-
-  width:min(570px,100%);
+  width:min(560px,100%);
 
   max-height:90vh;
 
   overflow:auto;
 
+  padding:24px;
+
+  border:1px solid var(--gold2);
+
   background:#0d0f0f;
-
-  border:
-  1px solid var(--gold2);
-
-  padding:25px;
 
   text-align:center;
 }
 
-.modal-logo{
-
-  width:80px;
-  height:80px;
-
-  margin:
-  0 auto
-  17px;
-}
-
-.modal-logo img{
-
-  width:100%;
-  height:100%;
-
+.modal-card img.logo{
+  width:75px;
+  height:75px;
   object-fit:contain;
 }
 
 .modal-card h2{
-
   font-weight:400;
-
   letter-spacing:.1em;
-
   text-transform:uppercase;
 }
 
 .modal-card p{
-
-  font:
-  12px Arial,sans-serif;
-
   color:var(--muted);
 
+  font:11px Arial,sans-serif;
   line-height:1.7;
 }
 
-/* =========================================================
-   ADMIN
-========================================================= */
-
-.admin-row{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:
-  space-between;
-
-  gap:10px;
-
-  padding:
-  12px 0;
-
-  border-bottom:
-  1px solid #242623;
-
-  text-align:left;
-
-  font:
-  11px Arial,sans-serif;
-}
-
-.admin-row button{
-
-  background:none;
-
-  border:
-  1px solid #41433f;
-
-  color:#aaa;
-
-  padding:
-  7px 9px;
-
-  font:
-  8px Arial,sans-serif;
-
-  letter-spacing:.1em;
-
-  text-transform:uppercase;
-}
-
 .admin-pin{
-
   width:100%;
 
   padding:14px;
 
-  background:#050606;
+  border:1px solid #373934;
 
-  border:
-  1px solid #373934;
+  background:#050606;
 
   color:var(--gold);
 
   text-align:center;
 
-  font:
-  21px Arial,sans-serif;
-
+  font:20px Arial,sans-serif;
   letter-spacing:.4em;
 
   outline:none;
+}
+
+.admin-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  padding:11px 0;
+
+  border-bottom:1px solid #242623;
+
+  text-align:left;
+
+  font:10px Arial,sans-serif;
+}
+
+.admin-row button{
+  padding:7px 9px;
+
+  border:1px solid #41433f;
+
+  background:none;
+
+  color:#aaa;
+
+  font:7px Arial,sans-serif;
+  letter-spacing:.1em;
+  text-transform:uppercase;
 }
 
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 
-@media(
-  max-width:720px
-){
+@media(max-width:720px){
 
-  .tribute-layout{
-
+  .main-layout{
     grid-template-columns:1fr;
   }
 
+  .character-stage{
+    min-height:520px;
+  }
+
+  .character-wrap{
+    height:430px;
+  }
+
   .supply-grid{
-
-    grid-template-columns:
-    repeat(2,1fr);
-  }
-
-  .tribute-card{
-
-    min-height:auto;
-  }
-
-  .inventory-card{
-
-    min-height:auto;
+    grid-template-columns:repeat(2,1fr);
   }
 
 }
@@ -1567,20 +1379,17 @@ h1{
 
 <body>
 
-<!-- =====================================================
-     PANTALLA PRINCIPAL
-===================================================== -->
+<!-- ======================================================
+     INVENTARIO PRINCIPAL
+====================================================== -->
 
-<section
-id="home"
-class="screen active">
+<section id="home" class="screen active">
 
 <div class="shell">
 
 <header class="capitol-header">
 
-<div
-class="capitol-logo admin-trigger">
+<div class="capitol-logo admin-trigger">
 
 <img
 src="capitolio.png.webp"
@@ -1589,15 +1398,15 @@ alt="Capitolio">
 </div>
 
 <div class="eyebrow">
-CAPITOLIO · PROTOCOLO DE SUPERVIVENCIA
+CAPITOLIO · REGISTRO DEL TRIBUTO
 </div>
 
 <h1>
-ESTADO DEL TRIBUTO
+INVENTARIO
 </h1>
 
 <div class="subtitle">
-TRIBUTO SAMUEL · ARENA ACTIVA
+TRIBUTO: SAMUEL · ARENA ACTIVA
 </div>
 
 </header>
@@ -1626,7 +1435,7 @@ ALIJOS
 
 <div
 class="status-value"
-id="topCount">
+id="topSupplyCount">
 0 / 6
 </div>
 
@@ -1636,11 +1445,13 @@ id="topCount">
 <div class="status-box">
 
 <div class="status-label">
-PROTOCOLO
+EQUIPO
 </div>
 
-<div class="status-value">
-ACTIVO
+<div
+class="status-value"
+id="topEquipment">
+NINGUNO
 </div>
 
 </div>
@@ -1653,7 +1464,7 @@ ACTIVO
 <div class="progress-top">
 
 <span>
-SUMINISTROS RECUPERADOS
+PROGRESO DE SUMINISTROS
 </span>
 
 <span id="progressText">
@@ -1661,6 +1472,7 @@ SUMINISTROS RECUPERADOS
 </span>
 
 </div>
+
 
 <div class="progress">
 
@@ -1674,21 +1486,21 @@ id="progressBar">
 </div>
 
 
-<!-- =====================================================
-     TRIBUTO + INVENTARIO
-===================================================== -->
+<!-- ======================================================
+     PERSONAJE + INVENTARIO
+====================================================== -->
 
-<div class="tribute-layout">
+<div class="main-layout">
 
 
 <!-- PERSONAJE -->
 
-<div class="tribute-card">
+<div class="panel">
 
-<div class="section-head">
+<div class="panel-head">
 
 <small>
-REGISTRO DEL TRIBUTO
+ESTADO DEL TRIBUTO
 </small>
 
 <h2>
@@ -1698,66 +1510,76 @@ EQUIPAMIENTO
 </div>
 
 
-<div class="character-area">
-
-<div class="character">
-
-<div class="head"></div>
-
-<div class="neck"></div>
-
-<div class="torso"></div>
-
-<div class="arm left"></div>
-
-<div class="arm right"></div>
-
-<div class="leg left"></div>
-
-<div class="leg right"></div>
-
+<div class="character-stage">
 
 <div
-id="eq-bow"
-class="equipment eq-bow">
-🏹
+class="character-wrap"
+id="characterWrap">
+
+
+<!-- ESTADO INICIAL -->
+
+<img
+id="baseCharacter"
+class="character-image"
+src="tributo_base.png"
+alt="Tributo sin equipamiento">
+
+
+<!-- EQUIPO MÍNIMO -->
+
+<img
+id="equippedCharacter"
+class="character-image"
+src="tributo_equipado.png"
+alt="Tributo equipado">
+
+
+<!--
+=========================================================
+CAPAS FUTURAS DE OBJETOS
+
+Cuando tengamos los PNG transparentes,
+simplemente descomentamos estas líneas:
+
+<img
+id="gear-capitol"
+class="gear-layer"
+src="equipo_capitolio.png">
+
+<img
+id="gear-d1"
+class="gear-layer"
+src="equipo_d1.png">
+
+etc.
+=========================================================
+-->
+
+
 </div>
 
 
+<div class="character-info">
+
 <div
-id="eq-knife"
-class="equipment eq-knife">
-🔪
+class="equipment-state"
+id="equipmentState">
+
+EQUIPAMIENTO ACTUAL:
+<strong>NINGUNO</strong>
+
 </div>
 
 
-<div
-id="eq-bag"
-class="equipment eq-bag">
-🎒
-</div>
+<button
+id="equipButton"
+class="action glow"
+onclick="equipMinimum()">
 
+EQUIPAR EQUIPO MÍNIMO
 
-<div
-id="eq-clothes"
-class="equipment eq-clothes">
-🧥
-</div>
-
-
-<div
-id="eq-medicine"
-class="equipment eq-medicine">
-🌿
-</div>
-
-
-<div
-id="eq-arrows"
-class="equipment eq-arrows">
-➶
-</div>
-
+</button>
 
 </div>
 
@@ -1768,16 +1590,16 @@ class="equipment eq-arrows">
 
 <!-- INVENTARIO -->
 
-<div class="inventory-card">
+<div class="panel">
 
-<div class="section-head">
+<div class="panel-head">
 
 <small>
-SUMINISTROS ACTIVOS
+RECURSOS RECUPERADOS
 </small>
 
 <h2>
-INVENTARIO
+INVENTARIO DEL TRIBUTO
 </h2>
 
 </div>
@@ -1791,39 +1613,42 @@ id="inventory">
 
 <button
 id="allFoundButton"
-class="found-button hidden"
+class="all-found hidden"
 onclick="openAllFound()">
 
-ALIJOS ENCONTRADOS · 6/6
+ALIJOS ENCONTRADOS · 6 / 6
 
 </button>
 
 </div>
 
+
 </div>
 
 
-<!-- =====================================================
+<!-- ======================================================
      ALIJOS
-===================================================== -->
+====================================================== -->
 
-<div class="title-section">
+<div class="section-title">
 
 <small>
-TRANSMISIONES DE PATROCINADORES
+SUMINISTROS EXTERNOS
 </small>
 
 <h2>
-ALIJOS DE SUMINISTROS
+ALIJOS
 </h2>
 
 <p>
 
-Algunos distritos han decidido proporcionar
-recursos al tributo durante los Juegos.
+Durante los Juegos algunos distritos
+y el propio Capitolio pueden enviar
+suministros al tributo.
 
-Localiza los alijos e introduce sus códigos
-para incorporar cada suministro a tu inventario.
+Localiza físicamente cada alijo
+e introduce su código para añadir
+el contenido a tu inventario.
 
 </p>
 
@@ -1836,61 +1661,55 @@ id="supplyGrid">
 </div>
 
 
-<!-- =====================================================
+<!-- ======================================================
      RECOMPENSAS
-===================================================== -->
+====================================================== -->
 
-<div
-class="rewards locked"
-id="rewards">
-
-<div class="reward-logo">
+<div class="rewards">
 
 <img
 src="capitolio.png.webp"
 alt="Capitolio">
 
-</div>
 
-<div
-class="eyebrow">
-
+<div class="eyebrow">
 PROTOCOLO POST-JUEGOS
-
 </div>
+
 
 <div class="reward-lock">
 ◇
 </div>
 
+
 <h2>
 RECOMPENSAS DE VICTORIA
 </h2>
 
-<p>
-
-Los suministros encontrados en la Arena
-solo aumentan tus posibilidades de supervivencia.
-
-Los verdaderos obsequios permanecen
-custodiados por el Capitolio.
-
-</p>
 
 <p>
 
-<strong>
-SI SOBREVIVES A LOS JUEGOS,
-DESBLOQUEARÁS LAS RECOMPENSAS
-ENVIADAS POR LOS DISTRITOS.
-</strong>
+Los objetos encontrados durante los Juegos
+son suministros destinados exclusivamente
+a garantizar tu supervivencia.
 
 </p>
+
+
+<p>
+
+Si sobrevives a la Arena,
+el Capitolio autorizará el acceso
+a las recompensas enviadas
+por los distritos.
+
+</p>
+
 
 <div class="subtitle">
 
 ACCESO BLOQUEADO ·
-FINALIZA LOS JUEGOS
+SOBREVIVE A LOS JUEGOS
 
 </div>
 
@@ -1902,9 +1721,9 @@ FINALIZA LOS JUEGOS
 </section>
 
 
-<!-- =====================================================
-     INTRODUCIR CÓDIGO
-===================================================== -->
+<!-- ======================================================
+     VERIFICACIÓN DE ALIJO
+====================================================== -->
 
 <section
 id="access"
@@ -1914,18 +1733,21 @@ class="screen">
 
 
 <button
-class="back"
+class="action secondary"
+style="
+width:auto;
+margin-bottom:20px;
+"
 onclick="goHome()">
 
-← VOLVER AL ESTADO DEL TRIBUTO
+← VOLVER
 
 </button>
 
 
 <header class="capitol-header">
 
-<div
-class="capitol-logo admin-trigger">
+<div class="capitol-logo">
 
 <img
 src="capitolio.png.webp"
@@ -1933,9 +1755,10 @@ alt="Capitolio">
 
 </div>
 
+
 <div class="eyebrow">
 
-CAPITOLIO · VERIFICACIÓN DE ALIJO
+CAPITOLIO · VERIFICACIÓN DE SUMINISTRO
 
 </div>
 
@@ -1966,14 +1789,14 @@ ALIJO
 
 El suministro permanece sellado.
 
-Introduce el código localizado junto
-al alijo para autorizar su incorporación
-al inventario del tributo.
+Introduce el código encontrado
+junto al alijo para autorizar
+su incorporación al inventario.
 
 </p>
 
 
-<div class="pin-title">
+<div class="pin-label">
 
 CÓDIGO DEL ALIJO
 
@@ -1984,21 +1807,13 @@ CÓDIGO DEL ALIJO
 class="pin"
 id="pinInputs">
 
-<input
-inputmode="numeric"
-maxlength="1">
+<input inputmode="numeric" maxlength="1">
 
-<input
-inputmode="numeric"
-maxlength="1">
+<input inputmode="numeric" maxlength="1">
 
-<input
-inputmode="numeric"
-maxlength="1">
+<input inputmode="numeric" maxlength="1">
 
-<input
-inputmode="numeric"
-maxlength="1">
+<input inputmode="numeric" maxlength="1">
 
 </div>
 
@@ -2025,9 +1840,9 @@ id="pinError">
 </section>
 
 
-<!-- =====================================================
-     OBJETO CONSEGUIDO
-===================================================== -->
+<!-- ======================================================
+     SUMINISTRO ENCONTRADO
+====================================================== -->
 
 <section
 id="found"
@@ -2045,6 +1860,7 @@ src="capitolio.png.webp"
 alt="Capitolio">
 
 </div>
+
 
 <div class="eyebrow">
 
@@ -2072,7 +1888,7 @@ id="foundIcon">
 
 
 <h2>
-OBJETO OBTENIDO
+OBJETO RECUPERADO
 </h2>
 
 
@@ -2084,8 +1900,7 @@ OBJETO OBTENIDO
 </p>
 
 
-<div
-class="rule">
+<div class="rule">
 </div>
 
 
@@ -2099,10 +1914,10 @@ id="foundSource">
 
 
 <button
-class="action"
-onclick="goHome()">
+class="action glow"
+onclick="incorporateSupply()">
 
-INCORPORAR AL INVENTARIO
+INCORPORAR AL EQUIPAMIENTO
 
 </button>
 
@@ -2114,18 +1929,28 @@ INCORPORAR AL INVENTARIO
 </section>
 
 
-<!-- =====================================================
-     TODOS LOS ALIJOS
-===================================================== -->
+<!-- ======================================================
+     TRANSICIÓN / EVOLUCIÓN
+====================================================== -->
 
 <div
-class="modal"
-id="allFoundModal">
+class="evolution"
+id="evolution">
 
-<div class="modal-card">
+<div class="evolution-bg">
+</div>
+
+<div class="evolution-grid">
+</div>
+
+<div class="scan-line">
+</div>
 
 
-<div class="modal-logo">
+<div class="evolution-content">
+
+
+<div class="evolution-logo">
 
 <img
 src="capitolio.png.webp"
@@ -2134,10 +1959,63 @@ alt="Capitolio">
 </div>
 
 
+<div
+class="evolution-title"
+id="evolutionTitle">
+
+INICIANDO PROTOCOLO
+
+</div>
+
+
+<div
+class="evolution-sub"
+id="evolutionSub">
+
+ANALIZANDO EQUIPAMIENTO
+
+</div>
+
+
+<div class="loader">
+
+<i></i>
+
+</div>
+
+
+<div
+class="evolution-percent"
+id="evolutionPercent">
+
+0 %
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ======================================================
+     TODOS LOS ALIJOS
+====================================================== -->
+
+<div
+class="modal"
+id="allFoundModal">
+
+<div class="modal-card">
+
+<img
+class="logo"
+src="capitolio.png.webp"
+alt="Capitolio">
+
+
 <div class="eyebrow">
-
 PROTOCOLO DE SUPERVIVENCIA
-
 </div>
 
 
@@ -2148,8 +2026,9 @@ TODOS LOS ALIJOS RECUPERADOS
 
 <p>
 
-El tributo ha localizado todos los
-suministros enviados a la Arena.
+El tributo ha localizado y recuperado
+todos los suministros disponibles
+en la Arena.
 
 </p>
 
@@ -2158,8 +2037,8 @@ suministros enviados a la Arena.
 
 Tu inventario está completo.
 
-A partir de este momento no recibirás
-más ayuda externa.
+No se han detectado nuevos envíos
+de patrocinadores.
 
 </p>
 
@@ -2169,7 +2048,7 @@ color:#c5a35b;
 letter-spacing:.08em;
 ">
 
-UTILIZA TUS RECURSOS.<br>
+UTILIZA TUS RECURSOS.<br><br>
 SOBREVIVE A LOS JUEGOS.
 
 </p>
@@ -2189,9 +2068,9 @@ CONTINUAR
 </div>
 
 
-<!-- =====================================================
-     ADMIN SECRETO
-===================================================== -->
+<!-- ======================================================
+     ADMIN
+====================================================== -->
 
 <div
 class="modal"
@@ -2200,13 +2079,10 @@ id="adminModal">
 <div class="modal-card">
 
 
-<div class="modal-logo">
-
 <img
+class="logo"
 src="capitolio.png.webp"
 alt="Capitolio">
-
-</div>
 
 
 <div
@@ -2214,9 +2090,7 @@ id="adminLogin">
 
 
 <div class="eyebrow">
-
 PROTOCOLO RESERVADO
-
 </div>
 
 
@@ -2275,9 +2149,7 @@ class="hidden">
 
 
 <div class="eyebrow">
-
 ACCESO CONCEDIDO
-
 </div>
 
 
@@ -2296,9 +2168,18 @@ id="adminList">
 
 <button
 class="action"
+onclick="adminEquipMinimum()">
+
+EQUIPAR EQUIPO MÍNIMO
+
+</button>
+
+
+<button
+class="action secondary"
 onclick="unlockAll()">
 
-RECUPERAR TODOS
+RECUPERAR TODOS LOS ALIJOS
 
 </button>
 
@@ -2307,7 +2188,7 @@ RECUPERAR TODOS
 class="action secondary"
 onclick="resetAll()">
 
-RESTABLECER PROGRESO
+RESTABLECER TODO
 
 </button>
 
@@ -2337,161 +2218,139 @@ CERRAR
 
 const ADMIN_PIN = "2026";
 
+const STORAGE_EQUIPMENT =
+"tribute_minimum_equipment_v1";
 
-/*
+const STORAGE_SUPPLIES =
+"tribute_supplies_v3";
 
-AQUÍ TENEMOS LOS 6 ALIJOS REALES.
 
-Los objetos son provisionales y podemos
-cambiarlos después cuando diseñemos
-cada prueba física.
-
-*/
+/* =========================================================
+   ALIJOS
+========================================================= */
 
 const supplies = [
 
 {
+  id:"capitol",
 
-id:"capitol",
+  source:"Capitolio",
 
-source:"Capitolio",
+  industry:"Anfitrión",
 
-industry:"Anfitrión de los Juegos",
+  pin:"2025",
 
-pin:"2025",
+  icon:"🎒",
 
-icon:"🎒",
+  item:"Mochila de supervivencia",
 
-equipment:"bag",
-
-item:"Mochila de supervivencia",
-
-description:
-"Una mochila ligera preparada para transportar los suministros que consigas durante los Juegos."
-
+  description:
+  "Una mochila resistente destinada a transportar los recursos recuperados durante los Juegos."
 },
 
 {
+  id:"d1",
 
-id:"d1",
+  source:"Distrito 1",
 
-source:"Distrito 1",
+  industry:"Lujo",
 
-industry:"Lujo",
+  pin:"1847",
 
-pin:"1847",
+  icon:"🔪",
 
-icon:"🔪",
+  item:"Cuchillo",
 
-equipment:"knife",
-
-item:"Cuchillo",
-
-description:
-"Una hoja ligera y resistente. Puede convertirse en una herramienta esencial dentro de la Arena."
-
+  description:
+  "Una hoja ligera y resistente. Puede utilizarse como herramienta de supervivencia dentro de la Arena."
 },
 
 {
+  id:"d2",
 
-id:"d2",
+  source:"Distrito 2",
 
-source:"Distrito 2",
+  industry:"Defensa",
 
-industry:"Mampostería y defensa",
+  pin:"2714",
 
-pin:"2714",
+  icon:"🏹",
 
-icon:"🏹",
+  item:"Arco de caza",
 
-equipment:"bow",
-
-item:"Arco de caza",
-
-description:
-"Has encontrado un arco de caza. Sin embargo, el suministro no contiene flechas. Estado del arma: INCOMPLETO."
-
+  description:
+  "Has recuperado un arco de caza. El suministro no contiene flechas. Estado del arma: INCOMPLETO."
 },
 
 {
+  id:"d8",
 
-id:"d8",
+  source:"Distrito 8",
 
-source:"Distrito 8",
+  industry:"Textiles",
 
-industry:"Textiles",
+  pin:"8265",
 
-pin:"8265",
+  icon:"🧥",
 
-icon:"🧥",
+  item:"Protección térmica",
 
-equipment:"clothes",
-
-item:"Protección térmica",
-
-description:
-"Una prenda resistente enviada por el Distrito 8 para protegerte durante tu permanencia en la Arena."
-
+  description:
+  "Una prenda de protección diseñada para soportar las condiciones de la Arena."
 },
 
 {
+  id:"d11",
 
-id:"d11",
+  source:"Distrito 11",
 
-source:"Distrito 11",
+  industry:"Agricultura",
 
-industry:"Agricultura",
+  pin:"1172",
 
-pin:"1172",
+  icon:"🌿",
 
-icon:"🌿",
+  item:"Recursos naturales",
 
-equipment:"medicine",
-
-item:"Kit de recursos naturales",
-
-description:
-"Plantas, alimento y recursos básicos seleccionados por el Distrito 11 para aumentar tus posibilidades de supervivencia."
-
+  description:
+  "Una selección de recursos básicos procedentes del Distrito 11."
 },
 
 {
+  id:"d12",
 
-id:"d12",
+  source:"Distrito 12",
 
-source:"Distrito 12",
+  industry:"Minería",
 
-industry:"Minería",
+  pin:"1259",
 
-pin:"1259",
+  icon:"➶",
 
-icon:"➶",
+  item:"Carcaj de flechas",
 
-equipment:"arrows",
-
-item:"Carcaj de flechas",
-
-description:
-"Un carcaj con flechas. El arco recuperado anteriormente ya puede utilizarse. Estado del arma: OPERATIVO."
-
+  description:
+  "Has recuperado un carcaj de flechas. El arco obtenido anteriormente puede pasar a estado OPERATIVO."
 }
 
 ];
 
 
 /* =========================================================
-   GUARDADO
+   ESTADO
 ========================================================= */
 
-const STORAGE_KEY =
-"arena_supplies_v2";
+let minimumEquipped =
+localStorage.getItem(
+  STORAGE_EQUIPMENT
+) === "true";
 
 
 let recovered =
 JSON.parse(
-localStorage.getItem(
-STORAGE_KEY
-) || "[]"
+  localStorage.getItem(
+    STORAGE_SUPPLIES
+  ) || "[]"
 );
 
 
@@ -2499,26 +2358,23 @@ let currentSupply =
 null;
 
 
-function save(){
+/* =========================================================
+   GUARDAR
+========================================================= */
 
-localStorage.setItem(
+function saveSupplies(){
 
-STORAGE_KEY,
-
-JSON.stringify(
-recovered
-)
-
-);
+  localStorage.setItem(
+    STORAGE_SUPPLIES,
+    JSON.stringify(recovered)
+  );
 
 }
 
 
 function isRecovered(id){
 
-return recovered.includes(
-id
-);
+  return recovered.includes(id);
 
 }
 
@@ -2529,43 +2385,31 @@ id
 
 function showScreen(id){
 
-document
-.querySelectorAll(
-".screen"
-)
-.forEach(
-screen =>
-screen.classList.remove(
-"active"
-)
-);
+  document
+  .querySelectorAll(".screen")
+  .forEach(
+    screen =>
+    screen.classList.remove("active")
+  );
 
 
-document
-.getElementById(id)
-.classList.add(
-"active"
-);
+  document
+  .getElementById(id)
+  .classList.add("active");
 
 
-window.scrollTo(
-0,
-0
-);
+  window.scrollTo(0,0);
 
 }
 
 
 function goHome(){
 
-currentSupply =
-null;
+  currentSupply = null;
 
-renderEverything();
+  renderEverything();
 
-showScreen(
-"home"
-);
+  showScreen("home");
 
 }
 
@@ -2576,593 +2420,13 @@ showScreen(
 
 function renderEverything(){
 
-renderSupplies();
+  renderCharacter();
 
-renderInventory();
+  renderInventory();
 
-renderCharacter();
+  renderSupplies();
 
-renderProgress();
-
-}
-
-
-/* =========================================================
-   ALIJOS
-========================================================= */
-
-function renderSupplies(){
-
-const grid =
-document.getElementById(
-"supplyGrid"
-);
-
-
-grid.innerHTML =
-"";
-
-
-supplies.forEach(
-s => {
-
-
-const recoveredState =
-isRecovered(
-s.id
-);
-
-
-const button =
-document.createElement(
-"button"
-);
-
-
-button.className =
-
-"supply " +
-
-(
-recoveredState
-? "recovered"
-: ""
-);
-
-
-let emblem;
-
-
-if(
-s.id ===
-"capitol"
-){
-
-emblem = `
-
-<div class="supply-logo capitol">
-
-<img
-src="capitolio.png.webp"
-alt="Capitolio">
-
-</div>
-
-`;
-
-}else{
-
-const districtNumber =
-s.id.replace(
-"d",
-""
-);
-
-
-emblem = `
-
-<div class="supply-logo">
-
-${districtNumber}
-
-</div>
-
-`;
-
-}
-
-
-button.innerHTML = `
-
-${emblem}
-
-<div class="supply-name">
-
-${s.source}
-
-</div>
-
-
-<div class="supply-industry">
-
-${s.industry}
-
-</div>
-
-
-<div class="supply-state">
-
-${
-recoveredState
-? "SUMINISTRO RECUPERADO"
-: "ALIJO NO VERIFICADO"
-}
-
-</div>
-
-`;
-
-
-button.onclick =
-() =>
-openSupply(
-s.id
-);
-
-
-grid.appendChild(
-button
-);
-
-});
-
-}
-
-
-/* =========================================================
-   ABRIR ALIJO
-========================================================= */
-
-function openSupply(id){
-
-currentSupply =
-supplies.find(
-s => s.id === id
-);
-
-
-if(
-isRecovered(id)
-){
-
-showFound(
-currentSupply
-);
-
-return;
-
-}
-
-
-const emblem =
-document.getElementById(
-"accessEmblem"
-);
-
-
-if(
-id ===
-"capitol"
-){
-
-emblem.innerHTML = `
-
-<img
-src="capitolio.png.webp"
-alt="Capitolio">
-
-`;
-
-}else{
-
-emblem.textContent =
-id.replace(
-"d",
-""
-);
-
-}
-
-
-document.getElementById(
-"accessSource"
-).textContent =
-
-currentSupply.source;
-
-
-document.getElementById(
-"accessTitle"
-).textContent =
-
-"ALIJO DE " +
-currentSupply.source;
-
-
-document.getElementById(
-"pinError"
-).textContent =
-"";
-
-
-pinBoxes.forEach(
-box =>
-box.value = ""
-);
-
-
-showScreen(
-"access"
-);
-
-
-setTimeout(
-() =>
-pinBoxes[0].focus(),
-250
-);
-
-}
-
-
-/* =========================================================
-   PIN
-========================================================= */
-
-const pinBoxes = [
-
-...document.querySelectorAll(
-"#pinInputs input"
-)
-
-];
-
-
-pinBoxes.forEach(
-(box,index) => {
-
-
-box.addEventListener(
-"input",
-() => {
-
-
-box.value =
-
-box.value
-.replace(
-/\D/g,
-""
-)
-.slice(-1);
-
-
-if(
-box.value &&
-
-index <
-pinBoxes.length - 1
-){
-
-pinBoxes[
-index + 1
-].focus();
-
-}
-
-});
-
-
-box.addEventListener(
-"keydown",
-event => {
-
-
-if(
-event.key ===
-"Backspace" &&
-
-!box.value &&
-
-index > 0
-){
-
-pinBoxes[
-index - 1
-].focus();
-
-}
-
-
-if(
-event.key ===
-"Enter"
-){
-
-verifyPin();
-
-}
-
-});
-
-});
-
-
-function verifyPin(){
-
-if(
-!currentSupply
-)
-return;
-
-
-const entered =
-
-pinBoxes
-.map(
-box =>
-box.value
-)
-.join("");
-
-
-if(
-entered ===
-currentSupply.pin
-){
-
-
-if(
-!isRecovered(
-currentSupply.id
-)
-){
-
-recovered.push(
-currentSupply.id
-);
-
-save();
-
-}
-
-
-document.getElementById(
-"pinError"
-).style.color =
-"#9cad75";
-
-
-document.getElementById(
-"pinError"
-).textContent =
-
-"CÓDIGO VERIFICADO · SUMINISTRO AUTORIZADO";
-
-
-setTimeout(
-() => {
-
-showFound(
-currentSupply
-);
-
-},
-700
-);
-
-
-}else{
-
-
-document.getElementById(
-"pinError"
-).style.color =
-"#a84e45";
-
-
-document.getElementById(
-"pinError"
-).textContent =
-
-"ACCESO DENEGADO · CÓDIGO INCORRECTO";
-
-
-pinBoxes.forEach(
-box =>
-box.value = ""
-);
-
-
-pinBoxes[0].focus();
-
-}
-
-}
-
-
-/* =========================================================
-   OBJETO ENCONTRADO
-========================================================= */
-
-function showFound(s){
-
-currentSupply =
-s;
-
-
-document.getElementById(
-"foundIcon"
-).textContent =
-s.icon;
-
-
-document.getElementById(
-"foundName"
-).textContent =
-s.item;
-
-
-document.getElementById(
-"foundDescription"
-).textContent =
-s.description;
-
-
-document.getElementById(
-"foundSource"
-).textContent =
-
-"SUMINISTRO ENVIADO POR " +
-s.source.toUpperCase();
-
-
-showScreen(
-"found"
-);
-
-}
-
-
-/* =========================================================
-   INVENTARIO
-========================================================= */
-
-function renderInventory(){
-
-const inventory =
-document.getElementById(
-"inventory"
-);
-
-
-const owned =
-supplies.filter(
-s =>
-isRecovered(
-s.id
-)
-);
-
-
-if(
-owned.length === 0
-){
-
-inventory.innerHTML = `
-
-<div class="inventory-empty">
-
-NO SE HAN RECUPERADO
-SUMINISTROS
-
-</div>
-
-`;
-
-}else{
-
-inventory.innerHTML =
-"";
-
-
-owned.forEach(
-item => {
-
-
-const div =
-document.createElement(
-"div"
-);
-
-
-div.className =
-"inventory-item";
-
-
-let state =
-"DISPONIBLE";
-
-
-if(
-item.equipment ===
-"bow" &&
-!isRecovered(
-"d12"
-)
-){
-
-state =
-"INCOMPLETO";
-
-}
-
-
-if(
-item.equipment ===
-"bow" &&
-isRecovered(
-"d12"
-)
-){
-
-state =
-"OPERATIVO";
-
-}
-
-
-div.innerHTML = `
-
-<div class="item-icon">
-
-${item.icon}
-
-</div>
-
-
-<div class="item-info">
-
-<div class="item-name">
-
-${item.item}
-
-</div>
-
-
-<div class="item-source">
-
-${item.source}
-
-</div>
-
-</div>
-
-
-<div class="item-status">
-
-${state}
-
-</div>
-
-`;
-
-
-inventory.appendChild(
-div
-);
-
-});
+  renderProgress();
 
 }
 
@@ -3173,48 +2437,859 @@ div
 
 function renderCharacter(){
 
-document
-.querySelectorAll(
-".equipment"
-)
-.forEach(
-element =>
-element.classList.remove(
-"visible"
-)
-);
+  const wrap =
+  document.getElementById(
+    "characterWrap"
+  );
 
 
-supplies.forEach(
-s => {
+  const button =
+  document.getElementById(
+    "equipButton"
+  );
 
 
-if(
-isRecovered(
-s.id
-)
+  const state =
+  document.getElementById(
+    "equipmentState"
+  );
+
+
+  const top =
+  document.getElementById(
+    "topEquipment"
+  );
+
+
+  if(minimumEquipped){
+
+    wrap.classList.add(
+      "equipped"
+    );
+
+
+    button.classList.add(
+      "hidden"
+    );
+
+
+    state.innerHTML =
+
+    `EQUIPAMIENTO ACTUAL:
+    <strong>EQUIPO MÍNIMO</strong>`;
+
+
+    top.textContent =
+    "EQUIPADO";
+
+  }
+
+  else{
+
+    wrap.classList.remove(
+      "equipped"
+    );
+
+
+    button.classList.remove(
+      "hidden"
+    );
+
+
+    state.innerHTML =
+
+    `EQUIPAMIENTO ACTUAL:
+    <strong>NINGUNO</strong>`;
+
+
+    top.textContent =
+    "NINGUNO";
+
+  }
+
+}
+
+
+/* =========================================================
+   EQUIPAR EQUIPO MÍNIMO
+========================================================= */
+
+function equipMinimum(){
+
+  if(minimumEquipped)
+  return;
+
+
+  runEvolution(
+
+    "EQUIPANDO TRIBUTO",
+
+    "ASIGNANDO EQUIPO MÍNIMO",
+
+    () => {
+
+      minimumEquipped = true;
+
+
+      localStorage.setItem(
+        STORAGE_EQUIPMENT,
+        "true"
+      );
+
+
+      renderCharacter();
+
+    }
+
+  );
+
+}
+
+
+/* =========================================================
+   TRANSICIÓN EVOLUCIÓN
+========================================================= */
+
+function runEvolution(
+  title,
+  subtitle,
+  callback
 ){
 
-const equipment =
-document.getElementById(
+  const evolution =
+  document.getElementById(
+    "evolution"
+  );
 
-"eq-" +
-s.equipment
+
+  const percent =
+  document.getElementById(
+    "evolutionPercent"
+  );
+
+
+  document.getElementById(
+    "evolutionTitle"
+  ).textContent =
+  title;
+
+
+  document.getElementById(
+    "evolutionSub"
+  ).textContent =
+  subtitle;
+
+
+  evolution.classList.remove(
+    "flash"
+  );
+
+
+  evolution.classList.add(
+    "active"
+  );
+
+
+  percent.textContent =
+  "0 %";
+
+
+  let value = 0;
+
+
+  const interval =
+  setInterval(
+    () => {
+
+      value +=
+      Math.floor(
+        Math.random() * 12
+      ) + 3;
+
+
+      if(value >= 100){
+
+        value = 100;
+
+        clearInterval(
+          interval
+        );
+
+      }
+
+
+      percent.textContent =
+      value + " %";
+
+    },
+
+    150
+  );
+
+
+  setTimeout(
+    () => {
+
+      percent.textContent =
+      "100 %";
+
+
+      evolution.classList.add(
+        "flash"
+      );
+
+
+      if(callback){
+        callback();
+      }
+
+    },
+
+    2800
+  );
+
+
+  setTimeout(
+    () => {
+
+      evolution.classList.remove(
+        "active"
+      );
+
+
+      evolution.classList.remove(
+        "flash"
+      );
+
+    },
+
+    3350
+  );
+
+}
+
+
+/* =========================================================
+   INVENTARIO
+========================================================= */
+
+function renderInventory(){
+
+  const inventory =
+  document.getElementById(
+    "inventory"
+  );
+
+
+  const owned =
+  supplies.filter(
+    supply =>
+    isRecovered(
+      supply.id
+    )
+  );
+
+
+  if(owned.length === 0){
+
+    inventory.innerHTML = `
+
+    <div class="empty-inventory">
+
+    INVENTARIO VACÍO
+
+    <br><br>
+
+    LOCALIZA UN ALIJO
+    PARA RECUPERAR
+    SUMINISTROS
+
+    </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  inventory.innerHTML = "";
+
+
+  owned.forEach(
+    supply => {
+
+
+      let state =
+      "DISPONIBLE";
+
+
+      if(
+        supply.id === "d2" &&
+        !isRecovered("d12")
+      ){
+
+        state =
+        "INCOMPLETO";
+
+      }
+
+
+      if(
+        supply.id === "d2" &&
+        isRecovered("d12")
+      ){
+
+        state =
+        "OPERATIVO";
+
+      }
+
+
+      const item =
+      document.createElement(
+        "div"
+      );
+
+
+      item.className =
+      "inventory-item";
+
+
+      item.innerHTML = `
+
+      <div class="item-icon">
+
+      ${supply.icon}
+
+      </div>
+
+
+      <div class="item-info">
+
+      <div class="item-name">
+
+      ${supply.item}
+
+      </div>
+
+
+      <div class="item-source">
+
+      SUMINISTRO ·
+      ${supply.source}
+
+      </div>
+
+      </div>
+
+
+      <div class="item-state">
+
+      ${state}
+
+      </div>
+
+      `;
+
+
+      inventory.appendChild(
+        item
+      );
+
+    }
+
+  );
+
+}
+
+
+/* =========================================================
+   ALIJOS
+========================================================= */
+
+function renderSupplies(){
+
+  const grid =
+  document.getElementById(
+    "supplyGrid"
+  );
+
+
+  grid.innerHTML = "";
+
+
+  supplies.forEach(
+    supply => {
+
+
+      const recoveredState =
+      isRecovered(
+        supply.id
+      );
+
+
+      const button =
+      document.createElement(
+        "button"
+      );
+
+
+      button.className =
+
+      "supply " +
+
+      (
+        recoveredState
+        ? "recovered"
+        : ""
+      );
+
+
+      let emblem = "";
+
+
+      if(
+        supply.id ===
+        "capitol"
+      ){
+
+        emblem = `
+
+        <div class="
+        supply-emblem">
+
+        <img
+        src="capitolio.png.webp"
+        alt="Capitolio">
+
+        </div>
+
+        `;
+
+      }
+
+      else{
+
+        const number =
+        supply.id.replace(
+          "d",
+          ""
+        );
+
+
+        emblem = `
+
+        <div class="
+        supply-emblem">
+
+        ${number}
+
+        </div>
+
+        `;
+
+      }
+
+
+      button.innerHTML = `
+
+      ${emblem}
+
+
+      <div class="supply-name">
+
+      ${supply.source}
+
+      </div>
+
+
+      <div class="supply-industry">
+
+      ${supply.industry}
+
+      </div>
+
+
+      <div class="supply-status">
+
+      ${
+        recoveredState
+        ? "SUMINISTRO RECUPERADO"
+        : "ALIJO NO VERIFICADO"
+      }
+
+      </div>
+
+      `;
+
+
+      button.onclick =
+      () =>
+      openSupply(
+        supply.id
+      );
+
+
+      grid.appendChild(
+        button
+      );
+
+    }
+
+  );
+
+}
+
+
+/* =========================================================
+   ABRIR ALIJO
+========================================================= */
+
+function openSupply(id){
+
+  currentSupply =
+  supplies.find(
+    supply =>
+    supply.id === id
+  );
+
+
+  if(
+    isRecovered(id)
+  ){
+
+    showFound(
+      currentSupply
+    );
+
+    return;
+
+  }
+
+
+  const emblem =
+  document.getElementById(
+    "accessEmblem"
+  );
+
+
+  if(
+    id === "capitol"
+  ){
+
+    emblem.innerHTML = `
+
+    <img
+    src="capitolio.png.webp"
+    alt="Capitolio">
+
+    `;
+
+  }
+
+  else{
+
+    emblem.textContent =
+    id.replace(
+      "d",
+      ""
+    );
+
+  }
+
+
+  document.getElementById(
+    "accessSource"
+  ).textContent =
+  currentSupply.source;
+
+
+  document.getElementById(
+    "accessTitle"
+  ).textContent =
+
+  "ALIJO DE " +
+  currentSupply.source;
+
+
+  document.getElementById(
+    "pinError"
+  ).textContent = "";
+
+
+  pinBoxes.forEach(
+    box =>
+    box.value = ""
+  );
+
+
+  showScreen(
+    "access"
+  );
+
+
+  setTimeout(
+    () =>
+    pinBoxes[0].focus(),
+    200
+  );
+
+}
+
+
+/* =========================================================
+   PIN
+========================================================= */
+
+const pinBoxes =
+[
+  ...document.querySelectorAll(
+    "#pinInputs input"
+  )
+];
+
+
+pinBoxes.forEach(
+  (box,index) => {
+
+
+    box.addEventListener(
+      "input",
+      () => {
+
+
+        box.value =
+        box.value
+        .replace(/\D/g,"")
+        .slice(-1);
+
+
+        if(
+          box.value &&
+          index <
+          pinBoxes.length - 1
+        ){
+
+          pinBoxes[
+            index + 1
+          ].focus();
+
+        }
+
+      }
+    );
+
+
+    box.addEventListener(
+      "keydown",
+      event => {
+
+
+        if(
+          event.key ===
+          "Backspace" &&
+          !box.value &&
+          index > 0
+        ){
+
+          pinBoxes[
+            index - 1
+          ].focus();
+
+        }
+
+
+        if(
+          event.key ===
+          "Enter"
+        ){
+
+          verifyPin();
+
+        }
+
+      }
+    );
+
+  }
 
 );
 
 
-if(equipment){
+/* =========================================================
+   VERIFICAR PIN
+========================================================= */
 
-equipment.classList.add(
-"visible"
-);
+function verifyPin(){
+
+  if(!currentSupply)
+  return;
+
+
+  const entered =
+  pinBoxes
+  .map(
+    box =>
+    box.value
+  )
+  .join("");
+
+
+  const error =
+  document.getElementById(
+    "pinError"
+  );
+
+
+  if(
+    entered ===
+    currentSupply.pin
+  ){
+
+    error.style.color =
+    "#9cad75";
+
+
+    error.textContent =
+    "CÓDIGO VERIFICADO · SUMINISTRO LOCALIZADO";
+
+
+    setTimeout(
+      () => {
+
+        showFound(
+          currentSupply
+        );
+
+      },
+
+      650
+    );
+
+  }
+
+  else{
+
+    error.style.color =
+    "#a84e45";
+
+
+    error.textContent =
+    "ACCESO DENEGADO · CÓDIGO INCORRECTO";
+
+
+    pinBoxes.forEach(
+      box =>
+      box.value = ""
+    );
+
+
+    pinBoxes[0].focus();
+
+  }
 
 }
 
+
+/* =========================================================
+   OBJETO ENCONTRADO
+========================================================= */
+
+function showFound(supply){
+
+  currentSupply =
+  supply;
+
+
+  document.getElementById(
+    "foundIcon"
+  ).textContent =
+  supply.icon;
+
+
+  document.getElementById(
+    "foundName"
+  ).textContent =
+  supply.item;
+
+
+  document.getElementById(
+    "foundDescription"
+  ).textContent =
+  supply.description;
+
+
+  document.getElementById(
+    "foundSource"
+  ).textContent =
+
+  "SUMINISTRO ENVIADO POR " +
+  supply.source.toUpperCase();
+
+
+  showScreen(
+    "found"
+  );
+
 }
 
-});
+
+/* =========================================================
+   INCORPORAR OBJETO
+========================================================= */
+
+function incorporateSupply(){
+
+  if(!currentSupply)
+  return;
+
+
+  const supply =
+  currentSupply;
+
+
+  runEvolution(
+
+    "ACTUALIZANDO TRIBUTO",
+
+    "INCORPORANDO " +
+    supply.item.toUpperCase(),
+
+    () => {
+
+
+      if(
+        !isRecovered(
+          supply.id
+        )
+      ){
+
+        recovered.push(
+          supply.id
+        );
+
+        saveSupplies();
+
+      }
+
+
+      renderEverything();
+
+    }
+
+  );
+
+
+  setTimeout(
+    () => {
+
+      goHome();
+
+    },
+
+    3400
+  );
 
 }
 
@@ -3225,70 +3300,76 @@ equipment.classList.add(
 
 function renderProgress(){
 
-const count =
-recovered.filter(
-id =>
-supplies.some(
-s =>
-s.id === id
-)
-).length;
+  const count =
+  recovered.filter(
+    id =>
+    supplies.some(
+      supply =>
+      supply.id === id
+    )
+  ).length;
 
 
-const total =
-supplies.length;
+  const total =
+  supplies.length;
 
 
-document.getElementById(
-"topCount"
-).textContent =
+  document.getElementById(
+    "topSupplyCount"
+  ).textContent =
 
-count +
-" / " +
-total;
-
-
-document.getElementById(
-"progressText"
-).textContent =
-
-count +
-" DE " +
-total;
+  count +
+  " / " +
+  total;
 
 
-document.getElementById(
-"progressBar"
-).style.width =
+  document.getElementById(
+    "progressText"
+  ).textContent =
 
-(
-count /
-total *
-100
-) + "%";
+  count +
+  " DE " +
+  total;
 
 
-const button =
-document.getElementById(
-"allFoundButton"
-);
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+
+  (
+    count /
+    total *
+    100
+  ) + "%";
 
 
-if(
-count === total
-){
+  const allFoundButton =
+  document.getElementById(
+    "allFoundButton"
+  );
 
-button.classList.remove(
-"hidden"
-);
 
-}else{
+  if(
+    count === total
+  ){
 
-button.classList.add(
-"hidden"
-);
+    allFoundButton
+    .classList
+    .remove(
+      "hidden"
+    );
 
-}
+  }
+
+  else{
+
+    allFoundButton
+    .classList
+    .add(
+      "hidden"
+    );
+
+  }
 
 }
 
@@ -3299,22 +3380,22 @@ button.classList.add(
 
 function openAllFound(){
 
-document.getElementById(
-"allFoundModal"
-).classList.add(
-"open"
-);
+  document.getElementById(
+    "allFoundModal"
+  ).classList.add(
+    "open"
+  );
 
 }
 
 
 function closeAllFound(){
 
-document.getElementById(
-"allFoundModal"
-).classList.remove(
-"open"
-);
+  document.getElementById(
+    "allFoundModal"
+  ).classList.remove(
+    "open"
+  );
 
 }
 
@@ -3328,324 +3409,381 @@ let holdTimer;
 
 document
 .querySelectorAll(
-".admin-trigger"
+  ".admin-trigger"
 )
 .forEach(
-logo => {
+  logo => {
 
 
-const start =
-() => {
+    const start =
+    () => {
 
 
-clearTimeout(
-holdTimer
+      clearTimeout(
+        holdTimer
+      );
+
+
+      holdTimer =
+      setTimeout(
+        openAdmin,
+        3000
+      );
+
+    };
+
+
+    const stop =
+    () => {
+
+      clearTimeout(
+        holdTimer
+      );
+
+    };
+
+
+    logo.addEventListener(
+      "touchstart",
+      start,
+      {passive:true}
+    );
+
+
+    logo.addEventListener(
+      "touchend",
+      stop
+    );
+
+
+    logo.addEventListener(
+      "touchcancel",
+      stop
+    );
+
+
+    logo.addEventListener(
+      "mousedown",
+      start
+    );
+
+
+    logo.addEventListener(
+      "mouseup",
+      stop
+    );
+
+
+    logo.addEventListener(
+      "mouseleave",
+      stop
+    );
+
+  }
+
 );
 
 
-holdTimer =
-setTimeout(
-openAdmin,
-3000
-);
-
-};
-
-
-const stop =
-() => {
-
-clearTimeout(
-holdTimer
-);
-
-};
-
-
-logo.addEventListener(
-"touchstart",
-start,
-{passive:true}
-);
-
-
-logo.addEventListener(
-"touchend",
-stop
-);
-
-
-logo.addEventListener(
-"touchcancel",
-stop
-);
-
-
-logo.addEventListener(
-"mousedown",
-start
-);
-
-
-logo.addEventListener(
-"mouseup",
-stop
-);
-
-
-logo.addEventListener(
-"mouseleave",
-stop
-);
-
-
-});
-
+/* =========================================================
+   ABRIR ADMIN
+========================================================= */
 
 function openAdmin(){
 
-document.getElementById(
-"adminModal"
-).classList.add(
-"open"
-);
+  document.getElementById(
+    "adminModal"
+  ).classList.add(
+    "open"
+  );
 
 
-document.getElementById(
-"adminLogin"
-).classList.remove(
-"hidden"
-);
+  document.getElementById(
+    "adminLogin"
+  ).classList.remove(
+    "hidden"
+  );
 
 
-document.getElementById(
-"adminPanel"
-).classList.add(
-"hidden"
-);
+  document.getElementById(
+    "adminPanel"
+  ).classList.add(
+    "hidden"
+  );
 
 
-document.getElementById(
-"adminPin"
-).value =
-"";
+  document.getElementById(
+    "adminPin"
+  ).value = "";
 
 
-document.getElementById(
-"adminError"
-).textContent =
-"";
-
-}
-
-
-function closeAdmin(){
-
-document.getElementById(
-"adminModal"
-).classList.remove(
-"open"
-);
-
-}
-
-
-function adminLogin(){
-
-if(
-document.getElementById(
-"adminPin"
-).value ===
-ADMIN_PIN
-){
-
-document.getElementById(
-"adminLogin"
-).classList.add(
-"hidden"
-);
-
-
-document.getElementById(
-"adminPanel"
-).classList.remove(
-"hidden"
-);
-
-
-renderAdmin();
-
-}else{
-
-document.getElementById(
-"adminError"
-).textContent =
-
-"CREDENCIAL DENEGADA";
-
-}
+  document.getElementById(
+    "adminError"
+  ).textContent = "";
 
 }
 
 
 /* =========================================================
-   PANEL ADMIN
+   CERRAR ADMIN
+========================================================= */
+
+function closeAdmin(){
+
+  document.getElementById(
+    "adminModal"
+  ).classList.remove(
+    "open"
+  );
+
+}
+
+
+/* =========================================================
+   LOGIN ADMIN
+========================================================= */
+
+function adminLogin(){
+
+  const value =
+  document.getElementById(
+    "adminPin"
+  ).value;
+
+
+  if(
+    value ===
+    ADMIN_PIN
+  ){
+
+    document.getElementById(
+      "adminLogin"
+    ).classList.add(
+      "hidden"
+    );
+
+
+    document.getElementById(
+      "adminPanel"
+    ).classList.remove(
+      "hidden"
+    );
+
+
+    renderAdmin();
+
+  }
+
+  else{
+
+    document.getElementById(
+      "adminError"
+    ).textContent =
+    "CREDENCIAL DENEGADA";
+
+  }
+
+}
+
+
+/* =========================================================
+   ADMIN LISTA
 ========================================================= */
 
 function renderAdmin(){
 
-const list =
-document.getElementById(
-"adminList"
-);
+  const list =
+  document.getElementById(
+    "adminList"
+  );
 
 
-list.innerHTML =
-"";
+  list.innerHTML = "";
 
 
-supplies.forEach(
-s => {
+  supplies.forEach(
+    supply => {
 
 
-const row =
-document.createElement(
-"div"
-);
+      const row =
+      document.createElement(
+        "div"
+      );
 
 
-row.className =
-"admin-row";
+      row.className =
+      "admin-row";
 
 
-row.innerHTML = `
+      row.innerHTML = `
 
-<span>
+      <span>
 
-${s.source}
+      ${supply.source}
 
-<br>
+      <br>
 
-<span style="
-color:#777;
-font-size:8px;
-">
+      <span style="
+      color:#777;
+      font-size:7px;
+      ">
 
-PIN ${s.pin}
+      PIN ${supply.pin}
 
-</span>
+      </span>
 
-</span>
-
-
-<button
-onclick="
-toggleSupply(
-'${s.id}'
-)
-">
-
-${
-isRecovered(
-s.id
-)
-? "RESTABLECER"
-: "RECUPERAR"
-}
-
-</button>
-
-`;
+      </span>
 
 
-list.appendChild(
-row
-);
+      <button
+      onclick="
+      adminToggleSupply(
+      '${supply.id}'
+      )
+      ">
 
-});
+      ${
+        isRecovered(
+          supply.id
+        )
+        ? "QUITAR"
+        : "AÑADIR"
+      }
 
-}
+      </button>
 
-
-function toggleSupply(id){
-
-if(
-isRecovered(id)
-){
-
-recovered =
-recovered.filter(
-item =>
-item !== id
-);
-
-}else{
-
-recovered.push(
-id
-);
-
-}
+      `;
 
 
-save();
+      list.appendChild(
+        row
+      );
 
-renderAdmin();
+    }
 
-renderEverything();
+  );
 
 }
 
 
 /* =========================================================
-   ADMIN: TODOS
+   ADMIN TOGGLE
+========================================================= */
+
+function adminToggleSupply(id){
+
+  if(
+    isRecovered(id)
+  ){
+
+    recovered =
+    recovered.filter(
+      item =>
+      item !== id
+    );
+
+  }
+
+  else{
+
+    recovered.push(id);
+
+  }
+
+
+  saveSupplies();
+
+  renderEverything();
+
+  renderAdmin();
+
+}
+
+
+/* =========================================================
+   ADMIN EQUIPO MÍNIMO
+========================================================= */
+
+function adminEquipMinimum(){
+
+  minimumEquipped =
+  true;
+
+
+  localStorage.setItem(
+    STORAGE_EQUIPMENT,
+    "true"
+  );
+
+
+  renderEverything();
+
+}
+
+
+/* =========================================================
+   ADMIN TODOS LOS ALIJOS
 ========================================================= */
 
 function unlockAll(){
 
-recovered =
-supplies.map(
-s =>
-s.id
-);
+  recovered =
+  supplies.map(
+    supply =>
+    supply.id
+  );
 
 
-save();
+  saveSupplies();
 
-renderEverything();
+  renderEverything();
 
-renderAdmin();
+  renderAdmin();
 
 }
 
 
 /* =========================================================
-   ADMIN: RESET
+   RESET COMPLETO
 ========================================================= */
 
 function resetAll(){
 
-if(
-confirm(
-"¿RESTABLECER TODOS LOS ALIJOS?"
-)
-){
+  if(
+    !confirm(
+      "¿RESTABLECER COMPLETAMENTE EL INVENTARIO DEL TRIBUTO?"
+    )
+  ){
 
-recovered = [];
+    return;
 
-save();
+  }
 
-renderEverything();
 
-renderAdmin();
+  recovered = [];
 
-}
+  minimumEquipped =
+  false;
+
+
+  localStorage.removeItem(
+    STORAGE_SUPPLIES
+  );
+
+
+  localStorage.removeItem(
+    STORAGE_EQUIPMENT
+  );
+
+
+  renderEverything();
+
+  renderAdmin();
 
 }
 
 
 /* =========================================================
-   INICIO
+   INICIAR
 ========================================================= */
 
 renderEverything();
