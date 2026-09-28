@@ -61,7 +61,9 @@ button{cursor:pointer;}
   margin:auto;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .capitol-header{
   text-align:center;
@@ -111,7 +113,9 @@ h1{
   background:linear-gradient(90deg,transparent,var(--gold2),transparent);
 }
 
-/* ESTADO */
+/* =========================
+   ESTADO
+========================= */
 
 .status-grid{
   display:grid;
@@ -140,7 +144,9 @@ h1{
   font-size:15px;
 }
 
-/* PROGRESO */
+/* =========================
+   PROGRESO
+========================= */
 
 .progress-area{
   margin:0 auto 20px;
@@ -170,7 +176,9 @@ h1{
   transition:width .6s ease;
 }
 
-/* LAYOUT */
+/* =========================
+   LAYOUT
+========================= */
 
 .main-layout{
   display:grid;
@@ -206,7 +214,9 @@ h1{
   text-transform:uppercase;
 }
 
-/* PERSONAJE */
+/* =========================
+   PERSONAJE
+========================= */
 
 .character-stage{
   position:relative;
@@ -247,12 +257,10 @@ h1{
   height:100%;
   max-width:95%;
   object-fit:contain;
-
   transition:
     opacity .55s ease,
     filter .55s ease,
     transform .55s ease;
-
   filter:drop-shadow(0 0 18px rgba(197,163,91,.10));
 }
 
@@ -307,7 +315,9 @@ h1{
   color:var(--gold);
 }
 
-/* BOTONES */
+/* =========================
+   BOTONES
+========================= */
 
 .action{
   width:100%;
@@ -340,7 +350,9 @@ h1{
   50%{box-shadow:0 0 23px rgba(197,163,91,.15);}
 }
 
-/* INVENTARIO */
+/* =========================
+   INVENTARIO
+========================= */
 
 .inventory-content{
   padding:12px;
@@ -380,7 +392,9 @@ h1{
   font-size:21px;
 }
 
-.item-info{flex:1;}
+.item-info{
+  flex:1;
+}
 
 .item-name{
   font-size:12px;
@@ -420,7 +434,9 @@ h1{
   animation:buttonGlow 2s infinite;
 }
 
-/* ALIJOS */
+/* =========================
+   ALIJOS
+========================= */
 
 .section-title{
   margin:34px 0 17px;
@@ -456,7 +472,7 @@ h1{
 }
 
 .supply{
-  min-height:170px;
+  min-height:185px;
   padding:16px 8px;
   border:1px solid #292a27;
   background:linear-gradient(145deg,#111313,#090a0a);
@@ -474,27 +490,20 @@ h1{
 }
 
 .supply-emblem{
-  width:64px;
-  height:64px;
+  width:78px;
+  height:78px;
   margin:0 auto 12px;
-  display:grid;
-  place-items:center;
-  border:1px solid #3b3d39;
-  border-radius:50%;
-  color:#777;
-  font-size:25px;
-}
-
-.supply.found .supply-emblem,
-.supply.equipped .supply-emblem{
-  color:var(--gold);
-  border-color:var(--gold2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .supply-emblem img{
-  width:51px;
-  height:51px;
+  width:100%;
+  height:100%;
   object-fit:contain;
+  filter:
+    drop-shadow(0 0 8px rgba(197,163,91,.15));
 }
 
 .supply-name{
@@ -527,7 +536,9 @@ h1{
   color:var(--gold);
 }
 
-/* RECOMPENSAS */
+/* =========================
+   RECOMPENSAS
+========================= */
 
 .rewards{
   margin-top:35px;
@@ -562,7 +573,9 @@ h1{
   font-size:27px;
 }
 
-/* PIN */
+/* =========================
+   VERIFICACIÓN
+========================= */
 
 .access-card{
   max-width:580px;
@@ -574,21 +587,19 @@ h1{
 }
 
 .access-emblem{
-  width:105px;
-  height:105px;
+  width:120px;
+  height:120px;
   margin:0 auto 18px;
-  display:grid;
-  place-items:center;
-  border:1px solid var(--gold2);
-  border-radius:50%;
-  color:var(--gold);
-  font-size:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .access-emblem img{
-  width:80px;
-  height:80px;
+  width:100%;
+  height:100%;
   object-fit:contain;
+  filter:drop-shadow(0 0 12px rgba(197,163,91,.18));
 }
 
 .access-card h2{
@@ -642,7 +653,9 @@ h1{
   text-transform:uppercase;
 }
 
-/* OBJETO ENCONTRADO */
+/* =========================
+   OBJETO ENCONTRADO
+========================= */
 
 .found-card{
   max-width:580px;
@@ -689,7 +702,9 @@ h1{
   line-height:1.7;
 }
 
-/* TRANSICIÓN EVOLUCIÓN */
+/* =========================
+   EVOLUCIÓN
+========================= */
 
 .evolution{
   position:fixed;
@@ -838,7 +853,9 @@ h1{
   to{opacity:0;}
 }
 
-/* MODALES */
+/* =========================
+   MODALES
+========================= */
 
 .modal{
   position:fixed;
@@ -916,7 +933,9 @@ h1{
   text-transform:uppercase;
 }
 
-/* RESPONSIVE */
+/* =========================
+   MÓVIL
+========================= */
 
 @media(max-width:720px){
 
@@ -936,15 +955,20 @@ h1{
     grid-template-columns:repeat(2,1fr);
   }
 
+  .supply-emblem{
+    width:70px;
+    height:70px;
+  }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- ======================================================
-     PRINCIPAL
-====================================================== -->
+<!-- =====================================================
+     PANTALLA PRINCIPAL
+===================================================== -->
 
 <section id="home" class="screen active">
 
@@ -1072,7 +1096,9 @@ ALIJOS ENCONTRADOS · 6 / 6
 
 </div>
 
-<!-- ALIJOS -->
+<!-- =====================================================
+     ALIJOS
+===================================================== -->
 
 <div class="section-title">
 
@@ -1098,7 +1124,9 @@ class="supply-grid"
 id="supplyGrid">
 </div>
 
-<!-- RECOMPENSAS -->
+<!-- =====================================================
+     RECOMPENSAS
+===================================================== -->
 
 <div class="rewards">
 
@@ -1120,7 +1148,8 @@ RECOMPENSAS DE VICTORIA
 
 <p>
 Los objetos obtenidos durante los Juegos
-son únicamente suministros de supervivencia.
+son suministros destinados a garantizar
+tu supervivencia.
 </p>
 
 <p>
@@ -1138,9 +1167,9 @@ ACCESO BLOQUEADO · SOBREVIVE A LOS JUEGOS
 </div>
 </section>
 
-<!-- ======================================================
-     INTRODUCIR CÓDIGO
-====================================================== -->
+<!-- =====================================================
+     CÓDIGO DE MEDALLA
+===================================================== -->
 
 <section id="access" class="screen">
 
@@ -1217,9 +1246,9 @@ id="pinError">
 </div>
 </section>
 
-<!-- ======================================================
+<!-- =====================================================
      OBJETO ENCONTRADO
-====================================================== -->
+===================================================== -->
 
 <section id="found" class="screen">
 
@@ -1287,9 +1316,9 @@ VOLVER AL INVENTARIO
 </div>
 </section>
 
-<!-- ======================================================
-     TRANSICIÓN EVOLUCIÓN
-====================================================== -->
+<!-- =====================================================
+     EVOLUCIÓN
+===================================================== -->
 
 <div
 class="evolution"
@@ -1308,17 +1337,13 @@ id="evolution">
 <div
 class="evolution-title"
 id="evolutionTitle">
-
 ACTUALIZANDO TRIBUTO
-
 </div>
 
 <div
 class="evolution-sub"
 id="evolutionSub">
-
 ANALIZANDO EQUIPAMIENTO
-
 </div>
 
 <div class="loader">
@@ -1328,17 +1353,15 @@ ANALIZANDO EQUIPAMIENTO
 <div
 class="evolution-percent"
 id="evolutionPercent">
-
 0 %
-
 </div>
 
 </div>
 </div>
 
-<!-- ======================================================
-     ALIJOS COMPLETADOS
-====================================================== -->
+<!-- =====================================================
+     TODOS LOS ALIJOS
+===================================================== -->
 
 <div
 class="modal"
@@ -1367,8 +1390,7 @@ han sido localizados.
 
 <p>
 Comprueba tu inventario y asegúrate
-de haber equipado todos los recursos
-antes de continuar.
+de haber equipado todos los recursos.
 </p>
 
 <p style="color:#c5a35b;letter-spacing:.08em;">
@@ -1379,17 +1401,15 @@ SOBREVIVE A LOS JUEGOS.
 <button
 class="action"
 onclick="closeAllFound()">
-
 CONTINUAR
-
 </button>
 
 </div>
 </div>
 
-<!-- ======================================================
+<!-- =====================================================
      ADMIN
-====================================================== -->
+===================================================== -->
 
 <div
 class="modal"
@@ -1429,9 +1449,7 @@ placeholder="••••">
 <button
 class="action"
 onclick="adminLogin()">
-
 AUTORIZAR
-
 </button>
 
 <div
@@ -1442,9 +1460,7 @@ id="adminError">
 <button
 class="action secondary"
 onclick="closeAdmin()">
-
 CANCELAR
-
 </button>
 
 </div>
@@ -1461,50 +1477,38 @@ ACCESO CONCEDIDO
 CONTROL DEL CAPITOLIO
 </h2>
 
-<div
-id="adminList">
-</div>
+<div id="adminList"></div>
 
 <br>
 
 <button
 class="action"
 onclick="adminEquipMinimum()">
-
 EQUIPAR EQUIPO MÍNIMO
-
 </button>
 
 <button
 class="action secondary"
 onclick="adminUnlockAll()">
-
 ENCONTRAR TODOS LOS ALIJOS
-
 </button>
 
 <button
 class="action secondary"
 onclick="adminEquipAll()">
-
 EQUIPAR TODO
-
 </button>
 
 <button
 class="action secondary"
 onclick="resetAll()">
-
 RESTABLECER TODO
-
 </button>
 
 <button
 class="action secondary"
 onclick="closeAdmin()">
-
 CERRAR
-
 </button>
 
 </div>
@@ -1521,28 +1525,26 @@ CERRAR
 const ADMIN_PIN = "2026";
 
 const STORAGE_MINIMUM =
-"tribute_minimum_equipment_v2";
+"tribute_minimum_equipment_v3";
 
 const STORAGE_FOUND =
-"tribute_found_supplies_v2";
+"tribute_found_supplies_v3";
 
 const STORAGE_EQUIPPED =
-"tribute_equipped_supplies_v2";
+"tribute_equipped_supplies_v3";
 
-/*
-=========================================================
-IMÁGENES
+/* =========================================================
+   IMÁGENES DEL PERSONAJE
 
-tributo_00.png = SIN EQUIPAMIENTO
-tributo_01.png = EQUIPO MÍNIMO
-tributo_02.png = + MOCHILA
-tributo_03.png = + CUCHILLO
-tributo_04.png = + ARCO SIN FLECHAS
-tributo_05.png = + PROTECCIÓN TÉRMICA
-tributo_06.png = + RECURSOS NATURALES
-tributo_07.png = + CARCAJ Y FLECHAS
-=========================================================
-*/
+   tributo_00.png → sin equipamiento
+   tributo_01.png → ropa inicial
+   tributo_02.png → + mochila
+   tributo_03.png → + cuchillo
+   tributo_04.png → + arco
+   tributo_05.png → + protección térmica
+   tributo_06.png → + recursos naturales
+   tributo_07.png → + carcaj/flechas
+========================================================= */
 
 const characterStages = [
 
@@ -1597,13 +1599,22 @@ const supplies = [
 {
   id:"capitol",
   order:1,
+
   source:"Capitolio",
   industry:"Anfitrión de los Juegos",
+
   pin:"2025",
+
+  logo:"capitolio.png.webp",
+
   icon:"🎒",
+
   item:"Mochila de supervivencia",
+
   image:"tributo_02.png",
+
   label:"MOCHILA EQUIPADA",
+
   description:
   "El Capitolio ha autorizado una mochila de supervivencia para transportar los recursos recuperados durante los Juegos."
 },
@@ -1611,13 +1622,22 @@ const supplies = [
 {
   id:"d1",
   order:2,
+
   source:"Distrito 1",
   industry:"Lujo",
+
   pin:"1847",
+
+  logo:"distrito_1.webp",
+
   icon:"🔪",
+
   item:"Cuchillo de supervivencia",
+
   image:"tributo_03.png",
+
   label:"CUCHILLO EQUIPADO",
+
   description:
   "Una hoja resistente acompañada de un soporte de muslo. Un recurso útil para la supervivencia dentro de la Arena."
 },
@@ -1625,13 +1645,22 @@ const supplies = [
 {
   id:"d2",
   order:3,
+
   source:"Distrito 2",
   industry:"Defensa",
+
   pin:"2714",
+
+  logo:"distrito_2.webp",
+
   icon:"🏹",
+
   item:"Arco",
+
   image:"tributo_04.png",
+
   label:"ARCO · SIN FLECHAS",
+
   description:
   "Has recuperado un arco. El suministro no contiene flechas. Estado actual del arma: INCOMPLETO."
 },
@@ -1639,13 +1668,22 @@ const supplies = [
 {
   id:"d8",
   order:4,
+
   source:"Distrito 8",
   industry:"Textiles",
+
   pin:"8265",
+
+  logo:"distrito_8.webp",
+
   icon:"🧥",
+
   item:"Protección térmica",
+
   image:"tributo_05.png",
+
   label:"PROTECCIÓN TÉRMICA",
+
   description:
   "Equipamiento térmico diseñado para aumentar la protección del tributo frente a las condiciones de la Arena."
 },
@@ -1653,13 +1691,22 @@ const supplies = [
 {
   id:"d11",
   order:5,
+
   source:"Distrito 11",
   industry:"Agricultura",
+
   pin:"1172",
+
+  logo:"distrito_11.webp",
+
   icon:"🌿",
+
   item:"Recursos naturales",
+
   image:"tributo_06.png",
+
   label:"RECURSOS NATURALES",
+
   description:
   "Recursos naturales seleccionados por el Distrito 11 para aumentar tus posibilidades de supervivencia."
 },
@@ -1667,13 +1714,22 @@ const supplies = [
 {
   id:"d12",
   order:6,
+
   source:"Distrito 12",
   industry:"Minería",
+
   pin:"1259",
+
+  logo:"distrito_12.webp",
+
   icon:"➶",
+
   item:"Carcaj de flechas",
+
   image:"tributo_07.png",
+
   label:"EQUIPAMIENTO COMPLETO",
+
   description:
   "Un carcaj equipado con flechas. El arco recuperado anteriormente pasa a estado OPERATIVO."
 }
@@ -1762,7 +1818,7 @@ function goHome(){
 }
 
 /* =========================================================
-   RENDER
+   RENDER GENERAL
 ========================================================= */
 
 function renderEverything(){
@@ -1775,7 +1831,7 @@ function renderEverything(){
 }
 
 /* =========================================================
-   IMAGEN DEL TRIBUTO
+   PERSONAJE
 ========================================================= */
 
 function updateTributeImage(){
@@ -1810,10 +1866,6 @@ function updateTributeImage(){
   }
 
   button.classList.add("hidden");
-
-  /*
-  Buscamos la fase más avanzada equipada.
-  */
 
   let highestStage = 1;
 
@@ -1850,7 +1902,8 @@ function updateTributeImage(){
   }else{
 
     top.textContent =
-    equippedSupplies.length + " EQUIP.";
+    equippedSupplies.length +
+    " EQUIP.";
 
   }
 
@@ -2012,7 +2065,7 @@ function renderInventory(){
 }
 
 /* =========================================================
-   ALIJOS
+   ALIJOS CON LOGOS
 ========================================================= */
 
 function renderSupplies(){
@@ -2039,36 +2092,6 @@ function renderSupplies(){
       (found ? "found " : "") +
       (equipped ? "equipped" : "");
 
-      let emblem;
-
-      if(supply.id === "capitol"){
-
-        emblem = `
-
-        <div class="supply-emblem">
-
-        <img
-        src="capitolio.png.webp"
-        alt="Capitolio">
-
-        </div>
-
-        `;
-
-      }else{
-
-        emblem = `
-
-        <div class="supply-emblem">
-
-        ${supply.id.replace("d","")}
-
-        </div>
-
-        `;
-
-      }
-
       let status =
       "MEDALLA NO VERIFICADA";
 
@@ -2088,7 +2111,13 @@ function renderSupplies(){
 
       button.innerHTML = `
 
-      ${emblem}
+      <div class="supply-emblem">
+
+      <img
+      src="${supply.logo}"
+      alt="${supply.source}">
+
+      </div>
 
       <div class="supply-name">
       ${supply.source}
@@ -2116,7 +2145,7 @@ function renderSupplies(){
 }
 
 /* =========================================================
-   ABRIR ALIJO
+   ABRIR MEDALLA
 ========================================================= */
 
 function openSupply(id){
@@ -2136,24 +2165,17 @@ function openSupply(id){
   }
 
   const emblem =
-  document.getElementById("accessEmblem");
+  document.getElementById(
+    "accessEmblem"
+  );
 
-  if(id === "capitol"){
+  emblem.innerHTML = `
 
-    emblem.innerHTML = `
+  <img
+  src="${currentSupply.logo}"
+  alt="${currentSupply.source}">
 
-    <img
-    src="capitolio.png.webp"
-    alt="Capitolio">
-
-    `;
-
-  }else{
-
-    emblem.textContent =
-    id.replace("d","");
-
-  }
+  `;
 
   document.getElementById(
     "accessSource"
@@ -2210,10 +2232,13 @@ pinBoxes.forEach(
 
         if(
           box.value &&
-          index < pinBoxes.length - 1
+          index <
+          pinBoxes.length - 1
         ){
 
-          pinBoxes[index + 1].focus();
+          pinBoxes[
+            index + 1
+          ].focus();
 
         }
 
@@ -2230,7 +2255,9 @@ pinBoxes.forEach(
           index > 0
         ){
 
-          pinBoxes[index - 1].focus();
+          pinBoxes[
+            index - 1
+          ].focus();
 
         }
 
@@ -2282,7 +2309,7 @@ pinBoxes.forEach(
 );
 
 /* =========================================================
-   VERIFICAR
+   VERIFICAR CÓDIGO
 ========================================================= */
 
 function verifyPin(){
@@ -2296,7 +2323,9 @@ function verifyPin(){
   .join("");
 
   const error =
-  document.getElementById("pinError");
+  document.getElementById(
+    "pinError"
+  );
 
   if(
     entered ===
@@ -2304,7 +2333,9 @@ function verifyPin(){
   ){
 
     if(
-      !isFound(currentSupply.id)
+      !isFound(
+        currentSupply.id
+      )
     ){
 
       foundSupplies.push(
@@ -2354,7 +2385,7 @@ function verifyPin(){
 }
 
 /* =========================================================
-   OBJETO DESCUBIERTO
+   OBJETO ENCONTRADO
 ========================================================= */
 
 function showFound(supply){
@@ -2393,7 +2424,11 @@ function showFound(supply){
     "alreadyEquippedButton"
   );
 
-  if(isEquipped(supply.id)){
+  if(
+    isEquipped(
+      supply.id
+    )
+  ){
 
     equipButton.classList.add(
       "hidden"
@@ -2420,7 +2455,7 @@ function showFound(supply){
 }
 
 /* =========================================================
-   EQUIPAR SUMINISTRO
+   EQUIPAR OBJETO
 ========================================================= */
 
 function equipCurrentSupply(){
@@ -2431,7 +2466,11 @@ function equipCurrentSupply(){
   const supply =
   currentSupply;
 
-  if(isEquipped(supply.id)){
+  if(
+    isEquipped(
+      supply.id
+    )
+  ){
 
     goHome();
     return;
@@ -2485,7 +2524,7 @@ function equipCurrentSupply(){
 }
 
 /* =========================================================
-   TRANSICIÓN DE EVOLUCIÓN
+   TRANSICIÓN
 ========================================================= */
 
 function runEvolution(
@@ -2670,7 +2709,7 @@ function renderProgress(){
 }
 
 /* =========================================================
-   ALIJOS COMPLETOS
+   TODOS ENCONTRADOS
 ========================================================= */
 
 function openAllFound(){
@@ -2700,14 +2739,18 @@ function closeAllFound(){
 let holdTimer;
 
 document
-.querySelectorAll(".admin-trigger")
+.querySelectorAll(
+  ".admin-trigger"
+)
 .forEach(
   logo => {
 
     const start =
     () => {
 
-      clearTimeout(holdTimer);
+      clearTimeout(
+        holdTimer
+      );
 
       holdTimer =
       setTimeout(
@@ -2860,14 +2903,22 @@ function renderAdmin(){
       let status =
       "NO ENCONTRADO";
 
-      if(isFound(supply.id)){
+      if(
+        isFound(
+          supply.id
+        )
+      ){
 
         status =
         "ENCONTRADO";
 
       }
 
-      if(isEquipped(supply.id)){
+      if(
+        isEquipped(
+          supply.id
+        )
+      ){
 
         status =
         "EQUIPADO";
@@ -2907,7 +2958,9 @@ function renderAdmin(){
 
       `;
 
-      list.appendChild(row);
+      list.appendChild(
+        row
+      );
 
     }
   );
@@ -2915,20 +2968,14 @@ function renderAdmin(){
 }
 
 /* =========================================================
-   ADMIN CAMBIAR ESTADO
+   ADMIN CAMBIAR
 ========================================================= */
 
 function adminToggleSupply(id){
 
-  /*
-  Ciclo:
-  no encontrado
-  -> encontrado
-  -> equipado
-  -> no encontrado
-  */
-
-  if(!isFound(id)){
+  if(
+    !isFound(id)
+  ){
 
     foundSupplies.push(id);
 
@@ -3034,7 +3081,7 @@ function adminEquipAll(){
 }
 
 /* =========================================================
-   RESET COMPLETO
+   RESET
 ========================================================= */
 
 function resetAll(){
@@ -3075,12 +3122,14 @@ function resetAll(){
 }
 
 /* =========================================================
-   CERRAR MODALES TOCANDO FUERA
+   CERRAR MODALES
 ========================================================= */
 
-document.getElementById(
+document
+.getElementById(
   "allFoundModal"
-).addEventListener(
+)
+.addEventListener(
   "click",
   event => {
 
@@ -3096,9 +3145,11 @@ document.getElementById(
   }
 );
 
-document.getElementById(
+document
+.getElementById(
   "adminModal"
-).addEventListener(
+)
+.addEventListener(
   "click",
   event => {
 
