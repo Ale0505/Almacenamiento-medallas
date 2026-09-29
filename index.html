@@ -45,11 +45,14 @@ button{cursor:pointer;}
 .screen{
   display:none;
   min-height:100vh;
-  padding:max(24px,env(safe-area-inset-top)) 15px max(45px,env(safe-area-inset-bottom));
+  padding:max(24px,env(safe-area-inset-top)) 15px
+          calc(105px + env(safe-area-inset-bottom));
   animation:fade .35s ease;
 }
 
-.screen.active{display:block;}
+.screen.active{
+  display:block;
+}
 
 @keyframes fade{
   from{opacity:0;transform:translateY(5px);}
@@ -253,7 +256,8 @@ h1{
 
 .tribute-image.evolving{
   opacity:.08;
-  filter:brightness(5) blur(9px) drop-shadow(0 0 35px rgba(197,163,91,.85));
+  filter:brightness(5) blur(9px)
+  drop-shadow(0 0 35px rgba(197,163,91,.85));
   transform:translateX(-50%) scale(.94);
 }
 
@@ -330,6 +334,80 @@ h1{
 @keyframes buttonGlow{
   0%,100%{box-shadow:0 0 0 rgba(197,163,91,0);}
   50%{box-shadow:0 0 23px rgba(197,163,91,.15);}
+}
+
+/* BOTÓN FIJO BRÚJULA */
+
+.compass-dock{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:55;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5,6,6,0),
+      rgba(5,6,6,.95) 28%,
+      #050606 100%
+    );
+  pointer-events:none;
+}
+
+.compass-dock-inner{
+  width:min(520px,100%);
+  margin:auto;
+  pointer-events:auto;
+}
+
+.compass-return{
+  position:relative;
+  width:100%;
+  min-height:55px;
+  padding:12px 20px;
+  overflow:hidden;
+  border:1px solid var(--gold2);
+  background:
+    linear-gradient(135deg,rgba(197,163,91,.10),rgba(10,11,11,.98));
+  color:var(--gold);
+  box-shadow:
+    0 -8px 30px rgba(0,0,0,.55),
+    inset 0 0 25px rgba(197,163,91,.025);
+}
+
+.compass-return::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:var(--gold);
+  box-shadow:0 0 13px rgba(197,163,91,.5);
+}
+
+.compass-return-main{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font:10px Arial,sans-serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.compass-return-icon{
+  font-size:21px;
+  line-height:1;
+}
+
+.compass-return-sub{
+  margin-top:5px;
+  color:#777870;
+  font:6px Arial,sans-serif;
+  letter-spacing:.15em;
+  text-transform:uppercase;
 }
 
 /* INVENTORY */
@@ -1070,6 +1148,8 @@ h1{
   letter-spacing:.1em;
 }
 
+/* MOBILE */
+
 @media(max-width:720px){
 
   .main-layout{
@@ -1110,7 +1190,9 @@ h1{
 <img src="capitolio.png.webp" alt="Capitolio">
 </div>
 
-<div class="eyebrow">CAPITOLIO · REGISTRO DEL TRIBUTO</div>
+<div class="eyebrow">
+CAPITOLIO · REGISTRO DEL TRIBUTO
+</div>
 
 <h1>INVENTARIO</h1>
 
@@ -1206,7 +1288,8 @@ VER MI DESTINO
 
 <p>
 Localiza las medallas ocultas durante los Juegos.
-Cada una contiene un código de autorización asociado a un suministro.
+Cada una contiene un código de autorización asociado
+a un suministro.
 </p>
 
 </div>
@@ -1217,7 +1300,9 @@ Cada una contiene un código de autorización asociado a un suministro.
 
 <img src="capitolio.png.webp" alt="Capitolio">
 
-<div class="eyebrow">PROTOCOLO POST-JUEGOS</div>
+<div class="eyebrow">
+PROTOCOLO POST-JUEGOS
+</div>
 
 <div class="reward-lock">◇</div>
 
@@ -1243,8 +1328,10 @@ ACCESO BLOQUEADO · SOBREVIVE A LOS JUEGOS
 
 <div class="shell">
 
-<button class="action secondary" style="width:auto;margin-bottom:20px" onclick="goHome()">
-← VOLVER
+<button class="action secondary"
+style="width:auto;margin-bottom:20px"
+onclick="goHome()">
+← VOLVER AL INVENTARIO
 </button>
 
 <header class="capitol-header">
@@ -1273,7 +1360,9 @@ Si la identificación es correcta,
 el Capitolio autorizará el acceso al suministro.
 </p>
 
-<div class="pin-label">CÓDIGO DE AUTORIZACIÓN</div>
+<div class="pin-label">
+CÓDIGO DE AUTORIZACIÓN
+</div>
 
 <div class="pin" id="pinInputs">
 <input inputmode="numeric" maxlength="1">
@@ -1312,7 +1401,9 @@ TRANSMISIÓN DEL CAPITOLIO
 
 <div class="found-card">
 
-<div class="subtitle">SUMINISTRO AUTORIZADO</div>
+<div class="subtitle">
+SUMINISTRO AUTORIZADO
+</div>
 
 <div class="found-icon" id="foundIcon"></div>
 
@@ -1328,11 +1419,15 @@ TRANSMISIÓN DEL CAPITOLIO
 
 <br>
 
-<button id="equipSupplyButton" class="action glow" onclick="equipCurrentSupply()">
+<button id="equipSupplyButton"
+class="action glow"
+onclick="equipCurrentSupply()">
 EQUIPAR
 </button>
 
-<button id="alreadyEquippedButton" class="action secondary hidden" onclick="goHome()">
+<button id="alreadyEquippedButton"
+class="action secondary hidden"
+onclick="goHome()">
 VOLVER AL INVENTARIO
 </button>
 
@@ -1390,7 +1485,9 @@ Uno a uno, los sistemas de vigilancia dejan de detectar sus señales.
 
 <div class="rule"></div>
 
-<div class="eyebrow">ANÁLISIS DEL TRIBUTO</div>
+<div class="eyebrow">
+ANÁLISIS DEL TRIBUTO
+</div>
 
 <h2 style="font-weight:400;letter-spacing:.1em;">
 PERO TÚ ESTABAS PREPARADO
@@ -1456,11 +1553,8 @@ Tu sistema de defensa pasa a estar completamente operativo.
 </div>
 
 <p>Te escondes.</p>
-
 <p>Esperas.</p>
-
 <p>La tormenta continúa durante horas.</p>
-
 <p>Hasta que, finalmente, vuelve el silencio.</p>
 
 </div>
@@ -1544,7 +1638,8 @@ LAS RECOMPENSAS DE LOS DISTRITOS<br>
 TE ESPERAN AL FINAL.
 </div>
 
-<button class="action glow" onclick="returnToCompass()">
+<button class="action glow"
+onclick="returnToCompass()">
 VOLVER A LA BRÚJULA
 </button>
 
@@ -1552,6 +1647,37 @@ VOLVER A LA BRÚJULA
 
 </div>
 </section>
+
+<!-- BOTÓN FIJO BRÚJULA -->
+
+<div id="compassDock" class="compass-dock">
+
+<div class="compass-dock-inner">
+
+<button class="compass-return"
+onclick="returnToCompass()">
+
+<div class="compass-return-main">
+
+<span class="compass-return-icon">
+⌖
+</span>
+
+<span>
+VOLVER A LA BRÚJULA
+</span>
+
+</div>
+
+<div class="compass-return-sub">
+REGRESAR A LA ARENA · EL PROGRESO DEL INVENTARIO SE CONSERVARÁ
+</div>
+
+</button>
+
+</div>
+
+</div>
 
 <!-- EVOLUTION -->
 
@@ -1592,7 +1718,9 @@ ANALIZANDO EQUIPAMIENTO
 
 <div class="modal-card">
 
-<img class="logo" src="capitolio.png.webp" alt="Capitolio">
+<img class="logo"
+src="capitolio.png.webp"
+alt="Capitolio">
 
 <div class="eyebrow">
 PROTOCOLO DE LA ARENA
@@ -1615,11 +1743,13 @@ en las condiciones de la Arena.
 TU DESTINO ESTÁ A PUNTO DE DECIDIRSE.
 </p>
 
-<button class="action glow" onclick="showDestiny()">
+<button class="action glow"
+onclick="showDestiny()">
 VER MI DESTINO
 </button>
 
-<button class="action secondary" onclick="closeAllFound()">
+<button class="action secondary"
+onclick="closeAllFound()">
 TODAVÍA NO
 </button>
 
@@ -1632,7 +1762,9 @@ TODAVÍA NO
 
 <div class="modal-card">
 
-<img class="logo" src="capitolio.png.webp" alt="Capitolio">
+<img class="logo"
+src="capitolio.png.webp"
+alt="Capitolio">
 
 <div id="adminLogin">
 
@@ -1658,19 +1790,23 @@ placeholder="••••">
 
 <br><br>
 
-<button class="action" onclick="adminLogin()">
+<button class="action"
+onclick="adminLogin()">
 AUTORIZAR
 </button>
 
-<div class="error" id="adminError"></div>
+<div class="error"
+id="adminError"></div>
 
-<button class="action secondary" onclick="closeAdmin()">
+<button class="action secondary"
+onclick="closeAdmin()">
 CANCELAR
 </button>
 
 </div>
 
-<div id="adminPanel" class="hidden">
+<div id="adminPanel"
+class="hidden">
 
 <div class="eyebrow">
 ACCESO CONCEDIDO
@@ -1684,23 +1820,28 @@ CONTROL DEL CAPITOLIO
 
 <br>
 
-<button class="action" onclick="adminEquipMinimum()">
+<button class="action"
+onclick="adminEquipMinimum()">
 EQUIPAR EQUIPO MÍNIMO
 </button>
 
-<button class="action secondary" onclick="adminUnlockAll()">
+<button class="action secondary"
+onclick="adminUnlockAll()">
 ENCONTRAR TODOS LOS ALIJOS
 </button>
 
-<button class="action secondary" onclick="adminEquipAll()">
+<button class="action secondary"
+onclick="adminEquipAll()">
 EQUIPAR TODO
 </button>
 
-<button class="action secondary" onclick="resetAll()">
+<button class="action secondary"
+onclick="resetAll()">
 RESTABLECER TODO
 </button>
 
-<button class="action secondary" onclick="closeAdmin()">
+<button class="action secondary"
+onclick="closeAdmin()">
 CERRAR
 </button>
 
@@ -1917,7 +2058,34 @@ document
 .getElementById(id)
 .classList.add("active");
 
+updateCompassDock(id);
+
 window.scrollTo(0,0);
+
+}
+
+function updateCompassDock(screenId){
+
+const dock =
+document.getElementById("compassDock");
+
+/*
+El botón está disponible durante el inventario,
+la verificación y la visualización del alijo.
+
+Se oculta en la secuencia final porque esa pantalla
+ya incluye su propio botón narrativo para volver.
+*/
+
+if(screenId === "destiny"){
+
+dock.classList.add("hidden");
+
+}else{
+
+dock.classList.remove("hidden");
+
+}
 
 }
 
@@ -1928,6 +2096,22 @@ currentSupply = null;
 renderEverything();
 
 showScreen("home");
+
+}
+
+/* VOLVER A LA BRÚJULA */
+
+function returnToCompass(){
+
+/*
+Todo el progreso del inventario se guarda
+en localStorage antes de abandonar la página.
+*/
+
+saveState();
+
+window.location.href =
+COMPASS_URL;
 
 }
 
@@ -2066,8 +2250,7 @@ INVENTARIO VACÍO
 
 <br><br>
 
-TODAVÍA NO SE HAN
-LOCALIZADO ALIJOS
+TODAVÍA NO SE HAN LOCALIZADO ALIJOS
 
 </div>
 
@@ -2131,13 +2314,8 @@ ${supply.source}
 
 </div>
 
-<div class="
-item-state
-${!isEquipped(supply.id) ? "pending" : ""}
-">
-
+<div class="item-state ${!isEquipped(supply.id) ? "pending" : ""}">
 ${state}
-
 </div>
 
 `;
@@ -2164,7 +2342,7 @@ inventory.appendChild(item);
 
 }
 
-/* SUPPLIES */
+/* SUPPLY GRID */
 
 function renderSupplies(){
 
@@ -2619,6 +2797,15 @@ evolution.classList.add(
 "active"
 );
 
+/*
+Mientras dura la animación se oculta
+el botón fijo para evitar pulsaciones accidentales.
+*/
+
+document
+.getElementById("compassDock")
+.classList.add("hidden");
+
 image.classList.add(
 "evolving"
 );
@@ -2689,6 +2876,22 @@ evolution.classList.remove(
 evolution.classList.remove(
 "flash"
 );
+
+const activeScreen =
+document.querySelector(
+".screen.active"
+);
+
+if(
+activeScreen &&
+activeScreen.id !== "destiny"
+){
+
+document
+.getElementById("compassDock")
+.classList.remove("hidden");
+
+}
 
 },3350);
 
@@ -2786,15 +2989,6 @@ closeAllFound();
 showScreen(
 "destiny"
 );
-
-}
-
-/* VOLVER A LA BRÚJULA */
-
-function returnToCompass(){
-
-window.location.href =
-COMPASS_URL;
 
 }
 
@@ -3220,6 +3414,8 @@ closeAdmin();
 /* START */
 
 renderEverything();
+
+updateCompassDock("home");
 
 </script>
 
